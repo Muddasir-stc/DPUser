@@ -1,6 +1,7 @@
 package com.dpoints.dpointsmerchant.datasource.remote.shop
 
 import android.util.Log
+import com.dpoint.dpointsuser.datasource.remote.offer.AssignModel
 import com.dpoints.dpointsmerchant.datasource.remote.ApiCallbackImpl
 import com.dpoints.dpointsmerchant.datasource.remote.ApiClient
 import com.dpoints.dpointsmerchant.datasource.remote.ApiResult
@@ -22,50 +23,20 @@ class ShopService private constructor() {
         call.enqueue(CallbackImpl(callback))
     }
 
-    fun addShop(
+    fun assignOffer(
         token: String,
-        merchentId: String,
-        title: String,
-        desc: String,
-        image: String,
-        ext: String,
-        address: String,
-        contact: String,
-        email: String,
-        apiCallbackImpl: ApiCallbackImpl<ShopModel>
+        userId: String,
+        merchantId: String,
+        shopId: String,
+        coinOfferId: String,
+        offerTitle: String,
+        offer: String,
+        amount: String,
+        callback: ApiCallbackImpl<AssignModel>
     ) {
         val service = ApiClient.retrofit.create(ShopService.Service::class.java)
-        val call = service.addShop("Bearer $token",merchentId,title,desc,image,ext,address,contact,email)
-        call.enqueue(CallbackImpl(apiCallbackImpl))
-    }
-
-    fun updateShop(
-        token: String,
-        merchentId: String,
-        title: String,
-        desc: String,
-        image: String,
-        ext: String,
-        address: String,
-        contact: String,
-        email: String,
-        id: String,
-        apiCallbackImpl: ApiCallbackImpl<ShopModel>
-    ) {
-        Log.e("SHOPID",id)
-        val service = ApiClient.retrofit.create(ShopService.Service::class.java)
-        val call = service.updateShop("Bearer $token",merchentId,title,desc,image,ext,address,contact,email,id)
-        call.enqueue(CallbackImpl(apiCallbackImpl))
-    }
-
-    fun deleteShop(
-        token: String,
-        id: String,
-        apiCallbackImpl: ApiCallbackImpl<ShopModel>
-    ) {
-        val service = ApiClient.retrofit.create(ShopService.Service::class.java)
-        val call = service.deleteShop("Bearer $token",id)
-        call.enqueue(CallbackImpl(apiCallbackImpl))
+        val call = service.assignOffer("Bearer $token",userId,merchantId,shopId,coinOfferId,offerTitle,offer,amount)
+        call.enqueue(CallbackImpl(callback))
     }
 
 
@@ -74,39 +45,17 @@ class ShopService private constructor() {
         fun getShops(
             @Header("Authorization") token: String
         ): Call<ApiResult<ShopModel>>
-        @POST("shops")
+        @POST("assign")
         @FormUrlEncoded
-        fun addShop(
+        fun assignOffer(
             @Header("Authorization") token: String,
-            @Field("merchant_id") merchentId: String,
-            @Field("title")title: String,
-            @Field("description")desc: String,
-            @Field("image")image: String,
-            @Field("ext")ext: String,
-            @Field("address")address: String,
-            @Field("contact")contact: String,
-            @Field("email")email: String
-        ): Call<ApiResult<ShopModel>>
-
-        @PUT("shops/{id}")
-        @FormUrlEncoded
-        fun updateShop(
-            @Header("Authorization") token: String,
-            @Field("merchant_id") merchentId: String,
-            @Field("title")title: String,
-            @Field("description")desc: String,
-            @Field("image")image: String,
-            @Field("ext")ext: String,
-            @Field("address")address: String,
-            @Field("contact")contact: String,
-            @Field("email")email: String,
-            @Path("id")id:String
-        ): Call<ApiResult<ShopModel>>
-
-        @DELETE("shops/{id}")
-        fun deleteShop(
-            @Header("Authorization") token: String,
-            @Path("id")id:String
-        ): Call<ApiResult<ShopModel>>
+            @Field("user_id") userId: String,
+            @Field("merchant_id") merchantId: String,
+            @Field("shop_id") shopId: String,
+            @Field("coin_offer_id")coinOfferId: String,
+            @Field("coin_offer_title")offerTitle: String,
+            @Field("offer")offer: String,
+            @Field("amount")amount: String
+        ): Call<ApiResult<AssignModel>>
     }
 }
