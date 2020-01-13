@@ -3,53 +3,96 @@ package com.dpoints.view.module.profile
 import android.content.Intent
 import android.widget.Button
 import android.widget.TextView
+import androidx.lifecycle.Observer
 import com.dpoint.dpointsuser.R
+import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
+import com.dpoints.dpointsmerchant.datasource.remote.auth.LoginModel
 import com.dpoints.dpointsmerchant.datasource.remote.auth.User
 import com.dpoints.dpointsmerchant.preferences.UserPreferences
+import com.dpoints.dpointsmerchant.utilities.getVM
 import com.dpoints.dpointsmerchant.view.commons.base.BaseActivity
+import com.dpoints.dpointsmerchant.view.module.login.LoginViewModel
+import kotlinx.android.synthetic.main.activity_profile.*
 
 class Profile : BaseActivity() {
     override val layout: Int= R.layout.activity_profile
-
+    private val viewModel by lazy { getVM<LoginViewModel>(this) }
     override fun init() {
+
+//        viewModel.getUser(UserPreferences.instance.getTokken(this)!!)
+//        addObserver()
         findViewById<Button>(R.id.changePasswordProfile).setOnClickListener {
             startActivity(Intent(this, ChangePasswordActivity::class.java))
         }
+        backBtn.setOnClickListener {
+            onBackPressed()
+        }
+        getUser()
+    }
+
+    private fun addObserver() {
+        viewModel.userState.observe(this, Observer {
+            it ?: return@Observer
+            val state = it.getContentIfNotHandled() ?: return@Observer
+
+            if (state is NetworkState.Loading) {
+                return@Observer showProgress(this)
+            }
+
+            hideProgress()
+
+            when (state) {
+                is NetworkState.Success -> {
+                    onVerifySuccess(state.data!!)
+                }
+                is NetworkState.Error -> onError(state.message)
+                is NetworkState.Failure -> onFailure(getString(R.string.request_error))
+                else -> onFailure(getString(R.string.connection_error))
+            }
+        })
+    }
+
+    private fun onVerifySuccess(data: LoginModel) {
+        UserPreferences.instance.saveUser(this, data.user!!)
+        getUser()
+    }
+
+    private fun getUser(){
         val user: User = UserPreferences.instance.getUser(this)!!
         if (user.last_name != null) {
-             findViewById<TextView>(R.id.profileName).text = "${user!!.name} ${user!!.last_name}"
+            profileName.text = "${user!!.name} ${user!!.last_name}"
         } else {
-             findViewById<TextView>(R.id.profileName).text = "${user!!.name}"
+            profileName.text = "${user!!.name}"
         }
 
         if (user.email != null) {
-             findViewById<TextView>(R.id.profileEmail).text = "${user!!.email}"
+            profileEmail.text = "${user!!.email}"
         } else {
-             findViewById<TextView>(R.id.profileEmail).text = "-"
+           profileEmail.text = "-"
         }
 
         if (user.points_used != null) {
-             findViewById<TextView>(R.id.profileUsed).text = " ${user.points_used}"
+           profileUsed.text = " ${user.points_used}"
         } else {
-             findViewById<TextView>(R.id.profileUsed).text = "0"
+           profileUsed.text = "0"
         }
 
         if (user.total_points != null) {
-             findViewById<TextView>(R.id.profileBal).text = " ${user.total_points}"
+            profileBal.text = " ${user.total_points}"
         } else {
-             findViewById<TextView>(R.id.profileBal).text = "0"
+            profileBal.text = "0"
         }
 
         if (user.dob != null) {
-             findViewById<TextView>(R.id.profileDob).text = user.dob.toString()
+            profileDob.text = user.dob.toString()
         } else {
-             findViewById<TextView>(R.id.profileDob).text = "-"
+          profileDob.text = "-"
         }
 
         if (user.contact_number != null) {
-             findViewById<TextView>(R.id.profileNumber).text = user.contact_number.toString()
+            profileNumber.text = user.contact_number.toString()
         } else {
-             findViewById<TextView>(R.id.profileNumber).text = "-"
+            profileNumber.text = "-"
         }
     }
 }

@@ -17,6 +17,9 @@ class LoginViewModel : ViewModel() {
     private val _loginState = MutableLiveData<Event<NetworkState<LoginModel>>>()
     val loginState: LiveData<Event<NetworkState<LoginModel>>> get() = _loginState
 
+    private val _userState = MutableLiveData<Event<NetworkState<LoginModel>>>()
+    val userState: LiveData<Event<NetworkState<LoginModel>>> get() = _userState
+
     private val _registerState = MutableLiveData<Event<NetworkState<LoginModel>>>()
     val registerState: LiveData<Event<NetworkState<LoginModel>>> get() = _registerState
 
@@ -63,7 +66,18 @@ class LoginViewModel : ViewModel() {
                 }
             })
     }
+    fun getUser(token: String){
+        _userState.value = Event(NetworkState.Loading())
 
+        AuthService.instance.getUser(
+            token,
+            object : ApiCallbackImpl<LoginModel>(_userState) {
+                override fun onSuccess(success: LoginModel?) {
+                    Log.e("Data",success?.message)
+                    _userState.value = Event(NetworkState.Success(success))
+                }
+            })
+    }
     fun register(
         name: String,
         last_name: String,

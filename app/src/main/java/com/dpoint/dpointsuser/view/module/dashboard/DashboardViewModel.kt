@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.dpoint.dpointsuser.datasource.remote.offer.AssignModel
 import com.dpoints.dpointsmerchant.datasource.remote.ApiCallbackImpl
 import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
 import com.dpoints.dpointsmerchant.datasource.remote.offer.OfferModel
@@ -20,14 +21,10 @@ class DashboardViewModel : ViewModel() {
 
     private val _offersState = MutableLiveData<Event<NetworkState<OfferModel>>>()
     val offersState: LiveData<Event<NetworkState<OfferModel>>> get() = _offersState
-//    private val _addShopState = MutableLiveData<Event<NetworkState<ShopModel>>>()
-//    val addShopState: LiveData<Event<NetworkState<ShopModel>>> get() = _addShopState
-//
-//    private val _updateShopState = MutableLiveData<Event<NetworkState<ShopModel>>>()
-//    val updateShopState: LiveData<Event<NetworkState<ShopModel>>> get() = _updateShopState
-//
-//    private val _deleteShopState = MutableLiveData<Event<NetworkState<ShopModel>>>()
-//    val deleteShopState: LiveData<Event<NetworkState<ShopModel>>> get() = _deleteShopState
+
+    private val _assignState = MutableLiveData<Event<NetworkState<AssignModel>>>()
+    val assignState: LiveData<Event<NetworkState<AssignModel>>> get() = _assignState
+
 
     fun getShops(token: String) {
 
@@ -38,6 +35,19 @@ class DashboardViewModel : ViewModel() {
                 override fun onSuccess(success: ShopModel?) {
                     Log.e("Data",success?.message)
                     _shopsState.value = Event(NetworkState.Success(success))
+                }
+            })
+    }
+
+    fun assignOffer(token: String,userId:String,merchantId:String,ShopId:String,coinOfferId:String,offerTitle:String,offer:String,ammount:String) {
+
+        _assignState.value = Event(NetworkState.Loading())
+
+        ShopService.instance.assignOffer(token,userId,merchantId,ShopId,coinOfferId,offerTitle,offer,ammount,
+            object : ApiCallbackImpl<AssignModel>(_assignState) {
+                override fun onSuccess(success: AssignModel?) {
+                    Log.e("ASSIGN",success?.message)
+                    _assignState.value = Event(NetworkState.Success(success))
                 }
             })
     }
@@ -53,40 +63,5 @@ class DashboardViewModel : ViewModel() {
 
             })
     }
-//    fun addShop(token: String,merchent_id:String,title: String,desc:String,image:String,ext:String,address:String,contact:String,email:String) {
-//
-//        _addShopState.value = Event(NetworkState.Loading())
-//
-//        ShopService.instance.addShop(token,merchent_id,title,desc,image,ext,address,contact,email,
-//            object : ApiCallbackImpl<ShopModel>(_addShopState) {
-//                override fun onSuccess(success: ShopModel?) {
-//                    Log.e("Message",success?.message)
-//                    _addShopState.value = Event(NetworkState.Success(success))
-//                }
-//            })
-//    }
-//    fun updateShop(token: String,merchent_id:String,title: String,desc:String,image:String,ext:String,address:String,contact:String,email:String,id:String) {
-//
-//        _updateShopState.value = Event(NetworkState.Loading())
-//
-//        ShopService.instance.updateShop(token,merchent_id,title,desc,image,ext,address,contact,email,id,
-//            object : ApiCallbackImpl<ShopModel>(_updateShopState) {
-//                override fun onSuccess(success: ShopModel?) {
-//                    Log.e("Message",success?.message)
-//                    _updateShopState.value = Event(NetworkState.Success(success))
-//                }
-//            })
-//    }
-//    fun deleteShop(token: String,id:String) {
-//
-//        _deleteShopState.value = Event(NetworkState.Loading())
-//
-//        ShopService.instance.deleteShop(token,id,
-//            object : ApiCallbackImpl<ShopModel>(_deleteShopState) {
-//                override fun onSuccess(success: ShopModel?) {
-//                    Log.e("Data",success?.message)
-//                    _deleteShopState.value = Event(NetworkState.Success(success))
-//                }
-//            })
-//    }
+
 }
