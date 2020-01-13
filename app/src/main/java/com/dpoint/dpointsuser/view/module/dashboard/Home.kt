@@ -2,11 +2,13 @@ package com.dpoints.view.module.dashboard
 
 import android.Manifest
 import android.Manifest.permission_group.CAMERA
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.util.Log
 import android.view.View
+import android.view.WindowManager
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,20 +30,30 @@ import com.google.zxing.integration.android.IntentIntegrator
 import kotlinx.android.synthetic.main.fragment_home.*
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.checkSelfPermission
+import com.budiyev.android.codescanner.AutoFocusMode
+import com.budiyev.android.codescanner.CodeScanner
+import com.budiyev.android.codescanner.CodeScannerView
+import com.budiyev.android.codescanner.DecodeCallback
+import com.budiyev.android.codescanner.ErrorCallback
+import com.budiyev.android.codescanner.ScanMode
 import com.dpoint.dpointsuser.datasource.model.ScanedOffer
 import com.dpoints.dpointsmerchant.utilities.fromJson
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 
 class Home : BaseFragment(),OnItemClickListener {
-
-
+    private lateinit var dialog: BottomSheetDialog
+    private lateinit var codeScanner: CodeScanner
     override val layout: Int=R.layout.fragment_home
     lateinit var mShops: RecyclerView
     lateinit var mOffers: RecyclerView
     lateinit var data: List<Data>
     lateinit var adapter: ShopAdapter
     lateinit var offerAdapter: OfferAdapter
+    private val CAMERA_PERMISSIONS_REQUEST = 2
     private val viewModel by lazy { getVM<DashboardViewModel>(activity!!) }
     override fun init(view: View) {
         shops.setHasFixedSize(true)
@@ -108,13 +120,79 @@ class Home : BaseFragment(),OnItemClickListener {
       //  Log.e("OFFER",data[index].toJson().toString())
             //  context?.startActivity(Intent(context,ScanActivity::class.java))
 
-        if (context?.checkSelfPermission(CAMERA) != PackageManager.PERMISSION_GRANTED) {
+        /*if (context?.checkSelfPermission(CAMERA) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions( arrayOf(Manifest.permission.CAMERA), 100);
         }
         val inte = IntentIntegrator(activity)
         inte.initiateScan()
         inte.addExtra("ID", data[index].id.toString())
-        inte.setOrientationLocked(false)
+        inte.setOrientationLocked(false)*/
+        getActivity()!!. getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN); requestCameraPermission()
+    }
+
+
+    private fun requestCameraPermission() {
+        if (ContextCompat.checkSelfPermission(
+                activity!!,
+                Manifest.permission.CAMERA
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                activity!!,
+                arrayOf(Manifest.permission.CAMERA),
+                CAMERA_PERMISSIONS_REQUEST
+            )
+        } else {
+            openCamera()
+        }
+    }
+
+    private fun openCamera() {
+
+        val view = layoutInflater.inflate(R.layout.bottomsheet_scandata, null)
+        dialog = BottomSheetDialog(context!!)
+        dialog.setContentView(view)
+        (view.parent as View).setBackgroundColor(
+            ContextCompat.getColor(
+                context!!,
+                R.color.transparent
+            )
+        )
+        dialog.show()
+
+
+
+        val scannerView = view.findViewById<CodeScannerView>(R.id.scanner_view)
+        codeScanner = CodeScanner(context!!, scannerView)
+        // Parameters (default values)
+        codeScanner.camera = CodeScanner.CAMERA_BACK // or CAMERA_FRONT or specific camera id
+        codeScanner.formats = CodeScanner.ALL_FORMATS // list of type BarcodeFormat,
+        // ex. listOf(BarcodeFormat.QR_CODE)
+        codeScanner.autoFocusMode = AutoFocusMode.SAFE // or CONTINUOUS
+        codeScanner.scanMode = ScanMode.SINGLE // or CONTINUOUS or PREVIEW
+        codeScanner.isAutoFocusEnabled = true // Whether to enable auto focus or not
+        codeScanner.isFlashEnabled = false // Whether to enable flash or not
+        codeScanner.startPreview()
+
+        // Callbacks
+        codeScanner.decodeCallback = DecodeCallback {
+            activity!!.runOnUiThread {
+                Toast.makeText(context, "Scan result: ${it.text}", Toast.LENGTH_LONG).show()
+                dialog.dismiss()
+            }
+        }
+        codeScanner.errorCallback = ErrorCallback { // or ErrorCallback.SUPPRESS
+            activity!!.runOnUiThread(){
+                Toast.makeText(context, "Camera initialization error: ${it.message}",
+                    Toast.LENGTH_LONG).show()
+            }
+        }
+
+    }
+
+    override fun onPause() {
+        dialog.dismiss()
+        super.onPause()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -130,4 +208,6 @@ class Home : BaseFragment(),OnItemClickListener {
             }
         }
     }
+
+
 }
