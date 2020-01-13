@@ -1,0 +1,1060 @@
+<resources>
+    <string name="app_name">DPoints User</string>
+    <string name="title_activity_dashboard">Dashboard</string>
+    <string name="title_home">Home</string>
+    <string name="title_setting">Setting</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="no_data_available">No Data Available</string>
+    <string name="there_is_no_data_to_show_you_right_now">There is no data to show you right now.</string>
+    <string name="continues">Continue</string>
+    <string name="no_internet">No Internet</string>
+    <string name="please_wait_till_it_s_back_and_try_again">Please wait till it’s back and try again</string>
+    <string name="transaction_id">Transaction ID:</string>
+    <string name="order_id">Order ID : </string>
+    <string name="enter_username">Enter Username</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="login">Login</string>
+    <string name="request_error">Sorry! We are unable to process your request. Please try after some time.</string>
+    <string name="connection_error">Failed to connect. Make sure you have an active internet connection.</string>
+    <string name="okay">Okay</string>
+    <string name="submit">Submit</string>
+    <string name="or_login_using">Or login using</string>
+    <string name="facebook">Facebook</string>
+    <string name="google">Google</string>
+    <string name="dont_have_account">Don\'t have account?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="my_offers">My Offers</string>
+    <string name="gift_card">Gift Card</string>
+    <string name="points_collected">Points Collected</string>
+    <string name="assign">Assign</string>
+    <string name="edit">Edit</string>
+    <string name="Delete">Delete</string>
+    <string name="redeem">Redeem</string>
+    <string name="all_offers">All Offers</string>
+    <string name="offer_name">Offer Name</string>
+    <string name="restaurant_name">Restaurant Name</string>
+    <string name="amazing_offer">This is amazing offer</string>
+    <string name="amount">1400</string>
+    <string name="shopping_text">20 DPoints on Shopping of 1000</string>
+    <string name="this_is_amazing_contrary_to_popular_belief_amazing_contrary_to_popular_belief">This is Amazing Contrary to popular belief.</string>
+    <string name="we_have_send_the_otp_on">We have send the otp on</string>
+    <string name="drawerOpen">drawerOpen</string>
+    <string name="drawerClose">drawerClose</string>
+    <string name="dumy_text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</string>
+
+
+    <string name="facebook_app_id">461417987884721</string>
+    <string name="fb_login_protocol_scheme">fb461417987884721</string>
+    <string name="earn_offer">Earn Offer</string>
+
+
+    <string-array name="cities">
+        <item>Abilene</item>
+        <item>Addison</item>
+        <item>Akron</item>
+        <item>Alameda</item>
+        <item>Albany</item>
+        <item>Albany</item>
+        <item>Albany</item>
+        <item>Albuquerque</item>
+        <item>Alexandria</item>
+        <item>Alexandria</item>
+        <item>Alhambra</item>
+        <item>Aliso Viejo</item>
+        <item>Allen</item>
+        <item>Allentown</item>
+        <item>Alpharetta</item>
+        <item>Altamonte Springs</item>
+        <item>Altoona</item>
+        <item>Amarillo</item>
+        <item>Ames</item>
+        <item>Anaheim</item>
+        <item>Anchorage</item>
+        <item>Anderson</item>
+        <item>Ankeny</item>
+        <item>Ann Arbor</item>
+        <item>Annapolis</item>
+        <item>Antioch</item>
+        <item>Apache Junction</item>
+        <item>Apex</item>
+        <item>Apopka</item>
+        <item>Apple Valley</item>
+        <item>Apple Valley</item>
+        <item>Appleton</item>
+        <item>Arcadia</item>
+        <item>Arlington</item>
+        <item>Arlington Heights</item>
+        <item>Arvada</item>
+        <item>Asheville</item>
+        <item>Athens-Clarke County</item>
+        <item>Atlanta</item>
+        <item>Atlantic City</item>
+        <item>Attleboro</item>
+        <item>Auburn</item>
+        <item>Auburn</item>
+        <item>Augusta-Richmond County</item>
+        <item>Aurora</item>
+        <item>Aurora</item>
+        <item>Austin</item>
+        <item>Aventura</item>
+        <item>Avondale</item>
+        <item>Azusa</item>
+        <item>Bakersfield</item>
+        <item>Baldwin Park</item>
+        <item>Baltimore</item>
+        <item>Barnstable Town</item>
+        <item>Bartlett</item>
+        <item>Bartlett</item>
+        <item>Baton Rouge</item>
+        <item>Battle Creek</item>
+        <item>Bayonne</item>
+        <item>Baytown</item>
+        <item>Beaumont</item>
+        <item>Beaumont</item>
+        <item>Beavercreek</item>
+        <item>Beaverton</item>
+        <item>Bedford</item>
+        <item>Bell Gardens</item>
+        <item>Belleville</item>
+        <item>Bellevue</item>
+        <item>Bellevue</item>
+        <item>Bellflower</item>
+        <item>Bellingham</item>
+        <item>Beloit</item>
+        <item>Bend</item>
+        <item>Bentonville</item>
+        <item>Berkeley</item>
+        <item>Berwyn</item>
+        <item>Bethlehem</item>
+        <item>Beverly</item>
+        <item>Billings</item>
+        <item>Biloxi</item>
+        <item>Binghamton</item>
+        <item>Birmingham</item>
+        <item>Bismarck</item>
+        <item>Blacksburg</item>
+        <item>Blaine</item>
+        <item>Bloomington</item>
+        <item>Bloomington</item>
+        <item>Bloomington</item>
+        <item>Blue Springs</item>
+        <item>Boca Raton</item>
+        <item>Boise City</item>
+        <item>Bolingbrook</item>
+        <item>Bonita Springs</item>
+        <item>Bossier City</item>
+        <item>Boston</item>
+        <item>Boulder</item>
+        <item>Bountiful</item>
+        <item>Bowie</item>
+        <item>Bowling Green</item>
+        <item>Boynton Beach</item>
+        <item>Bozeman</item>
+        <item>Bradenton</item>
+        <item>Brea</item>
+        <item>Bremerton</item>
+        <item>Brentwood</item>
+        <item>Brentwood</item>
+        <item>Bridgeport</item>
+        <item>Bristol</item>
+        <item>Brockton</item>
+        <item>Broken Arrow</item>
+        <item>Brookfield</item>
+        <item>Brookhaven</item>
+        <item>Brooklyn Park</item>
+        <item>Broomfield</item>
+        <item>Brownsville</item>
+        <item>Bryan</item>
+        <item>Buckeye</item>
+        <item>Buena Park</item>
+        <item>Buffalo</item>
+        <item>Buffalo Grove</item>
+        <item>Bullhead City</item>
+        <item>Burbank</item>
+        <item>Burien</item>
+        <item>Burleson</item>
+        <item>Burlington</item>
+        <item>Burlington</item>
+        <item>Burnsville</item>
+        <item>Caldwell</item>
+        <item>Calexico</item>
+        <item>Calumet City</item>
+        <item>Camarillo</item>
+        <item>Cambridge</item>
+        <item>Camden</item>
+        <item>Campbell</item>
+        <item>Canton</item>
+        <item>Cape Coral</item>
+        <item>Cape Girardeau</item>
+        <item>Carlsbad</item>
+        <item>Carmel</item>
+        <item>Carol Stream</item>
+        <item>Carpentersville</item>
+        <item>Carrollton</item>
+        <item>Carson</item>
+        <item>Carson City</item>
+        <item>Cary</item>
+        <item>Casa Grande</item>
+        <item>Casper</item>
+        <item>Castle Rock</item>
+        <item>Cathedral City</item>
+        <item>Cedar Falls</item>
+        <item>Cedar Hill</item>
+        <item>Cedar Park</item>
+        <item>Cedar Rapids</item>
+        <item>Centennial</item>
+        <item>Ceres</item>
+        <item>Cerritos</item>
+        <item>Champaign</item>
+        <item>Chandler</item>
+        <item>Chapel Hill</item>
+        <item>Charleston</item>
+        <item>Charleston</item>
+        <item>Charlotte</item>
+        <item>Charlottesville</item>
+        <item>Chattanooga</item>
+        <item>Chelsea</item>
+        <item>Chesapeake</item>
+        <item>Chesterfield</item>
+        <item>Cheyenne</item>
+        <item>Chicago</item>
+        <item>Chico</item>
+        <item>Chicopee</item>
+        <item>Chino</item>
+        <item>Chino Hills</item>
+        <item>Chula Vista</item>
+        <item>Cicero</item>
+        <item>Cincinnati</item>
+        <item>Citrus Heights</item>
+        <item>Clarksville</item>
+        <item>Clearwater</item>
+        <item>Cleveland</item>
+        <item>Cleveland</item>
+        <item>Cleveland Heights</item>
+        <item>Clifton</item>
+        <item>Clovis</item>
+        <item>Clovis</item>
+        <item>Coachella</item>
+        <item>Coconut Creek</item>
+        <item>Coeur d\'Alene</item>
+        <item>College Station</item>
+        <item>Collierville</item>
+        <item>Colorado Springs</item>
+        <item>Colton</item>
+        <item>Columbia</item>
+        <item>Columbia</item>
+        <item>Columbus</item>
+        <item>Columbus</item>
+        <item>Columbus</item>
+        <item>Commerce City</item>
+        <item>Compton</item>
+        <item>Concord</item>
+        <item>Concord</item>
+        <item>Concord</item>
+        <item>Conroe</item>
+        <item>Conway</item>
+        <item>Coon Rapids</item>
+        <item>Coppell</item>
+        <item>Coral Gables</item>
+        <item>Coral Springs</item>
+        <item>Corona</item>
+        <item>Corpus Christi</item>
+        <item>Corvallis</item>
+        <item>Costa Mesa</item>
+        <item>Council Bluffs</item>
+        <item>Covina</item>
+        <item>Covington</item>
+        <item>Cranston</item>
+        <item>Crystal Lake</item>
+        <item>Culver City</item>
+        <item>Cupertino</item>
+        <item>Cutler Bay</item>
+        <item>Cuyahoga Falls</item>
+        <item>Cypress</item>
+        <item>Dallas</item>
+        <item>Daly City</item>
+        <item>Danbury</item>
+        <item>Danville</item>
+        <item>Danville</item>
+        <item>Davenport</item>
+        <item>Davie</item>
+        <item>Davis</item>
+        <item>Dayton</item>
+        <item>Daytona Beach</item>
+        <item>Dearborn</item>
+        <item>Dearborn Heights</item>
+        <item>Decatur</item>
+        <item>Decatur</item>
+        <item>Deerfield Beach</item>
+        <item>DeKalb</item>
+        <item>Delano</item>
+        <item>Delray Beach</item>
+        <item>Deltona</item>
+        <item>Denton</item>
+        <item>Denver</item>
+        <item>Des Moines</item>
+        <item>Des Plaines</item>
+        <item>DeSoto</item>
+        <item>Detroit</item>
+        <item>Diamond Bar</item>
+        <item>Doral</item>
+        <item>Dothan</item>
+        <item>Dover</item>
+        <item>Downers Grove</item>
+        <item>Downey</item>
+        <item>Draper</item>
+        <item>Dublin</item>
+        <item>Dublin</item>
+        <item>Dubuque</item>
+        <item>Duluth</item>
+        <item>Duncanville</item>
+        <item>Dunwoody</item>
+        <item>Durham</item>
+        <item>Eagan</item>
+        <item>East Lansing</item>
+        <item>East Orange</item>
+        <item>East Providence</item>
+        <item>Eastvale</item>
+        <item>Eau Claire</item>
+        <item>Eden Prairie</item>
+        <item>Edina</item>
+        <item>Edinburg</item>
+        <item>Edmond</item>
+        <item>Edmonds</item>
+        <item>El Cajon</item>
+        <item>El Centro</item>
+        <item>El Monte</item>
+        <item>El Paso</item>
+        <item>Elgin</item>
+        <item>Elizabeth</item>
+        <item>Elk Grove</item>
+        <item>Elkhart</item>
+        <item>Elmhurst</item>
+        <item>Elyria</item>
+        <item>Encinitas</item>
+        <item>Enid</item>
+        <item>Erie</item>
+        <item>Escondido</item>
+        <item>Euclid</item>
+        <item>Eugene</item>
+        <item>Euless</item>
+        <item>Evanston</item>
+        <item>Evansville</item>
+        <item>Everett</item>
+        <item>Everett</item>
+        <item>Fairfield</item>
+        <item>Fairfield</item>
+        <item>Fall River</item>
+        <item>Fargo</item>
+        <item>Farmington</item>
+        <item>Farmington Hills</item>
+        <item>Fayetteville</item>
+        <item>Fayetteville</item>
+        <item>Federal Way</item>
+        <item>Findlay</item>
+        <item>Fishers</item>
+        <item>Fitchburg</item>
+        <item>Flagstaff</item>
+        <item>Flint</item>
+        <item>Florence</item>
+        <item>Florence</item>
+        <item>Florissant</item>
+        <item>Flower Mound</item>
+        <item>Folsom</item>
+        <item>Fond du Lac</item>
+        <item>Fontana</item>
+        <item>Fort Collins</item>
+        <item>Fort Lauderdale</item>
+        <item>Fort Myers</item>
+        <item>Fort Pierce</item>
+        <item>Fort Smith</item>
+        <item>Fort Wayne</item>
+        <item>Fort Worth</item>
+        <item>Fountain Valley</item>
+        <item>Franklin</item>
+        <item>Frederick</item>
+        <item>Freeport</item>
+        <item>Fremont</item>
+        <item>Fresno</item>
+        <item>Friendswood</item>
+        <item>Frisco</item>
+        <item>Fullerton</item>
+        <item>Gainesville</item>
+        <item>Gaithersburg</item>
+        <item>Galveston</item>
+        <item>Garden Grove</item>
+        <item>Gardena</item>
+        <item>Garland</item>
+        <item>Gary</item>
+        <item>Gastonia</item>
+        <item>Georgetown</item>
+        <item>Germantown</item>
+        <item>Gilbert</item>
+        <item>Gilroy</item>
+        <item>Glendale</item>
+        <item>Glendale</item>
+        <item>Glendora</item>
+        <item>Glenview</item>
+        <item>Goodyear</item>
+        <item>Goose Creek</item>
+        <item>Grand Forks</item>
+        <item>Grand Island</item>
+        <item>Grand Junction</item>
+        <item>Grand Prairie</item>
+        <item>Grand Rapids</item>
+        <item>Grapevine</item>
+        <item>Great Falls</item>
+        <item>Greeley</item>
+        <item>Green Bay</item>
+        <item>Greenacres</item>
+        <item>Greenfield</item>
+        <item>Greensboro</item>
+        <item>Greenville</item>
+        <item>Greenville</item>
+        <item>Greenwood</item>
+        <item>Gresham</item>
+        <item>Grove City</item>
+        <item>Gulfport</item>
+        <item>Hackensack</item>
+        <item>Hagerstown</item>
+        <item>Hallandale Beach</item>
+        <item>Haltom City</item>
+        <item>Hamilton</item>
+        <item>Hammond</item>
+        <item>Hampton</item>
+        <item>Hanford</item>
+        <item>Hanover Park</item>
+        <item>Harlingen</item>
+        <item>Harrisburg</item>
+        <item>Harrisonburg</item>
+        <item>Hartford</item>
+        <item>Hattiesburg</item>
+        <item>Haverhill</item>
+        <item>Hawthorne</item>
+        <item>Hayward</item>
+        <item>Hemet</item>
+        <item>Hempstead</item>
+        <item>Henderson</item>
+        <item>Hendersonville</item>
+        <item>Hesperia</item>
+        <item>Hialeah</item>
+        <item>Hickory</item>
+        <item>High Point</item>
+        <item>Highland</item>
+        <item>Hillsboro</item>
+        <item>Hilton Head Island</item>
+        <item>Hoboken</item>
+        <item>Hoffman Estates</item>
+        <item>Hollywood</item>
+        <item>Holyoke</item>
+        <item>Homestead</item>
+        <item>Honolulu</item>
+        <item>Hoover</item>
+        <item>Houston</item>
+        <item>Huber Heights</item>
+        <item>Huntersville</item>
+        <item>Huntington</item>
+        <item>Huntington Beach</item>
+        <item>Huntington Park</item>
+        <item>Huntsville</item>
+        <item>Huntsville</item>
+        <item>Hurst</item>
+        <item>Hutchinson</item>
+        <item>Idaho Falls</item>
+        <item>Independence</item>
+        <item>Indianapolis</item>
+        <item>Indio</item>
+        <item>Inglewood</item>
+        <item>Iowa City</item>
+        <item>Irvine</item>
+        <item>Irving</item>
+        <item>Jackson</item>
+        <item>Jackson</item>
+        <item>Jacksonville</item>
+        <item>Jacksonville</item>
+        <item>Janesville</item>
+        <item>Jefferson City</item>
+        <item>Jeffersonville</item>
+        <item>Jersey City</item>
+        <item>Johns Creek</item>
+        <item>Johnson City</item>
+        <item>Joliet</item>
+        <item>Jonesboro</item>
+        <item>Joplin</item>
+        <item>Jupiter</item>
+        <item>Jurupa Valley</item>
+        <item>Kalamazoo</item>
+        <item>Kannapolis</item>
+        <item>Kansas City</item>
+        <item>Kansas City</item>
+        <item>Kearny</item>
+        <item>Keizer</item>
+        <item>Keller</item>
+        <item>Kenner</item>
+        <item>Kennewick</item>
+        <item>Kenosha</item>
+        <item>Kent</item>
+        <item>Kentwood</item>
+        <item>Kettering</item>
+        <item>Killeen</item>
+        <item>Kingsport</item>
+        <item>Kirkland</item>
+        <item>Kissimmee</item>
+        <item>Knoxville</item>
+        <item>Kokomo</item>
+        <item>La Crosse</item>
+        <item>La Habra</item>
+        <item>La Mesa</item>
+        <item>La Mirada</item>
+        <item>La Puente</item>
+        <item>La Quinta</item>
+        <item>Lacey</item>
+        <item>Lafayette</item>
+        <item>Lafayette</item>
+        <item>Laguna Niguel</item>
+        <item>Lake Charles</item>
+        <item>Lake Elsinore</item>
+        <item>Lake Forest</item>
+        <item>Lake Havasu City</item>
+        <item>Lake Oswego</item>
+        <item>Lakeland</item>
+        <item>Lakeville</item>
+        <item>Lakewood</item>
+        <item>Lakewood</item>
+        <item>Lakewood</item>
+        <item>Lakewood</item>
+        <item>Lancaster</item>
+        <item>Lancaster</item>
+        <item>Lancaster</item>
+        <item>Lancaster</item>
+        <item>Lansing</item>
+        <item>Laredo</item>
+        <item>Largo</item>
+        <item>Las Cruces</item>
+        <item>Las Vegas</item>
+        <item>Lauderhill</item>
+        <item>Lawrence</item>
+        <item>Lawrence</item>
+        <item>Lawrence</item>
+        <item>Lawton</item>
+        <item>Layton</item>
+        <item>League City</item>
+        <item>Lee\'s Summit</item>
+        <item>Leesburg</item>
+        <item>Lehi</item>
+        <item>Lenexa</item>
+        <item>Leominster</item>
+        <item>Lewisville</item>
+        <item>Lexington-Fayette</item>
+        <item>Lima</item>
+        <item>Lincoln</item>
+        <item>Lincoln</item>
+        <item>Lincoln Park</item>
+        <item>Linden</item>
+        <item>Little Rock</item>
+        <item>Littleton</item>
+        <item>Livermore</item>
+        <item>Livonia</item>
+        <item>Lodi</item>
+        <item>Logan</item>
+        <item>Lombard</item>
+        <item>Lompoc</item>
+        <item>Long Beach</item>
+        <item>Longmont</item>
+        <item>Longview</item>
+        <item>Lorain</item>
+        <item>Los Angeles</item>
+        <item>Louisville</item>
+        <item>Loveland</item>
+        <item>Lowell</item>
+        <item>Lubbock</item>
+        <item>Lynchburg</item>
+        <item>Lynn</item>
+        <item>Lynwood</item>
+        <item>Macon</item>
+        <item>Madera</item>
+        <item>Madison</item>
+        <item>Madison</item>
+        <item>Malden</item>
+        <item>Manassas</item>
+        <item>Manchester</item>
+        <item>Manhattan</item>
+        <item>Mankato</item>
+        <item>Mansfield</item>
+        <item>Mansfield</item>
+        <item>Manteca</item>
+        <item>Maple Grove</item>
+        <item>Maplewood</item>
+        <item>Marana</item>
+        <item>Margate</item>
+        <item>Maricopa</item>
+        <item>Marietta</item>
+        <item>Marlborough</item>
+        <item>Martinez</item>
+        <item>Marysville</item>
+        <item>McAllen</item>
+        <item>McKinney</item>
+        <item>Medford</item>
+        <item>Medford</item>
+        <item>Melbourne</item>
+        <item>Memphis</item>
+        <item>Menifee</item>
+        <item>Mentor</item>
+        <item>Merced</item>
+        <item>Meriden</item>
+        <item>Meridian</item>
+        <item>Meridian</item>
+        <item>Mesa</item>
+        <item>Mesquite</item>
+        <item>Methuen</item>
+        <item>Miami</item>
+        <item>Miami Beach</item>
+        <item>Miami Gardens</item>
+        <item>Middletown</item>
+        <item>Middletown</item>
+        <item>Midland</item>
+        <item>Midland</item>
+        <item>Midwest City</item>
+        <item>Milford</item>
+        <item>Milpitas</item>
+        <item>Milwaukee</item>
+        <item>Minneapolis</item>
+        <item>Minnetonka</item>
+        <item>Minot</item>
+        <item>Miramar</item>
+        <item>Mishawaka</item>
+        <item>Mission</item>
+        <item>Mission Viejo</item>
+        <item>Missoula</item>
+        <item>Missouri City</item>
+        <item>Mobile</item>
+        <item>Modesto</item>
+        <item>Moline</item>
+        <item>Monroe</item>
+        <item>Monrovia</item>
+        <item>Montclair</item>
+        <item>Montebello</item>
+        <item>Monterey Park</item>
+        <item>Montgomery</item>
+        <item>Moore</item>
+        <item>Moorhead</item>
+        <item>Moreno Valley</item>
+        <item>Morgan Hill</item>
+        <item>Mount Pleasant</item>
+        <item>Mount Prospect</item>
+        <item>Mount Vernon</item>
+        <item>Mountain View</item>
+        <item>Muncie</item>
+        <item>Murfreesboro</item>
+        <item>Murray</item>
+        <item>Murrieta</item>
+        <item>Muskegon</item>
+        <item>Muskogee</item>
+        <item>Nampa</item>
+        <item>Napa</item>
+        <item>Naperville</item>
+        <item>Nashua</item>
+        <item>Nashville</item>
+        <item>National City</item>
+        <item>New Bedford</item>
+        <item>New Berlin</item>
+        <item>New Braunfels</item>
+        <item>New Britain</item>
+        <item>New Brunswick</item>
+        <item>New Haven</item>
+        <item>New Orleans</item>
+        <item>New Rochelle</item>
+        <item>New York</item>
+        <item>Newark</item>
+        <item>Newark</item>
+        <item>Newark</item>
+        <item>Newport Beach</item>
+        <item>Newport News</item>
+        <item>Newton</item>
+        <item>Niagara Falls</item>
+        <item>Noblesville</item>
+        <item>Norfolk</item>
+        <item>Normal</item>
+        <item>Norman</item>
+        <item>North Charleston</item>
+        <item>North Las Vegas</item>
+        <item>North Lauderdale</item>
+        <item>North Little Rock</item>
+        <item>North Miami</item>
+        <item>North Miami Beach</item>
+        <item>North Port</item>
+        <item>North Richland Hills</item>
+        <item>Northglenn</item>
+        <item>Norwalk</item>
+        <item>Norwalk</item>
+        <item>Norwich</item>
+        <item>Novato</item>
+        <item>Novi</item>
+        <item>O\'Fallon</item>
+        <item>Oak Lawn</item>
+        <item>Oak Park</item>
+        <item>Oakland</item>
+        <item>Oakland Park</item>
+        <item>Oakley</item>
+        <item>Ocala</item>
+        <item>Oceanside</item>
+        <item>Ocoee</item>
+        <item>Odessa</item>
+        <item>Ogden</item>
+        <item>Oklahoma City</item>
+        <item>Olathe</item>
+        <item>Olympia</item>
+        <item>Omaha</item>
+        <item>Ontario</item>
+        <item>Orange</item>
+        <item>Orem</item>
+        <item>Orland Park</item>
+        <item>Orlando</item>
+        <item>Ormond Beach</item>
+        <item>Oro Valley</item>
+        <item>Oshkosh</item>
+        <item>Overland Park</item>
+        <item>Owensboro</item>
+        <item>Oxnard</item>
+        <item>Pacifica</item>
+        <item>Palatine</item>
+        <item>Palm Bay</item>
+        <item>Palm Beach Gardens</item>
+        <item>Palm Coast</item>
+        <item>Palm Desert</item>
+        <item>Palm Springs</item>
+        <item>Palmdale</item>
+        <item>Palo Alto</item>
+        <item>Panama City</item>
+        <item>Paramount</item>
+        <item>Park Ridge</item>
+        <item>Parker</item>
+        <item>Parma</item>
+        <item>Pasadena</item>
+        <item>Pasadena</item>
+        <item>Pasco</item>
+        <item>Passaic</item>
+        <item>Paterson</item>
+        <item>Pawtucket</item>
+        <item>Peabody</item>
+        <item>Peachtree Corners</item>
+        <item>Pearland</item>
+        <item>Pembroke Pines</item>
+        <item>Pensacola</item>
+        <item>Peoria</item>
+        <item>Peoria</item>
+        <item>Perris</item>
+        <item>Perth Amboy</item>
+        <item>Petaluma</item>
+        <item>Pflugerville</item>
+        <item>Pharr</item>
+        <item>Phenix City</item>
+        <item>Philadelphia</item>
+        <item>Phoenix</item>
+        <item>Pico Rivera</item>
+        <item>Pine Bluff</item>
+        <item>Pinellas Park</item>
+        <item>Pittsburg</item>
+        <item>Pittsburgh</item>
+        <item>Pittsfield</item>
+        <item>Placentia</item>
+        <item>Plainfield</item>
+        <item>Plainfield</item>
+        <item>Plano</item>
+        <item>Plantation</item>
+        <item>Pleasanton</item>
+        <item>Plymouth</item>
+        <item>Pocatello</item>
+        <item>Pomona</item>
+        <item>Pompano Beach</item>
+        <item>Pontiac</item>
+        <item>Port Arthur</item>
+        <item>Port Orange</item>
+        <item>Port St. Lucie</item>
+        <item>Portage</item>
+        <item>Porterville</item>
+        <item>Portland</item>
+        <item>Portland</item>
+        <item>Portsmouth</item>
+        <item>Poway</item>
+        <item>Prescott</item>
+        <item>Prescott Valley</item>
+        <item>Providence</item>
+        <item>Provo</item>
+        <item>Pueblo</item>
+        <item>Puyallup</item>
+        <item>Quincy</item>
+        <item>Quincy</item>
+        <item>Racine</item>
+        <item>Raleigh</item>
+        <item>Rancho Cordova</item>
+        <item>Rancho Cucamonga</item>
+        <item>Rancho Palos Verdes</item>
+        <item>Rancho Santa Margarita</item>
+        <item>Rapid City</item>
+        <item>Reading</item>
+        <item>Redding</item>
+        <item>Redlands</item>
+        <item>Redmond</item>
+        <item>Redondo Beach</item>
+        <item>Redwood City</item>
+        <item>Reno</item>
+        <item>Renton</item>
+        <item>Revere</item>
+        <item>Rialto</item>
+        <item>Richardson</item>
+        <item>Richland</item>
+        <item>Richmond</item>
+        <item>Richmond</item>
+        <item>Rio Rancho</item>
+        <item>Riverside</item>
+        <item>Riverton</item>
+        <item>Roanoke</item>
+        <item>Rochester</item>
+        <item>Rochester</item>
+        <item>Rochester Hills</item>
+        <item>Rock Hill</item>
+        <item>Rock Island</item>
+        <item>Rockford</item>
+        <item>Rocklin</item>
+        <item>Rockville</item>
+        <item>Rockwall</item>
+        <item>Rocky Mount</item>
+        <item>Rogers</item>
+        <item>Rohnert Park</item>
+        <item>Romeoville</item>
+        <item>Rosemead</item>
+        <item>Roseville</item>
+        <item>Roseville</item>
+        <item>Roswell</item>
+        <item>Roswell</item>
+        <item>Round Rock</item>
+        <item>Rowlett</item>
+        <item>Roy</item>
+        <item>Royal Oak</item>
+        <item>Sacramento</item>
+        <item>Saginaw</item>
+        <item>Salem</item>
+        <item>Salem</item>
+        <item>Salina</item>
+        <item>Salinas</item>
+        <item>Salt Lake City</item>
+        <item>Sammamish</item>
+        <item>San Angelo</item>
+        <item>San Antonio</item>
+        <item>San Bernardino</item>
+        <item>San Bruno</item>
+        <item>San Buenaventura (Ventura)</item>
+        <item>San Clemente</item>
+        <item>San Diego</item>
+        <item>San Francisco</item>
+        <item>San Gabriel</item>
+        <item>San Jacinto</item>
+        <item>San Jose</item>
+        <item>San Leandro</item>
+        <item>San Luis Obispo</item>
+        <item>San Marcos</item>
+        <item>San Marcos</item>
+        <item>San Mateo</item>
+        <item>San Rafael</item>
+        <item>San Ramon</item>
+        <item>Sandy</item>
+        <item>Sandy Springs</item>
+        <item>Sanford</item>
+        <item>Santa Ana</item>
+        <item>Santa Barbara</item>
+        <item>Santa Clara</item>
+        <item>Santa Clarita</item>
+        <item>Santa Cruz</item>
+        <item>Santa Fe</item>
+        <item>Santa Maria</item>
+        <item>Santa Monica</item>
+        <item>Santa Rosa</item>
+        <item>Santee</item>
+        <item>Sarasota</item>
+        <item>Savannah</item>
+        <item>Sayreville</item>
+        <item>Schaumburg</item>
+        <item>Schenectady</item>
+        <item>Scottsdale</item>
+        <item>Scranton</item>
+        <item>Seattle</item>
+        <item>Shakopee</item>
+        <item>Shawnee</item>
+        <item>Sheboygan</item>
+        <item>Shelton</item>
+        <item>Sherman</item>
+        <item>Shoreline</item>
+        <item>Shreveport</item>
+        <item>Sierra Vista</item>
+        <item>Simi Valley</item>
+        <item>Sioux City</item>
+        <item>Sioux Falls</item>
+        <item>Skokie</item>
+        <item>Smyrna</item>
+        <item>Smyrna</item>
+        <item>Somerville</item>
+        <item>South Bend</item>
+        <item>South Gate</item>
+        <item>South Jordan</item>
+        <item>South San Francisco</item>
+        <item>Southaven</item>
+        <item>Southfield</item>
+        <item>Spanish Fork</item>
+        <item>Sparks</item>
+        <item>Spartanburg</item>
+        <item>Spokane</item>
+        <item>Spokane Valley</item>
+        <item>Springdale</item>
+        <item>Springfield</item>
+        <item>Springfield</item>
+        <item>Springfield</item>
+        <item>Springfield</item>
+        <item>Springfield</item>
+        <item>St. Charles</item>
+        <item>St. Clair Shores</item>
+        <item>St. Cloud</item>
+        <item>St. Cloud</item>
+        <item>St. George</item>
+        <item>St. Joseph</item>
+        <item>St. Louis</item>
+        <item>St. Louis Park</item>
+        <item>St. Paul</item>
+        <item>St. Peters</item>
+        <item>St. Petersburg</item>
+        <item>Stamford</item>
+        <item>Stanton</item>
+        <item>State College</item>
+        <item>Sterling Heights</item>
+        <item>Stillwater</item>
+        <item>Stockton</item>
+        <item>Streamwood</item>
+        <item>Strongsville</item>
+        <item>Suffolk</item>
+        <item>Sugar Land</item>
+        <item>Summerville</item>
+        <item>Sumter</item>
+        <item>Sunnyvale</item>
+        <item>Sunrise</item>
+        <item>Surprise</item>
+        <item>Syracuse</item>
+        <item>Tacoma</item>
+        <item>Tallahassee</item>
+        <item>Tamarac</item>
+        <item>Tampa</item>
+        <item>Taunton</item>
+        <item>Taylor</item>
+        <item>Taylorsville</item>
+        <item>Temecula</item>
+        <item>Tempe</item>
+        <item>Temple</item>
+        <item>Terre Haute</item>
+        <item>Texarkana</item>
+        <item>Texas City</item>
+        <item>The Colony</item>
+        <item>Thornton</item>
+        <item>Thousand Oaks</item>
+        <item>Tigard</item>
+        <item>Tinley Park</item>
+        <item>Titusville</item>
+        <item>Toledo</item>
+        <item>Topeka</item>
+        <item>Torrance</item>
+        <item>Tracy</item>
+        <item>Trenton</item>
+        <item>Troy</item>
+        <item>Troy</item>
+        <item>Tucson</item>
+        <item>Tulare</item>
+        <item>Tulsa</item>
+        <item>Turlock</item>
+        <item>Tuscaloosa</item>
+        <item>Tustin</item>
+        <item>Twin Falls</item>
+        <item>Tyler</item>
+        <item>Union City</item>
+        <item>Union City</item>
+        <item>Upland</item>
+        <item>Urbana</item>
+        <item>Urbandale</item>
+        <item>Utica</item>
+        <item>Vacaville</item>
+        <item>Valdosta</item>
+        <item>Vallejo</item>
+        <item>Valley Stream</item>
+        <item>Vancouver</item>
+        <item>Victoria</item>
+        <item>Victorville</item>
+        <item>Vineland</item>
+        <item>Virginia Beach</item>
+        <item>Visalia</item>
+        <item>Vista</item>
+        <item>Waco</item>
+        <item>Walnut Creek</item>
+        <item>Waltham</item>
+        <item>Warner Robins</item>
+        <item>Warren</item>
+        <item>Warren</item>
+        <item>Warwick</item>
+        <item>Washington</item>
+        <item>Waterbury</item>
+        <item>Waterloo</item>
+        <item>Watsonville</item>
+        <item>Waukegan</item>
+        <item>Waukesha</item>
+        <item>Wausau</item>
+        <item>Wauwatosa</item>
+        <item>Wellington</item>
+        <item>Weslaco</item>
+        <item>West Allis</item>
+        <item>West Covina</item>
+        <item>West Des Moines</item>
+        <item>West Haven</item>
+        <item>West Jordan</item>
+        <item>West New York</item>
+        <item>West Palm Beach</item>
+        <item>West Sacramento</item>
+        <item>West Valley City</item>
+        <item>Westerville</item>
+        <item>Westfield</item>
+        <item>Westland</item>
+        <item>Westminster</item>
+        <item>Westminster</item>
+        <item>Weston</item>
+        <item>Weymouth Town</item>
+        <item>Wheaton</item>
+        <item>Wheeling</item>
+        <item>White Plains</item>
+        <item>Whittier</item>
+        <item>Wichita</item>
+        <item>Wichita Falls</item>
+        <item>Wilkes-Barre</item>
+        <item>Wilmington</item>
+        <item>Wilmington</item>
+        <item>Wilson</item>
+        <item>Winston-Salem</item>
+        <item>Winter Garden</item>
+        <item>Woburn</item>
+        <item>Woodbury</item>
+        <item>Woodland</item>
+        <item>Woonsocket</item>
+        <item>Worcester</item>
+        <item>Wylie</item>
+        <item>Wyoming</item>
+        <item>Yakima</item>
+        <item>Yonkers</item>
+        <item>Yorba Linda</item>
+        <item>York</item>
+        <item>Youngstown</item>
+        <item>Yuba City</item>
+        <item>Yucaipa</item>
+        <item>Yuma</item>
+    </string-array>
+
+</resources>

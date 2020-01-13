@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:elevation="@dimen/dimen_4"
+    android:orientation="vertical"
+    app:cardCornerRadius="@dimen/dimen_4"
+    android:layout_marginLeft="@dimen/dimen_4"
+    android:layout_marginRight="@dimen/dimen_4"
+    app:cardElevation="@dimen/dimen_4"
+    android:id="@+id/cardView"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="120dp"
+            android:id="@+id/imageView"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
+            android:src="@drawable/bitmap" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="@dimen/dimen_8"
+            android:layout_marginBottom="@dimen/dimen_8"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/offer_name"
+                    android:textColor="@color/color_text_1"
+                    android:id="@+id/textView_offerName"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:id="@+id/textView_restrauntName"
+                    android:layout_marginTop="@dimen/dimen_4"
+                    android:layout_height="wrap_content"
+                    android:text="@string/restaurant_name" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:id="@+id/textView_offer"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_dash"
+                    android:paddingLeft="@dimen/dimen_16"
+                    android:paddingTop="6dp"
+                    android:layout_marginTop="@dimen/dimen_4"
+                    android:layout_marginBottom="@dimen/dimen_4"
+                    android:paddingRight="@dimen/dimen_16"
+                    android:paddingBottom="6dp"
+                    android:text="@string/amazing_offer"
+                    android:textColor="@color/color_text_2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="shopping_text"
+                    android:textColor="@color/color_text_1"
+                    android:id="@+id/textView_coins"
+                    android:maxLines="2"
+                    android:paddingRight="5dp"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View style="@style/underline" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/textView_assign"
+                    android:gravity="center"
+                    android:text="@string/earn_offer"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16sp" />
+
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
