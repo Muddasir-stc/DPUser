@@ -44,8 +44,7 @@
             android:layout_marginBottom="@dimen/dimen_32"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/app_name"
-            android:gravity="start"
-            />
+            android:gravity="start" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image"
@@ -88,8 +87,7 @@
             android:fontFamily="@font/fontawesome"
             android:textSize="13sp"
             android:padding="5dp"
-            android:textColor="@android:color/white"
-            />
+            android:textColor="@android:color/white" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/drawerRecyclerView"

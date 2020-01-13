@@ -6,61 +6,69 @@
     android:id="@+id/root_view"
     android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools">
-   <ScrollView
-       android:layout_width="match_parent"
-       android:layout_height="match_parent">
-       <LinearLayout
-           android:layout_width="match_parent"
-           android:orientation="vertical"
-           android:layout_height="match_parent">
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="200dp">
-               <ImageView
-                   android:layout_width="match_parent"
-                   android:scaleType="fitXY"
-                   android:adjustViewBounds="true"
-                   android:src="@drawable/shop_banner"
-                   android:layout_height="match_parent"/>
-           </LinearLayout>
-           <TextView
-               android:layout_width="wrap_content"
-               android:text="Shops"
-               android:textColor="@color/colorBlack"
-               android:textSize="30sp"
-               android:layout_marginLeft="@dimen/dimen_20"
-               android:fontFamily="@font/roboto_bold"
-               android:textStyle="italic"
-               android:layout_height="wrap_content"/>
-           <androidx.recyclerview.widget.RecyclerView
-               android:layout_width="match_parent"
-               android:id="@+id/shops"
-               android:layout_margin="@dimen/dimen_10"
-               android:layout_marginTop="@dimen/dimen_10"
-               android:layout_centerHorizontal="true"
-               app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-               android:layout_height="wrap_content">
 
-           </androidx.recyclerview.widget.RecyclerView>
-           <TextView
-               android:layout_width="wrap_content"
-               android:text="Offers"
-               android:textColor="@color/colorBlack"
-               android:textSize="30sp"
-               android:layout_marginLeft="@dimen/dimen_20"
-               android:fontFamily="@font/roboto_bold"
-               android:textStyle="italic"
-               android:layout_height="wrap_content"/>
-           <androidx.recyclerview.widget.RecyclerView
-               android:layout_width="match_parent"
-               android:id="@+id/offers"
-               android:layout_margin="@dimen/dimen_10"
-               android:layout_marginTop="@dimen/dimen_10"
-               android:layout_centerHorizontal="true"
-               app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-               android:layout_height="wrap_content">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-           </androidx.recyclerview.widget.RecyclerView>
-       </LinearLayout>
-   </ScrollView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:scaleType="fitXY"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/shop_banner"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Shops"
+                android:textColor="@color/colorBlack"
+                android:textSize="30sp"
+                android:layout_marginLeft="@dimen/dimen_20"
+                android:fontFamily="@font/roboto_bold"
+                android:textStyle="italic"
+                android:layout_height="wrap_content" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:id="@+id/shops"
+                android:layout_margin="@dimen/dimen_10"
+                android:layout_marginTop="@dimen/dimen_10"
+                android:layout_centerHorizontal="true"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                android:layout_height="wrap_content">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Offers"
+                android:textColor="@color/colorBlack"
+                android:textSize="30sp"
+                android:layout_marginLeft="@dimen/dimen_20"
+                android:fontFamily="@font/roboto_bold"
+                android:textStyle="italic"
+                android:layout_height="wrap_content" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:id="@+id/offers"
+                android:layout_margin="@dimen/dimen_10"
+                android:layout_marginTop="@dimen/dimen_10"
+                android:layout_centerHorizontal="true"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                android:layout_height="wrap_content">
+
+            </androidx.recyclerview.widget.RecyclerView>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

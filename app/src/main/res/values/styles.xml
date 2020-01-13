@@ -23,15 +23,17 @@
         <item name="android:layout_marginBottom">@dimen/dimen_4</item>
         <item name="android:background">@color/color_line</item>
     </style>
+
     <style name="AlertDialogStyle" parent="Base.Theme.MaterialComponents.Light.Dialog.Alert">
         <!-- Used for the buttons -->
         <item name="colorAccent">@color/textColor</item>
         <item name="android:windowTitleStyle">@style/TextTitleStyle</item>
     </style>
+
     <style name="TextTitleStyle">
         <item name="android:textColor">@color/colorAccent</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
     </style>
-    <style name="AppTheme.Text.Small" parent="TextAppearance.AppCompat.Small">
-    </style>
+
+    <style name="AppTheme.Text.Small" parent="TextAppearance.AppCompat.Small"></style>
 </resources>

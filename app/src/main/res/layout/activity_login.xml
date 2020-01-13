@@ -125,14 +125,14 @@
                 <View
                     style="@style/underline"
                     android:layout_weight="1"
-                    android:layout_marginLeft="24dp"/>
+                    android:layout_marginLeft="24dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/or_login_using"
                     android:textSize="18sp"
-                    android:layout_margin="@dimen/dimen_16"/>
+                    android:layout_margin="@dimen/dimen_16" />
 
                 <View
                     style="@style/underline"
@@ -205,6 +205,7 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -217,7 +218,7 @@
             android:layout_height="wrap_content"
             android:text="@string/dont_have_account"
             android:textColor="@color/color_text_1"
-            android:textSize="18sp"/>
+            android:textSize="18sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -227,6 +228,6 @@
             android:padding="10dp"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="@color/colorPrimary"/>
+            android:textColor="@color/colorPrimary" />
     </LinearLayout>
 </LinearLayout>

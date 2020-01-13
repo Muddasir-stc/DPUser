@@ -19,8 +19,7 @@
         android:scaleType="fitXY"
         android:layout_height="wrap_content"
         android:padding="2dp"
-        android:src="@drawable/ic_settings"
-        />
+        android:src="@drawable/ic_settings" />
 
     <TextView
         android:id="@+id/tv_label"
