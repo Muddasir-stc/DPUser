@@ -30,6 +30,14 @@
         android:theme="@style/AppTheme">
         <activity android:name="com.dpoints.view.module.signup.SignUp" />
         <activity android:name="com.dpoints.view.module.login.Login" />
+        <activity android:name="com.dpoints.view.module.offers.Offers" />
+        <activity android:name="com.dpoints.view.module.order.Order" />
+        <activity android:name="com.dpoints.view.module.shops.Shops" />
+        <activity android:name="com.dpoints.view.module.profile.Profile" />
+        <activity android:name="com.dpoints.view.module.profile.ChangePasswordActivity" />
+        <activity android:name="com.dpoints.view.module.gifts.Gifts" />
+        <activity android:name="com.dpoints.view.module.transaction.Transaction" />
+        <activity android:name="com.dpoints.view.module.shops.ShopDetailActivity" />
         <activity
             android:name="com.dpoints.view.module.dashboard.Dashboard"
             android:label="@string/title_activity_dashboard" />

@@ -17,6 +17,12 @@ import com.dpoints.dpointsmerchant.preferences.UserPreferences
 import com.dpoints.dpointsmerchant.utilities.OnItemClickListener
 import com.dpoints.dpointsmerchant.utilities.fromJson
 import com.dpoints.dpointsmerchant.view.commons.base.BaseActivity
+import com.dpoints.view.module.gifts.Gifts
+import com.dpoints.view.module.offers.Offers
+import com.dpoints.view.module.order.Order
+import com.dpoints.view.module.profile.Profile
+import com.dpoints.view.module.shops.Shops
+import com.dpoints.view.module.transaction.Transaction
 import com.google.zxing.integration.android.IntentIntegrator
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.content_dashboard.*
@@ -58,6 +64,9 @@ class Dashboard : BaseActivity(), OnItemClickListener {
             user_name.text = "${user!!.name}"
         }
 
+        viewProfile.setOnClickListener {
+            startActivity<Profile>()
+        }
 //
 //        bottom_navigation.setOnNavigationItemSelectedListener {
 //            when (it.itemId) {
@@ -134,10 +143,12 @@ class Dashboard : BaseActivity(), OnItemClickListener {
 */
 
     private fun getDrawerItems() = listOf(
-        Item("My Orders", R.drawable.ic_box),
-        Item("My Offers", R.drawable.ic_tag),
-        Item("My Gift Cards", R.drawable.ic_giftcard),
-        Item("About Dpoints", R.drawable.ic_question),
+        Item("Shops", R.drawable.ic_users),
+        Item("Orders", R.drawable.ic_box),
+        Item("Offers", R.drawable.ic_tag),
+        Item("Gift Cards", R.drawable.ic_giftcard),
+        Item("Transactions", R.drawable.ic_transaction),
+        Item("About Us", R.drawable.ic_question),
         Item("Logout", R.drawable.ic_logout)
 
         // Item("Refer", R.drawable.ic_user)
@@ -146,38 +157,46 @@ class Dashboard : BaseActivity(), OnItemClickListener {
     override fun onItemClick(index: Int, adapter: Int) {
         if (adapter == DRAWER_NAV) {
             when (getDrawerItems()[index].name) {
-//                "About Dpoints" -> {
-//                    drawer.closeDrawers()
-//                    startActivity(
-//                        Intent(
-//                            this,
-//                            AboutActivity::class.java
-//                        )
-//                    )}
-//                "My Offers" -> {
-//                    drawer.closeDrawers()
-//                    startActivity(
-//                        Intent(
-//                            this,
-//                            Offers::class.java
-//                        )
-//                    )}
-//                "My Orders" -> {
-//                    drawer.closeDrawers()
-//                    startActivity(
-//                        Intent(
-//                            this,
-//                            Order::class.java
-//                        )
-//                    )}
-//                "My Gift Cards" -> {
-//                    drawer.closeDrawers()
-//                    startActivity(
-//                        Intent(
-//                            this,
-//                            Gifts::class.java
-//                        )
-//                    )}
+                "Offers" -> {
+                    drawer.closeDrawers()
+                    startActivity(
+                        Intent(
+                            this,
+                            Offers::class.java
+                        )
+                    )}
+                "Gift Cards" -> {
+                    drawer.closeDrawers()
+                    startActivity(
+                        Intent(
+                            this,
+                            Gifts::class.java
+                        )
+                    )}
+                "Orders" -> {
+                    drawer.closeDrawers()
+                    startActivity(
+                        Intent(
+                            this,
+                            Order::class.java
+                        )
+                    )}
+                "Shops" -> {
+                    drawer.closeDrawers()
+                    startActivity(
+                        Intent(
+                            this,
+                            Shops::class.java
+                        )
+                    )}
+                "Transactions" -> {
+                    drawer.closeDrawers()
+                startActivity(
+                    Intent(
+                        this,
+                        Transaction::class.java
+                    )
+                )}
                 "Logout" -> logout()
 
                 //Toast.makeText(this, get.get(index).name, Toast.LENGTH_LONG).show()

@@ -25,7 +25,7 @@ class TransactionService private constructor() {
 
 
     private interface Service {
-        @GET("getAllTransactionsForSingleMerchant")
+        @GET("getAllTransactionsForSingleUser")
         fun getTransactions(
             @Header("Authorization") token: String
         ): Call<ApiResult<TransactionModel>>

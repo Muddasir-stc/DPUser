@@ -35,7 +35,7 @@ class AuthService private constructor() {
         callback: ApiCallback<LoginModel>
     ) {
         val service = ApiClient.retrofit.create(Service::class.java)
-        val call = service.register(name, last_name, email, password, password, contact_number, dob, city, "Merchant", referralId)
+        val call = service.register(name, last_name, email, password, password, contact_number, dob, city, "Customer", referralId)
         call.enqueue(CallbackImpl(callback))
     }
 
@@ -55,7 +55,7 @@ class AuthService private constructor() {
         callback: ApiCallback<LoginModel>
     ) {
         val service = ApiClient.retrofit.create(Service::class.java)
-        val call = service.forgotPassword(email)
+        val call = service.forgotPassword(email,"Customer")
         call.enqueue(CallbackImpl(callback))
     }
 
@@ -168,7 +168,8 @@ class AuthService private constructor() {
         @POST("password/create")
         @FormUrlEncoded
         fun forgotPassword(
-            @Field("email") email: String
+            @Field("email") email: String,
+            @Field("role") role: String
         ): Call<ApiResult<LoginModel>>
 
         @POST("password/reset")

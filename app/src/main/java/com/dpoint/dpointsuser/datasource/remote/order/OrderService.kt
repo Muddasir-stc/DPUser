@@ -25,7 +25,7 @@ class OrderService private constructor() {
 
 
     private interface Service {
-        @GET("getAllOrdersForSingleMerchant")
+        @GET("getAllOrdersForSingleUser")
         fun getOrders(
             @Header("Authorization") token: String
         ): Call<ApiResult<OrderModel>>
