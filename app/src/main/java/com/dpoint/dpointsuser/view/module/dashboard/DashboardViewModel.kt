@@ -25,6 +25,9 @@ class DashboardViewModel : ViewModel() {
     private val _assignState = MutableLiveData<Event<NetworkState<AssignModel>>>()
     val assignState: LiveData<Event<NetworkState<AssignModel>>> get() = _assignState
 
+    private val _redeemState = MutableLiveData<Event<NetworkState<AssignModel>>>()
+    val redeemState: LiveData<Event<NetworkState<AssignModel>>> get() = _redeemState
+
 
     fun getShops(token: String) {
 
@@ -61,6 +64,18 @@ class DashboardViewModel : ViewModel() {
                     _offersState.value = Event(NetworkState.Success(success))
                 }
 
+            })
+    }
+
+    fun redeemGift(tokken: String, userId: String, merchantId: String, shopId: String, giftCardId: String, giftCardTitle: String, coins: String, offer: String) {
+        _redeemState.value = Event(NetworkState.Loading())
+
+        ShopService.instance.redeem(tokken,userId,merchantId,shopId,giftCardId,giftCardTitle,coins,offer,
+            object : ApiCallbackImpl<AssignModel>(_redeemState) {
+                override fun onSuccess(success: AssignModel?) {
+                    Log.e("REDEEM",success?.message)
+                    _redeemState.value = Event(NetworkState.Success(success))
+                }
             })
     }
 

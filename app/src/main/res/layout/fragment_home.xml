@@ -15,10 +15,9 @@
            android:layout_height="match_parent">
            <LinearLayout
                android:layout_width="match_parent"
-               android:layout_height="200dp">
+               android:layout_height="wrap_content">
                <ImageView
                    android:layout_width="match_parent"
-                   android:scaleType="fitXY"
                    android:adjustViewBounds="true"
                    android:src="@drawable/shop_banner"
                    android:layout_height="match_parent"/>
@@ -28,6 +27,7 @@
                android:text="Shops"
                android:textColor="@color/colorBlack"
                android:textSize="20sp"
+               android:layout_marginTop="@dimen/dimen_10"
                android:layout_marginLeft="@dimen/dimen_20"
                android:fontFamily="@font/roboto_bold"
                android:layout_height="wrap_content"/>

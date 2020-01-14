@@ -4,12 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/colorGrey"
     tools:context=".view.module.splash.OnBoardingActivity">
 
-    <ImageView
+   <LinearLayout
+       android:layout_width="wrap_content"
+       android:orientation="vertical"
+       android:layout_centerInParent="true"
+       android:layout_height="wrap_content">
+       <ImageView
+           android:layout_width="200dp"
+           android:src="@drawable/login_copy"
+           android:layout_height="200dp" />
+
+
+   </LinearLayout>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
-        android:src="@drawable/login_copy"
-        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dimen_10"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
         android:layout_height="wrap_content" />
 </RelativeLayout>

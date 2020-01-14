@@ -13,6 +13,7 @@ class Data(
     val merchant_id: Int,
     val offer: String,
     val shop_id: Int,
+    val shop_name: String,
     val title: String,
     val updated_at: String
 ):Parcelable

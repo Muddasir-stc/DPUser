@@ -8,13 +8,16 @@ import android.widget.TextView
 import androidx.appcompat.widget.PopupMenu
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.dpoint.dpointsuser.R
 import com.dpoints.dpointsmerchant.datasource.remote.gift.Data
+import com.dpoints.dpointsmerchant.utilities.OnItemClickListener
 import com.dpoints.dpointsmerchant.utilities.OnRemoveClickListener
 
 
 class GiftAdapter(
     private var context: Context,
+    private var listener: OnItemClickListener,
     private var data: List<Data>
 ) : RecyclerView.Adapter<GiftAdapter.MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -41,8 +44,9 @@ class GiftAdapter(
         var model = data[position]
         holder.textView_coin.text = model.coins
         holder.textView_offer.text = model.offer + "\$ Gift Card"
+        Glide.with(context).load(model.image).into(holder.imageView)
         holder.option_menu.setOnClickListener {
-
+            listener.onItemClick(position,2)
         }
     }
 

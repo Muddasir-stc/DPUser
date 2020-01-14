@@ -43,12 +43,14 @@ import com.budiyev.android.codescanner.DecodeCallback
 import com.budiyev.android.codescanner.ErrorCallback
 import com.budiyev.android.codescanner.ScanMode
 import com.dpoint.dpointsuser.datasource.model.ScanedOffer
+import com.dpoint.dpointsuser.datasource.model.ScannedGift
 import com.dpoint.dpointsuser.view.module.gifts.GiftCardsViewModel
 import com.dpoint.dpointsuser.view.module.offers.OfferViewModel
 import com.dpoints.dpointsmerchant.datasource.remote.gift.GiftModel
 import com.dpoints.dpointsmerchant.datasource.remote.offer.OfferModel
 import com.dpoints.dpointsmerchant.utilities.fromJson
 import com.dpoints.view.adapter.GiftAdapter
+import com.dpoints.view.module.shops.ShopDetailActivity
 import kotlinx.android.synthetic.main.activity_offers.*
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
@@ -62,6 +64,8 @@ class Home : BaseFragment(),OnItemClickListener {
     lateinit var mGifts: RecyclerView
     lateinit var data: List<Data>
     lateinit var selectedData: String
+    lateinit var list:List<Shop>
+    var selectedType:Int=0
     lateinit var adapter: ShopAdapter
     lateinit var offerAdapter: OfferAdapter
     private val CAMERA_PERMISSIONS_REQUEST = 2
@@ -101,6 +105,7 @@ class Home : BaseFragment(),OnItemClickListener {
             when (state) {
                 is NetworkState.Success -> {
                     Log.e("DATA",state.data?.message)
+                    list=state?.data?.data!!
                     setUpShops(state.data?.data!!)
                 }
             }
@@ -158,6 +163,23 @@ class Home : BaseFragment(),OnItemClickListener {
                 else -> onFailure(getString(R.string.connection_error))
             }
         })
+        viewModel.redeemState.observe(this, Observer {
+            it ?: return@Observer
+            val state = it.getContentIfNotHandled() ?: return@Observer
+            if (state is NetworkState.Loading) {
+                return@Observer
+            }
+            //hideProgress()
+            when (state) {
+                is NetworkState.Success -> {
+                    Log.e("DATA", state.data?.message.toString())
+                    onSuccess(state.data!!.message)
+                }
+                is NetworkState.Error -> onError(state.message)
+                is NetworkState.Failure -> onFailure(getString(R.string.request_error))
+                else -> onFailure(getString(R.string.connection_error))
+            }
+        })
     }
 
     private fun setOfferList(data: List<Data>) {
@@ -171,12 +193,30 @@ class Home : BaseFragment(),OnItemClickListener {
     }
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onItemClick(index: Int, adapter: Int) {
-        selectedData=data[index].id.toString()
-      //  Log.e("OFFER",data[index].toJson().toString())
-            //  context?.startActivity(Intent(context,ScanActivity::class.java))
+      if(adapter==0){
+          val intent= Intent(context, ShopDetailActivity::class.java)
+          intent.putExtra("SHOP",list.get(index))
+          context!!.startActivity(intent)
 
 
-        getActivity()!!. getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN); requestCameraPermission()
+      }else if(adapter==1){
+          selectedData=data[index].id.toString()
+          selectedType=adapter
+          //  Log.e("OFFER",data[index].toJson().toString())
+          //  context?.startActivity(Intent(context,ScanActivity::class.java))
+
+
+          getActivity()!!. getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN); requestCameraPermission()
+
+      }else if(adapter==2){
+          selectedData= giftModel.data?.get(index)?.id.toString()
+          selectedType=adapter
+          //  Log.e("OFFER",data[index].toJson().toString())
+          //  context?.startActivity(Intent(context,ScanActivity::class.java))
+
+
+          getActivity()!!. getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN); requestCameraPermission()
+      }
     }
 
 
@@ -227,47 +267,92 @@ class Home : BaseFragment(),OnItemClickListener {
         codeScanner.decodeCallback = DecodeCallback {
             activity!!.runOnUiThread {
                 //Toast.makeText(context, "Scan result: ${it.text}", Toast.LENGTH_LONG).show()
-                val offer = it.text.fromJson<ScanedOffer>()
-                if (offer?.coin_offer_id?.trim().equals(selectedData.trim())) {
-                    val builder = AlertDialog.Builder(context)
+                if(selectedType==1){
+                    val offer = it.text.fromJson<ScanedOffer>()
+                    if (offer?.coin_offer_id?.trim().equals(selectedData.trim())) {
+                        val builder = AlertDialog.Builder(context)
 
-                    // Set the alert dialog title
-                    //builder.setTitle("App background color")
+                        // Set the alert dialog title
+                        //builder.setTitle("App background color")
 
-                    // Display a message on alert dialog
-                    builder.setMessage("Do You want to redeem this offer ?")
+                        // Display a message on alert dialog
+                        builder.setMessage("Do You want to redeem this offer ?")
 
-                    // Set a positive button and its click listener on alert dialog
-                    builder.setPositiveButton("YES") { dialog, which ->
-                        // Do something when user press the positive button
-                        viewModel.assignOffer(
-                            UserPreferences.instance.getTokken(context!!)!!,
-                            UserPreferences.instance.getUser(context!!)!!.id.toString(),
-                            offer!!.merchant_id,
-                            offer!!.shop_id,
-                            offer!!.coin_offer_id,
-                            offer!!.coin_offer_title,
-                            offer!!.offer,
-                            offer!!.amount
-                        )
+                        // Set a positive button and its click listener on alert dialog
+                        builder.setPositiveButton("YES") { dialog, which ->
+                            // Do something when user press the positive button
+                            viewModel.assignOffer(
+                                UserPreferences.instance.getTokken(context!!)!!,
+                                UserPreferences.instance.getUser(context!!)!!.id.toString(),
+                                offer!!.merchant_id,
+                                offer!!.shop_id,
+                                offer!!.coin_offer_id,
+                                offer!!.coin_offer_title,
+                                offer!!.offer,
+                                offer!!.amount
+                            )
+                        }
+
+
+                        // Display a negative button on alert dialog
+                        builder.setNegativeButton("No") { dialog, which ->
+                            dialog.dismiss()
+                        }
+
+                        // Finally, make the alert dialog using builder
+                        val dialog: AlertDialog = builder.create()
+
+                        // Display the alert dialog on app interface
+                        dialog.show()
+                        //  Toast.makeText(context, "Scan result: ${it.text}", Toast.LENGTH_LONG).show()
+
+                    } else {
+                        // Toast.makeText(context, "Scan result: Null", Toast.LENGTH_LONG).show()
+                        onError("Invalid Offer Selected")
                     }
+                }else if (selectedType==2){
+                    val gift = it.text.fromJson<ScannedGift>()
+                    if (gift?.gift_card_id?.trim().equals(selectedData.trim())) {
+                        val builder = android.app.AlertDialog.Builder(context)
+
+                        // Set the alert dialog title
+                        //builder.setTitle("App background color")
+
+                        // Display a message on alert dialog
+                        builder.setMessage("Do You want to redeem this offer ?")
+
+                        // Set a positive button and its click listener on alert dialog
+                        builder.setPositiveButton("YES") { dialog, which ->
+                            // Do something when user press the positive button
+                            viewModel.redeemGift(
+                                UserPreferences.instance.getTokken(context!!)!!,
+                                UserPreferences.instance.getUser(context!!)!!.id.toString(),
+                                gift!!.merchant_id,
+                                gift!!.shop_id,
+                                gift!!.gift_card_id,
+                                gift!!.gift_card_title,
+                                gift!!.coins,
+                                gift!!.offer
+                            )
+                        }
 
 
-                    // Display a negative button on alert dialog
-                    builder.setNegativeButton("No") { dialog, which ->
-                        dialog.dismiss()
+                        // Display a negative button on alert dialog
+                        builder.setNegativeButton("No") { dialog, which ->
+                            dialog.dismiss()
+                        }
+
+                        // Finally, make the alert dialog using builder
+                        val dialog: android.app.AlertDialog = builder.create()
+
+                        // Display the alert dialog on app interface
+                        dialog.show()
+                        //  Toast.makeText(context, "Scan result: ${it.text}", Toast.LENGTH_LONG).show()
+
+                    } else {
+                        // Toast.makeText(context, "Scan result: Null", Toast.LENGTH_LONG).show()
+                        onError("Invalid Gift Card Selected")
                     }
-
-                    // Finally, make the alert dialog using builder
-                    val dialog: AlertDialog = builder.create()
-
-                    // Display the alert dialog on app interface
-                    dialog.show()
-                    //  Toast.makeText(context, "Scan result: ${it.text}", Toast.LENGTH_LONG).show()
-
-                } else {
-                    // Toast.makeText(context, "Scan result: Null", Toast.LENGTH_LONG).show()
-                    onError("Invalid Offer Selected")
                 }
 
                 dialog.dismiss()
@@ -299,6 +384,6 @@ class Home : BaseFragment(),OnItemClickListener {
 //    }
 
     private fun setupRecyclerView(giftModel: GiftModel?) {
-        mGifts.adapter = GiftAdapter(context!!, giftModel!!.data!!)
+        mGifts.adapter = GiftAdapter(context!!, this,giftModel!!.data!!)
     }
 }

@@ -55,7 +55,7 @@ class OfferAdapter (
         var model = listitem[position]
         Glide.with(context).load(model.image).placeholder(R.drawable.bitmap).into(holder.imageView)
         holder.textView_offerName.text = model.title
-        holder.textView_restrauntName.text = "Shop - " + model.shop_id
+        holder.textView_restrauntName.text = "Shop - " + model.shop_name
         holder.textView_offer.text = model.description
         holder.textView_coins.text = model.offer + " DPoints on Shopping of " + model.amount
         holder.mEarn.setOnClickListener {

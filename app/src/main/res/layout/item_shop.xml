@@ -16,7 +16,7 @@
         <ImageView
             android:layout_width="200dp"
             android:layout_height="140dp"
-            android:src="@drawable/swimmingpool"
+            android:src="@drawable/shop_place"
             android:id="@+id/img"
             android:adjustViewBounds="true"
             android:scaleType="fitXY" />

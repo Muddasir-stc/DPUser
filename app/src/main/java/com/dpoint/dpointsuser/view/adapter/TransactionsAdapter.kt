@@ -22,10 +22,10 @@ class TransactionsAdapter(
         val bindview = view
         fun bindto(itemtype: Tran) {
 
-          offername.text = "Bindaas Offer"
-            txtType.text = "Redeem"
-           offerdetail.text = "$200 for 20 DPoints"
-            transactionsid.text = "34567890"
+          offername.text = itemtype.transaction_title
+            txtType.text = itemtype.type
+           offerdetail.text = "$${itemtype.offer_amount} for ${itemtype.coins} DPoints"
+            transactionsid.text = "txn-zypg-${itemtype.id}-trans"
             points.text = itemtype.coins
         }
 

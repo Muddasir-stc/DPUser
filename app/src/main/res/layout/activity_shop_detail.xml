@@ -206,7 +206,7 @@
                <androidx.recyclerview.widget.RecyclerView
                    android:layout_width="match_parent"
                    android:id="@+id/offers"
-                   tools:listitem="@layout/item_offers"
+                   tools:listitem="@layout/item_offer"
                    android:layout_height="wrap_content">
 
                </androidx.recyclerview.widget.RecyclerView>
@@ -227,6 +227,7 @@
                    android:layout_height="wrap_content"/>
                <androidx.recyclerview.widget.RecyclerView
                    android:layout_width="match_parent"
+                   android:id="@+id/gifts"
                    android:layout_height="wrap_content">
 
                </androidx.recyclerview.widget.RecyclerView>

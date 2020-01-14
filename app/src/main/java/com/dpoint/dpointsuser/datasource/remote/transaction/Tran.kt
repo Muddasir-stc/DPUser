@@ -7,6 +7,7 @@ data class Tran(
     val merchant_id: Int,
     val offer_amount: String,
     val shop_id: Int,
+    val transaction_title: String,
     val transaction_status: String,
     val type: String,
     val updated_at: String,

@@ -25,12 +25,12 @@ class OrdersAdapter(
         val bindview=view
         fun bindto(itemtype: Order){
 
-            orderoffername.text= "Bindaas Offer"
+            orderoffername.text= itemtype.transaction_title
 //            orderofferdetail.text = itemtype.ord  ersdetails
-            ordertransactionsid.text= "1234567890"
-            orderType.text= "Redeem"
+            ordertransactionsid.text= "txn-zypg-${itemtype.id}-order"
+            orderType.text= itemtype.type
             points.text=itemtype.coins
-           ordershopname.text="Resto Shop"
+           ordershopname.text=itemtype.shop_name
           orderamount.text=itemtype.offer_amount
 
         }

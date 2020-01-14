@@ -54,7 +54,7 @@ class ShopAdapter (
     override fun onBindViewHolder(holder: ShopAdapter.ViewHolder, position: Int) {
         holder.bindto(listitem[position],context)
         holder.bindview.setOnClickListener {
-            listener.onItemClick(position,1)
+            listener.onItemClick(position,0)
         }
 
     }
