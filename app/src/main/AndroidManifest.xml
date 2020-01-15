@@ -34,6 +34,7 @@
         <activity android:name="com.dpoints.view.module.order.Order" />
         <activity android:name="com.dpoints.view.module.shops.Shops" />
         <activity android:name="com.dpoints.dpointsmerchant.view.module.login.ForgotPasswordActivity" />
+        <activity android:name="com.dpoints.dpointsmerchant.view.module.login.VerifyActivity" />
         <activity android:name="com.dpoints.view.module.profile.Profile" />
         <activity android:name="com.dpoints.view.module.profile.ChangePasswordActivity" />
         <activity android:name="com.dpoints.view.module.gifts.Gifts" />
