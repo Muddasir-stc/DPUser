@@ -33,6 +33,7 @@
         <activity android:name="com.dpoints.view.module.offers.Offers" />
         <activity android:name="com.dpoints.view.module.order.Order" />
         <activity android:name="com.dpoints.view.module.shops.Shops" />
+        <activity android:name="com.dpoints.dpointsmerchant.view.module.login.ForgotPasswordActivity" />
         <activity android:name="com.dpoints.view.module.profile.Profile" />
         <activity android:name="com.dpoints.view.module.profile.ChangePasswordActivity" />
         <activity android:name="com.dpoints.view.module.gifts.Gifts" />
@@ -41,7 +42,7 @@
         <activity
             android:name="com.dpoints.view.module.dashboard.Dashboard"
             android:label="@string/title_activity_dashboard" />
-        <activity android:name="com.dpoints.dpointsmerchant.view.module.splash.OnBoardingActivity">
+        <activity android:name="com.dpoints.view.module.splash.OnBoardingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

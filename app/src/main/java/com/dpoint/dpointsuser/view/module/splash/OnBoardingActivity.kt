@@ -1,4 +1,4 @@
-package com.dpoints.dpointsmerchant.view.module.splash
+package com.dpoints.view.module.splash
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

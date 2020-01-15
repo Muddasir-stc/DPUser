@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+
+       android:layout_height="wrap_content"
+       android:orientation="vertical">
+       <LinearLayout
+           android:id="@+id/toolbar"
+           android:layout_width="match_parent"
+           android:layout_height="?actionBarSize"
+           android:background="@color/colorPrimary"
+           android:gravity="center"
+           android:orientation="horizontal">
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Are You Sure?"
+               android:textAlignment="center"
+               android:id="@+id/textView_toolbar_title"
+               android:textColor="@color/white"
+               android:textSize="20sp"
+               android:textStyle="bold" />
+       </LinearLayout>
+
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:orientation="vertical"
+           android:padding="@dimen/dimen_10"
+           android:layout_marginLeft="5dp"
+
+           android:layout_marginRight="5dp"
+           android:background="@color/white"
+           android:layout_centerHorizontal="true"
+           android:layout_height="wrap_content">
+           <androidx.cardview.widget.CardView
+               android:layout_width="120dp"
+               android:layout_gravity="center_horizontal"
+               android:layout_marginTop="30dp"
+               app:cardCornerRadius="5dp"
+               android:elevation="3dp"
+               android:layout_height="120dp">
+               <ImageView
+                   android:layout_width="match_parent"
+                   android:src="@drawable/shop_banner"
+                   android:scaleType="fitXY"
+                   android:id="@+id/imgOffer"
+                   android:adjustViewBounds="true"
+                   android:layout_height="match_parent"/>
+
+           </androidx.cardview.widget.CardView>
+           <TextView
+               android:layout_width="wrap_content"
+               android:text="Offer Name"
+               android:textColor="@color/colorBlack"
+               android:textSize="20sp"
+               android:id="@+id/textView_offerName"
+               android:layout_gravity="center_horizontal"
+               android:layout_marginTop="@dimen/dimen_10"
+
+               android:layout_height="wrap_content"/>
+           <TextView
+               android:layout_width="wrap_content"
+               android:text="This is amazing offer"
+               android:id="@+id/textView_offer"
+               android:textColor="@color/colorBlack"
+               android:layout_gravity="center_horizontal"
+               android:layout_height="wrap_content"/>
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:weightSum="2"
+               android:orientation="horizontal"
+               android:layout_marginTop="@dimen/dimen_20"
+               android:layout_height="wrap_content">
+               <RelativeLayout
+                   android:layout_width="0dp"
+                   android:layout_weight="1"
+                   android:layout_height="wrap_content">
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:text=" 1400"
+                       android:fontFamily="@font/fontawesome"
+                       android:layout_centerInParent="true"
+                       android:textSize="25sp"
+                       android:id="@+id/textView_ammount"
+                       android:textStyle="bold"
+                       android:textColor="@color/colorAccent"
+                       android:layout_height="wrap_content"/>
+               </RelativeLayout>
+               <RelativeLayout
+                   android:layout_width="0dp"
+                   android:layout_weight="1"
+                   android:layout_height="wrap_content">
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:text=" 200"
+                       android:layout_centerInParent="true"
+                       android:textSize="25sp"
+                       android:textStyle="bold"
+                       android:id="@+id/textView_coins"
+                       android:drawableLeft="@drawable/ic_dollar"
+                       android:textColor="@color/colorAccent"
+                       android:layout_height="wrap_content"/>
+               </RelativeLayout>
+           </LinearLayout>
+
+           </LinearLayout>
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:orientation="horizontal"
+           android:background="@color/white"
+           android:padding="@dimen/dimen_20"
+           android:layout_height="wrap_content">
+           <Button
+               android:layout_width="wrap_content"
+               android:text="Confirm"
+               android:textAllCaps="false"
+               android:paddingLeft="50dp"
+               android:paddingRight="50dp"
+               android:paddingTop="@dimen/dimen_10"
+               android:paddingBottom="@dimen/dimen_10"
+             android:layout_marginRight="1dp"
+               android:id="@+id/btnConfirm"
+               android:layout_centerHorizontal="true"
+               android:textColor="@color/white"
+               android:layout_gravity="center_horizontal"
+               android:background="@color/colorPrimary"
+               android:textSize="20sp"
+               android:textAlignment="center"
+               android:layout_height="wrap_content"/>
+
+       </RelativeLayout>
+   </LinearLayout>
+
+</LinearLayout>

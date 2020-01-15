@@ -169,10 +169,6 @@ class Offers : BaseActivity(), GetDialogInterface, OnItemClickListener {
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onItemClick(index: Int, adapter: Int) {
         selectedData=data[index].id.toString()
-        //  Log.e("OFFER",data[index].toJson().toString())
-        //  context?.startActivity(Intent(context,ScanActivity::class.java))
-
-
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN); requestCameraPermission()
     }
 
