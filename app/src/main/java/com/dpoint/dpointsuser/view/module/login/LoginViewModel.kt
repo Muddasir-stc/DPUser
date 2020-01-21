@@ -61,7 +61,7 @@ class LoginViewModel : ViewModel() {
             deviceId,
             object : ApiCallbackImpl<LoginModel>(_loginState) {
                 override fun onSuccess(success: LoginModel?) {
-                    Log.e("Data",success?.message)
+                    Log.e("Shop",success?.message)
                     _loginState.value = Event(NetworkState.Success(success))
                 }
             })
@@ -73,7 +73,7 @@ class LoginViewModel : ViewModel() {
             token,
             object : ApiCallbackImpl<LoginModel>(_userState) {
                 override fun onSuccess(success: LoginModel?) {
-                    Log.e("Data",success?.message)
+                    Log.e("Shop",success?.message)
                     _userState.value = Event(NetworkState.Success(success))
                 }
             })
@@ -101,7 +101,7 @@ class LoginViewModel : ViewModel() {
             referralId,
             object : ApiCallbackImpl<LoginModel>(_registerState) {
                 override fun onSuccess(success: LoginModel?) {
-                    Log.e("Data",success?.message)
+                    Log.e("Shop",success?.message)
                     _registerState.value = Event(NetworkState.Success(success))
                 }
             })
@@ -120,7 +120,7 @@ class LoginViewModel : ViewModel() {
             otp,
             object : ApiCallbackImpl<LoginModel>(_verifyState) {
                 override fun onSuccess(success: LoginModel?) {
-                    Log.e("Data",success?.message)
+                    Log.e("Shop",success?.message)
                     _verifyState.value = Event(NetworkState.Success(success))
                 }
             })
@@ -135,7 +135,7 @@ class LoginViewModel : ViewModel() {
         AuthService.instance.resendOTP(email,
             object : ApiCallbackImpl<LoginModel>(_resendOtpState) {
                 override fun onSuccess(success: LoginModel?) {
-                    Log.e("Data",success?.message)
+                    Log.e("Shop",success?.message)
                     _resendOtpState.value = Event(NetworkState.Success(success))
                 }
             })
@@ -158,7 +158,7 @@ class LoginViewModel : ViewModel() {
             deviceId,
             object : ApiCallbackImpl<LoginModel>(_socialState) {
                 override fun onSuccess(success: LoginModel?) {
-                    Log.e("Data",success?.message)
+                    Log.e("Shop",success?.message)
                     _socialState.value = Event(NetworkState.Success(success))
                 }
             })
@@ -174,7 +174,7 @@ class LoginViewModel : ViewModel() {
             email,
             object : ApiCallbackImpl<LoginModel>(_forgotState) {
                 override fun onSuccess(success: LoginModel?) {
-                    Log.e("Data",success?.message)
+                    Log.e("Shop",success?.message)
                     _forgotState.value = Event(NetworkState.Success(success))
                 }
             })
@@ -194,7 +194,7 @@ class LoginViewModel : ViewModel() {
             otp,
             object : ApiCallbackImpl<LoginModel>(_resetState) {
                 override fun onSuccess(success: LoginModel?) {
-                    Log.e("Data",success?.message)
+                    Log.e("Shop",success?.message)
                     _resetState.value = Event(NetworkState.Success(success))
                 }
             })
@@ -206,7 +206,7 @@ class LoginViewModel : ViewModel() {
         oldPassword: String,
         newPassword: String
     ) {
-        Log.e("Data","Token = $token Old= $oldPassword new = $newPassword")
+        Log.e("Shop","Token = $token Old= $oldPassword new = $newPassword")
         _changeState.value = Event(NetworkState.Loading())
 
         AuthService.instance.changePassword(
@@ -219,7 +219,7 @@ class LoginViewModel : ViewModel() {
                     t.printStackTrace()
                 }
                 override fun onSuccess(success: LoginModel?) {
-                    Log.e("Data","Hello")
+                    Log.e("Shop","Hello")
                     _changeState.value = Event(NetworkState.Success(success))
                 }
             })

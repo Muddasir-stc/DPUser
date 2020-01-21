@@ -142,7 +142,11 @@ class Gifts : BaseActivity(),OnItemClickListener {
     }
 
     override fun onPause() {
-        codeScanner.releaseResources();
+        when {
+            (::codeScanner.isInitialized) -> {
+                codeScanner.releaseResources();
+            }
+        }
         super.onPause()
     }
     private fun openCamera() {

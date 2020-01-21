@@ -1,26 +1,16 @@
 package com.dpoints.view.adapter
 
-import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.dpoints.datasource.model.ShopModel
-import com.dpoints.dpointsmerchant.datasource.remote.shop.Shop
 import com.dpoints.dpointsmerchant.utilities.OnItemClickListener
-import kotlinx.android.synthetic.main.item_shop.view.*
-import android.graphics.BitmapFactory
-import android.media.Image
-import android.util.Base64
-import android.util.Log
 import android.widget.ImageView
-import android.widget.RelativeLayout
 import com.bumptech.glide.Glide
 import com.dpoint.dpointsuser.R
-import com.dpoints.dpointsmerchant.utilities.OnRemoveClickListener
-import com.dpoints.dpointsmerchant.utilities.OnUpdateClickListener
+import com.dpoint.dpointsuser.datasource.remote.shop.Shop
 
 
 class ShopAdapter (
@@ -31,13 +21,16 @@ class ShopAdapter (
     class ViewHolder(view: View):RecyclerView.ViewHolder(view) {
         val shop_name:TextView = view.findViewById(R.id.shop_name)
         val shop_detail:TextView = view.findViewById(R.id.shop_details)
+        val txtRating:TextView = view.findViewById(R.id.txtRating)
+        val txtcoinValue:TextView = view.findViewById(R.id.txtcoinValue)
         val img:ImageView = view.findViewById(R.id.img)
         val bindview=view
         fun bindto(itemtype:Shop,context: Context){
-
-           shop_name.text= itemtype.title
+           shop_name.text= itemtype.shop_name
            shop_detail.text = itemtype.description
-            Glide.with(context).load(itemtype.image).into(img)
+            txtRating.text = itemtype.rating
+            txtcoinValue.text = "${itemtype.coin_value.toString()} "
+            Glide.with(context).load(itemtype.profile_picture).placeholder(R.drawable.error).into(img)
         }
 
     }

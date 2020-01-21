@@ -1,6 +1,5 @@
 package com.dpoints.view.module.shops
 
-import android.app.AlertDialog
 import android.content.Intent
 import android.util.Log
 import android.widget.ImageView
@@ -8,17 +7,14 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dpoint.dpointsuser.R
+import com.dpoint.dpointsuser.datasource.remote.shop.Shop
 import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
-import com.dpoints.dpointsmerchant.datasource.remote.shop.Shop
 import com.dpoints.dpointsmerchant.preferences.UserPreferences
 import com.dpoints.dpointsmerchant.utilities.OnItemClickListener
-import com.dpoints.dpointsmerchant.utilities.OnRemoveClickListener
-import com.dpoints.dpointsmerchant.utilities.OnUpdateClickListener
 import com.dpoints.dpointsmerchant.utilities.getVM
 import com.dpoints.dpointsmerchant.view.commons.base.BaseActivity
 import com.dpoints.dpointsmerchant.view.module.shops.ShopViewModel
 import com.dpoints.view.adapter.ShopAdapter
-import kotlinx.android.synthetic.main.activity_shops.*
 
 class Shops : BaseActivity(), OnItemClickListener {
 
@@ -52,7 +48,7 @@ class Shops : BaseActivity(), OnItemClickListener {
 
     override fun onItemClick(index: Int, adapter: Int) {
        // Toast.makeText(this,,Toast.LENGTH_SHORT).show()
-        Log.e("Shop",list.get(index).title)
+        Log.e("Shop",list.get(index).shop_name)
         val intent= Intent(this,ShopDetailActivity::class.java)
         intent.putExtra("SHOP",list.get(index))
         startActivity(intent)

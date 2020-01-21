@@ -3,6 +3,7 @@ package com.dpoints.view.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.dpoint.dpointsuser.R
@@ -22,6 +23,7 @@ class OrdersAdapter(
         val ordertransactionsid: TextView = view.findViewById(R.id.textView4)
         val points: TextView = view.findViewById(R.id.textView6)
         val orderType: TextView = view.findViewById(R.id.orderType)
+        val typeIcon: ImageView = view.findViewById(R.id.typeIcon)
         val bindview=view
         fun bindto(itemtype: Order){
 
@@ -48,6 +50,11 @@ class OrdersAdapter(
         holder.bindto(listitem[position])
         holder.bindview.setOnClickListener {
             listener.onItemClick(position,1)
+        }
+        if(listitem[position].type.trim().equals("Redeem")){
+            holder.typeIcon.setImageResource(R.drawable.redeem)
+        }else{
+            holder.typeIcon.setImageResource(R.drawable.assign)
         }
     }
 }

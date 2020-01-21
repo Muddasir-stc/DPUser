@@ -1,7 +1,7 @@
 package com.dpoints.view.module.dashboard
 
 import android.content.Intent
-import android.util.Log
+import android.view.MenuItem
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.drawerlayout.widget.DrawerLayout
@@ -9,39 +9,44 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dpoint.dpointsuser.R
-import com.dpoint.dpointsuser.datasource.model.ScanedOffer
 import com.dpoint.dpointsuser.view.adapter.NavigationAdapter
 import com.dpoints.dpointsmerchant.datasource.model.Item
 import com.dpoints.dpointsmerchant.datasource.remote.auth.User
 import com.dpoints.dpointsmerchant.preferences.UserPreferences
 import com.dpoints.dpointsmerchant.utilities.OnItemClickListener
-import com.dpoints.dpointsmerchant.utilities.fromJson
 import com.dpoints.dpointsmerchant.view.commons.base.BaseActivity
 import com.dpoints.view.module.gifts.Gifts
+import com.dpoints.view.module.notifications.Notification
 import com.dpoints.view.module.offers.Offers
 import com.dpoints.view.module.order.Order
 import com.dpoints.view.module.profile.Profile
 import com.dpoints.view.module.shops.Shops
 import com.dpoints.view.module.transaction.Transaction
-import com.google.zxing.integration.android.IntentIntegrator
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.content_dashboard.*
 
-class Dashboard : BaseActivity(), OnItemClickListener {
+class Dashboard : BaseActivity(), OnItemClickListener,BottomNavigationView.OnNavigationItemSelectedListener {
+
+
     private lateinit var drawer: DrawerLayout
     private lateinit var rvDrawer: RecyclerView
     private var DRAWER_NAV = 1
     private lateinit var linearLayout: LinearLayout
-
-
+    private val home = Home()
+    private val profile = ProfileFragment()
+    private val scanner = ScannerFragment()
+    private val notifications = Notification()
+    private var tag="Home"
     override val layout: Int = R.layout.activity_dashboard
 
     override fun init() {
-        rvDrawer = findViewById(R.id.drawerRecyclerView)
+        rvDrawer = findViewById<RecyclerView>(R.id.drawerRecyclerView)
         rvDrawer.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         rvDrawer.adapter = NavigationAdapter(getDrawerItems(), this)
         drawer = findViewById(R.id.nav_drawer)
         linearLayout = findViewById(R.id.drawer_linearlayout)
+        bottomNav.setOnNavigationItemSelectedListener(this)
         showProgress(this)
         ic_ham.setOnClickListener {
             if (drawer.isDrawerOpen(linearLayout))
@@ -65,7 +70,7 @@ class Dashboard : BaseActivity(), OnItemClickListener {
         }
 
         viewProfile.setOnClickListener {
-            startActivity<Profile>()
+            startActivity(Intent(this,Profile::class.java))
         }
 //
 //        bottom_navigation.setOnNavigationItemSelectedListener {
@@ -88,12 +93,47 @@ class Dashboard : BaseActivity(), OnItemClickListener {
 //            }
 //            false
 //        }
-        applayChanages(Home())
+        applayChanages(home,"Home")
         hideProgress()
 
     }
 
-    private fun applayChanages(fr: Fragment){
+    override fun onBackPressed() {
+        if(!tag.equals("Home")){
+            bottomNav.selectedItemId=R.id.navigation_home
+            applayChanages(home,"Home")
+        }else {
+            super.onBackPressed()
+        }
+    }
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.navigation_home->{
+                applayChanages(home,"Home")
+                return true
+            }
+            R.id.navigation_notifications->{
+                applayChanages(notifications,"Notification")
+                //Toast.makeText(this,"Notification",Toast.LENGTH_SHORT).show()
+                return true
+            }
+            R.id.navigation_profile->{
+                applayChanages(profile,"Profile")
+                return true
+            }R.id.va_scanner->{
+                applayChanages(scanner,"Scan Offer")
+                return true
+            }
+            else->{
+                return false
+            }
+        }
+
+
+    }
+    private fun applayChanages(fr: Fragment,tag:String){
+        this.tag=tag
+        titleBarName.text=tag
         supportFragmentManager.beginTransaction().replace(R.id.container, fr).commit()
     }
 //    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

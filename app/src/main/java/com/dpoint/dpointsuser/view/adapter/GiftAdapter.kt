@@ -44,7 +44,7 @@ class GiftAdapter(
         var model = data[position]
         holder.textView_coin.text = model.coins
         holder.textView_offer.text = model.offer + "\$ Gift Card"
-        Glide.with(context).load(model.image).into(holder.imageView)
+        Glide.with(context).load(model.image).placeholder(R.drawable.error).into(holder.imageView)
         holder.option_menu.setOnClickListener {
             listener.onItemClick(position,2)
         }

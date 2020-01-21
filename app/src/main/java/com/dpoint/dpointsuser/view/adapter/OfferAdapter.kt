@@ -1,30 +1,17 @@
 package com.dpoints.view.adapter
 
-import android.app.AlertDialog
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.dpoints.datasource.model.ShopModel
-import com.dpoints.dpointsmerchant.datasource.remote.shop.Shop
 import com.dpoints.dpointsmerchant.utilities.OnItemClickListener
-import kotlinx.android.synthetic.main.item_shop.view.*
-import android.graphics.BitmapFactory
-import android.media.Image
-import android.util.Base64
-import android.util.Log
 import android.widget.ImageView
-import android.widget.RelativeLayout
 import androidx.cardview.widget.CardView
 import com.bumptech.glide.Glide
 import com.dpoint.dpointsuser.R
 import com.dpoints.dpointsmerchant.datasource.remote.offer.Data
-import com.dpoints.dpointsmerchant.datasource.remote.offer.OfferModel
-import com.dpoints.dpointsmerchant.utilities.OnRemoveClickListener
-import com.dpoints.dpointsmerchant.utilities.OnUpdateClickListener
 
 
 class OfferAdapter (
@@ -53,7 +40,7 @@ class OfferAdapter (
 
     override fun onBindViewHolder(holder: OfferAdapter.ViewHolder, position: Int) {
         var model = listitem[position]
-        Glide.with(context).load(model.image).placeholder(R.drawable.bitmap).into(holder.imageView)
+        Glide.with(context).load(model.image).placeholder(R.drawable.error).into(holder.imageView)
         holder.textView_offerName.text = model.title
         holder.textView_restrauntName.text = "Shop - " + model.shop_name
         holder.textView_offer.text = model.description

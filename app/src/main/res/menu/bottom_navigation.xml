@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:icon="@drawable/ic_home"
+        app:showAsAction="ifRoom"
+        android:enabled="true"
+        android:id="@+id/navigation_home"
+        android:title="Home" />
+    <item
+        android:icon="@drawable/ic_notification"
+        android:enabled="true"
+        app:showAsAction="ifRoom"
+        android:id="@+id/navigation_notifications"
+        android:title="Notification" />
+    <item
+        android:icon="@drawable/ic_qrcodescan_120401"
+        android:enabled="true"
+        app:showAsAction="ifRoom"
+        android:id="@+id/va_scanner"
+        android:title="Scanner" />
+    <item
+        android:icon="@drawable/ic_setting"
+        android:enabled="true"
+        app:showAsAction="ifRoom"
+        android:id="@+id/navigation_setting"
+        android:title="Setting" />
+    <item
+        android:icon="@drawable/ic_avatar_male_circle_fill_dark_copy"
+        android:enabled="true"
+        app:showAsAction="ifRoom"
+        android:id="@+id/navigation_profile"
+        android:title="Account" />
+
+</menu>

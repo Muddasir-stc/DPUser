@@ -121,7 +121,7 @@ class AuthService private constructor() {
     {
         val service = ApiClient.retrofit.create(Service::class.java)
 
-        val call = service.socialLogin(providerName,providerId,name,email,"Merchant", deviceId)
+        val call = service.socialLogin(providerName,providerId,name,email,"Customer", deviceId)
         call.enqueue(CallbackImpl(callback))
     }
 

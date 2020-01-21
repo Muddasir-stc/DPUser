@@ -47,11 +47,15 @@ abstract class BaseActivity : AppCompatActivity(){
     }
 
     open fun showProgress(context:Context) {
-        progressDialog = ProgressDialog.show(context, "Please wait...", "Processing Data...", false, false)
+        progressDialog = ProgressDialog.show(context, "Please wait...", "Processing Shop...", false, false)
     }
 
     open fun hideProgress() {
-        progressDialog.dismiss()
+        when {
+            (::progressDialog.isInitialized) -> {
+                progressDialog.dismiss()
+            }
+        }
     }
 
 

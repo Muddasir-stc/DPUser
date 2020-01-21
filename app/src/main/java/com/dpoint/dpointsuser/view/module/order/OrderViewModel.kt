@@ -24,7 +24,7 @@ class OrderViewModel : ViewModel() {
         OrderService.instance.getOrders(token,
             object : ApiCallbackImpl<OrderModel>(_orderState) {
                 override fun onSuccess(success: OrderModel?) {
-                    Log.e("Data",success?.message)
+                    Log.e("Shop",success?.message)
                     _orderState.value = Event(NetworkState.Success(success))
                 }
             })

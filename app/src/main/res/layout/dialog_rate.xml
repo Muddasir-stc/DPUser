@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:padding="@dimen/dimen_20"
+    android:layout_height="wrap_content">
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:id="@+id/rate"
+        android:rating="2.5"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:hint="Submit your feedback"
+        android:padding="15dp"
+        android:maxLines="5"
+        android:id="@+id/txtFeedback"
+        android:layout_margin="@dimen/dimen_20"
+        android:inputType="text"
+        android:background="@drawable/search_box"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/dimen_20"
+        android:text="Submit"
+        android:padding="15dp"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        android:background="@drawable/bg_button_colorprimary"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

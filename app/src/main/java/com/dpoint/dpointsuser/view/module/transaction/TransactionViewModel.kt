@@ -26,7 +26,7 @@ class TransactionViewModel : ViewModel() {
         TransactionService.instance.getTransactions(token,
             object : ApiCallbackImpl<TransactionModel>(_transState) {
                 override fun onSuccess(success: TransactionModel?) {
-                    Log.e("Data",success?.message)
+                    Log.e("Shop",success?.message)
                     _transState.value = Event(NetworkState.Success(success))
                 }
             })

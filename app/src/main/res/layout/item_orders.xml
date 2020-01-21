@@ -69,6 +69,7 @@
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
+                android:id="@+id/typeIcon"
                 android:src="@drawable/swimmingpool" />
 
         </androidx.cardview.widget.CardView>

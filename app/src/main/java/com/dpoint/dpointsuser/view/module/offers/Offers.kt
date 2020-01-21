@@ -277,7 +277,7 @@ class Offers : BaseActivity(), GetDialogInterface, OnItemClickListener {
     }
 //    class OfferAdapter(
 //        private var context: Context,
-//        private var data: List<Data>
+//        private var data: List<Shop>
 //    ) : RecyclerView.Adapter<OfferAdapter.MyViewHolder>() {
 //
 //        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

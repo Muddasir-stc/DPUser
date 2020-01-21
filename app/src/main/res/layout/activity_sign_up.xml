@@ -251,7 +251,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
-                    android:hint="Referral Code"
+                    android:hint="Referral Code (Optional)"
                     android:id="@+id/et_referral_id"
                     android:padding="5dp"
                     android:textSize="18sp" />

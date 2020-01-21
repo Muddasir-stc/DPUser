@@ -5,13 +5,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.dpoint.dpointsuser.datasource.remote.offer.AssignModel
+import com.dpoint.dpointsuser.datasource.remote.shop.ShopModel
 import com.dpoints.dpointsmerchant.datasource.remote.ApiCallbackImpl
 import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
+import com.dpoints.dpointsmerchant.datasource.remote.dashboard.NotificationModel
 import com.dpoints.dpointsmerchant.datasource.remote.offer.OfferModel
 import com.dpoints.dpointsmerchant.datasource.remote.offer.OfferService
-import com.dpoints.dpointsmerchant.datasource.remote.shop.ShopModel
 import com.dpoints.dpointsmerchant.datasource.remote.shop.ShopService
 import com.dpoints.dpointsmerchant.utilities.Event
+import com.dpoints.dpointsmerchant.utilities.toJson
 
 
 class DashboardViewModel : ViewModel() {
@@ -27,7 +29,8 @@ class DashboardViewModel : ViewModel() {
 
     private val _redeemState = MutableLiveData<Event<NetworkState<AssignModel>>>()
     val redeemState: LiveData<Event<NetworkState<AssignModel>>> get() = _redeemState
-
+    private val _notificationState = MutableLiveData<Event<NetworkState<NotificationModel>>>()
+    val notificationState: LiveData<Event<NetworkState<NotificationModel>>> get() = _notificationState
 
     fun getShops(token: String) {
 
@@ -36,12 +39,23 @@ class DashboardViewModel : ViewModel() {
         ShopService.instance.getShops(token,
             object : ApiCallbackImpl<ShopModel>(_shopsState) {
                 override fun onSuccess(success: ShopModel?) {
-                    Log.e("Data",success?.message)
+                    Log.e("Shop",success?.data.toJson())
                     _shopsState.value = Event(NetworkState.Success(success))
                 }
             })
     }
+    fun getNotification(token: String) {
 
+        _notificationState.value = Event(NetworkState.Loading())
+
+        ShopService.instance.getNotifications(token,
+            object : ApiCallbackImpl<NotificationModel>(_notificationState) {
+                override fun onSuccess(success: NotificationModel?) {
+                    Log.e("Shop",success?.message)
+                    _notificationState.value = Event(NetworkState.Success(success))
+                }
+            })
+    }
     fun assignOffer(token: String,userId:String,merchantId:String,ShopId:String,coinOfferId:String,offerTitle:String,offer:String,ammount:String) {
 
         _assignState.value = Event(NetworkState.Loading())

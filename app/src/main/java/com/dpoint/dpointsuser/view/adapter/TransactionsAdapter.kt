@@ -3,6 +3,7 @@ package com.dpoints.view.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.dpoint.dpointsuser.R
@@ -19,6 +20,7 @@ class TransactionsAdapter(
         val transactionsid: TextView = view.findViewById(R.id.textView4)
         val points: TextView = view.findViewById(R.id.textView6)
         val txtType: TextView = view.findViewById(R.id.txtType)
+        val typeIcon: ImageView = view.findViewById(R.id.typeIcon)
         val bindview = view
         fun bindto(itemtype: Tran) {
 
@@ -46,6 +48,11 @@ class TransactionsAdapter(
         holder.bindto(listitem[position])
         holder.bindview.setOnClickListener {
             listener.onItemClick(position, 1)
+        }
+        if(listitem[position].type.trim().equals("Redeem")){
+            holder.typeIcon.setImageResource(R.drawable.redeem)
+        }else{
+            holder.typeIcon.setImageResource(R.drawable.assign)
         }
     }
 }

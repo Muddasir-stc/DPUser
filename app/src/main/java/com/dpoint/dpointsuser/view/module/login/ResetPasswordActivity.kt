@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.util.Patterns
+import android.widget.ImageView
 import androidx.lifecycle.Observer
 import com.dpoint.dpointsuser.R
 import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
@@ -21,7 +22,10 @@ class ResetPasswordActivity : BaseActivity() {
     var email:String = ""
 
     override fun init() {
-
+        val backBtn=findViewById<ImageView>(R.id.backBtn)
+        backBtn.setOnClickListener {
+            onBackPressed()
+        }
         email = intent.getStringExtra("email")
         verifyEmail.text = email
 

@@ -1,22 +1,16 @@
 package com.dpoints.view.module.dashboard
 
 import android.Manifest
-import android.Manifest.permission_group.CAMERA
-import android.app.Activity
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.os.Build
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.fragment.app.Fragment
+import android.widget.*
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,23 +18,17 @@ import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import com.dpoint.dpointsuser.R
 import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
 import com.dpoints.dpointsmerchant.datasource.remote.offer.Data
-import com.dpoints.dpointsmerchant.datasource.remote.shop.Shop
 import com.dpoints.dpointsmerchant.preferences.UserPreferences
 import com.dpoints.dpointsmerchant.utilities.OnItemClickListener
 import com.dpoints.dpointsmerchant.utilities.getVM
-import com.dpoints.dpointsmerchant.utilities.toJson
 import com.dpoints.dpointsmerchant.view.commons.base.BaseFragment
 import com.dpoints.dpointsmerchant.view.module.dashboard.DashboardViewModel
 import com.dpoints.view.adapter.OfferAdapter
 import com.dpoints.view.adapter.ShopAdapter
-import com.google.zxing.integration.android.IntentIntegrator
 import kotlinx.android.synthetic.main.fragment_home.*
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.checkSelfPermission
-import androidx.recyclerview.widget.GridLayoutManager
 import com.budiyev.android.codescanner.AutoFocusMode
 import com.budiyev.android.codescanner.CodeScanner
 import com.budiyev.android.codescanner.CodeScannerView
@@ -50,16 +38,18 @@ import com.budiyev.android.codescanner.ScanMode
 import com.bumptech.glide.Glide
 import com.dpoint.dpointsuser.datasource.model.ScanedOffer
 import com.dpoint.dpointsuser.datasource.model.ScannedGift
+import com.dpoint.dpointsuser.datasource.remote.shop.Shop
+import com.dpoint.dpointsuser.view.adapter.SliderAdapter
+import com.dpoint.dpointsuser.view.module.dashboard.SearchActivity
 import com.dpoint.dpointsuser.view.module.gifts.GiftCardsViewModel
-import com.dpoint.dpointsuser.view.module.offers.OfferViewModel
 import com.dpoints.dpointsmerchant.datasource.remote.gift.GiftModel
-import com.dpoints.dpointsmerchant.datasource.remote.offer.OfferModel
 import com.dpoints.dpointsmerchant.utilities.fromJson
 import com.dpoints.view.adapter.GiftAdapter
 import com.dpoints.view.module.shops.ShopDetailActivity
-import kotlinx.android.synthetic.main.activity_offers.*
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import kotlinx.android.synthetic.main.item_orders.*
+import com.smarteist.autoimageslider.IndicatorAnimations
+import com.smarteist.autoimageslider.SliderAnimations
+import com.smarteist.autoimageslider.SliderView
 
 
 class Home : BaseFragment(),OnItemClickListener {
@@ -82,7 +72,6 @@ class Home : BaseFragment(),OnItemClickListener {
     private val viewModel by lazy { getVM<DashboardViewModel>(activity!!) }
     private val giftCardsViewModel by lazy { getVM<GiftCardsViewModel>(activity!!) }
     override fun init(view: View) {
-
         shops.setHasFixedSize(true)
         offers.setHasFixedSize(true)
         gifts.setHasFixedSize(true)
@@ -95,12 +84,30 @@ class Home : BaseFragment(),OnItemClickListener {
         mShops=view.findViewById(R.id.shops)
         mOffers=view.findViewById(R.id.offers)
         mGifts=view.findViewById(R.id.gifts)
+       val txtSearch=view.findViewById<TextView>(R.id.txtSearch)
+
+        txtSearch.setOnClickListener {
+            context?.startActivity(Intent(context,SearchActivity::class.java))
+        }
+        val imageSlider=view.findViewById<SliderView>(R.id.imageSlider);
+       val adapter =SliderAdapter(context);
+
+        imageSlider.setSliderAdapter(adapter);
+
+        imageSlider.setIndicatorAnimation(IndicatorAnimations.WORM); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
+        imageSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
+        imageSlider.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH);
+        imageSlider.setIndicatorSelectedColor(Color.WHITE);
+        imageSlider.setIndicatorUnselectedColor(Color.GRAY);
+        imageSlider.setScrollTimeInSec(4); //set scroll delay in seconds :
+        imageSlider.startAutoCycle();
+
         mShops.layoutManager=layoutManager
         mOffers.layoutManager=layoutManager2
         mGifts.layoutManager=layoutManager3
-        viewModel.getShops(UserPreferences.instance.getTokken(context!!)!!)
-        viewModel.getOffers(UserPreferences.instance.getTokken(context!!)!!)
-        giftCardsViewModel.getGiftCards(UserPreferences.instance.getTokken(context!!)!!)
+       viewModel.getShops(UserPreferences.instance.getTokken(context!!)!!)
+//        viewModel.getOffers(UserPreferences.instance.getTokken(context!!)!!)
+//        giftCardsViewModel.getGiftCards(UserPreferences.instance.getTokken(context!!)!!)
         addObserver()
     }
 
@@ -120,76 +127,76 @@ class Home : BaseFragment(),OnItemClickListener {
                 }
             }
         })
-        viewModel.offersState.observe(this, Observer {
-            it ?: return@Observer
-            val state = it.getContentIfNotHandled() ?: return@Observer
-            if (state is NetworkState.Loading) {
-                return@Observer
-            }
-                //hideProgress()
-            when (state) {
-                is NetworkState.Success -> {
-                    Log.e("DATA", state.data?.message.toString())
-                    data=state?.data?.data!!
-                    setOfferList(data)
-                }
-                is NetworkState.Error -> onError(state.message)
-                is NetworkState.Failure -> onFailure(getString(R.string.request_error))
-                else -> onFailure(getString(R.string.connection_error))
-            }
-        })
-        viewModel.assignState.observe(this, Observer {
-            it ?: return@Observer
-            val state = it.getContentIfNotHandled() ?: return@Observer
-            if (state is NetworkState.Loading) {
-                return@Observer
-            }
-            //hideProgress()
-            when (state) {
-                is NetworkState.Success -> {
-                    Log.e("DATA", state.data?.message.toString())
-                    onSuccess(state.data!!.message)
-                }
-                is NetworkState.Error -> onError(state.message)
-                is NetworkState.Failure -> onFailure(getString(R.string.request_error))
-                else -> onFailure(getString(R.string.connection_error))
-            }
-        })
-        giftCardsViewModel.giftCardState.observe(this, Observer {
-            it ?: return@Observer
-            val state = it.getContentIfNotHandled() ?: return@Observer
-            if (state is NetworkState.Loading) {
-                return@Observer
-            }
-//             hideProgress()
-            when (state) {
-                is NetworkState.Success -> {
-                    Log.e("DATA",state.data?.message.toString())
-                    giftModel = state?.data!!
-                    setupRecyclerView(state?.data)
-                }
-                is NetworkState.Error -> onError(state.message)
-                is NetworkState.Failure -> onFailure(getString(R.string.request_error))
-                else -> onFailure(getString(R.string.connection_error))
-            }
-        })
-        viewModel.redeemState.observe(this, Observer {
-            it ?: return@Observer
-            val state = it.getContentIfNotHandled() ?: return@Observer
-            if (state is NetworkState.Loading) {
-                return@Observer
-            }
-            //hideProgress()
-            when (state) {
-                is NetworkState.Success -> {
-                    Log.e("DATA", state.data?.message.toString())
-                    onSuccess(state.data!!.message)
-                }
-                is NetworkState.Error -> onError(state.message)
-                is NetworkState.Failure -> onFailure(getString(R.string.request_error))
-                else -> onFailure(getString(R.string.connection_error))
-            }
-        })
+//        viewModel.offersState.observe(this, Observer {
+//            it ?: return@Observer
+//            val state = it.getContentIfNotHandled() ?: return@Observer
+//            if (state is NetworkState.Loading) {
+//                return@Observer
+//            }
+//                //hideProgress()
+//            when (state) {
+//                is NetworkState.Success -> {
+//                    Log.e("DATA", state.data?.message.toString())
+//                    data=state?.data?.data!!
+//                    setOfferList(data)
+//                }
+//                is NetworkState.Error -> onError(state.message)
+//                is NetworkState.Failure -> onFailure(getString(R.string.request_error))
+//                else -> onFailure(getString(R.string.connection_error))
+//            }
+//        })
+//        viewModel.assignState.observe(this, Observer {
+//            it ?: return@Observer
+//            val state = it.getContentIfNotHandled() ?: return@Observer
+//            if (state is NetworkState.Loading) {
+//                return@Observer
+//            }
+//            //hideProgress()
+//            when (state) {
+//                is NetworkState.Success -> {
+//                    Log.e("DATA", state.data?.message.toString())
+//                    onSuccess(state.data!!.message)
+//                }
+//                is NetworkState.Error -> onError(state.message)
+//                is NetworkState.Failure -> onFailure(getString(R.string.request_error))
+//                else -> onFailure(getString(R.string.connection_error))
+//            }
+//        })
+//        giftCardsViewModel.giftCardState.observe(this, Observer {
+//            it ?: return@Observer
+//            val state = it.getContentIfNotHandled() ?: return@Observer
+//            if (state is NetworkState.Loading) {
+//                return@Observer
+//            }
+////             hideProgress()
+//            when (state) {
+//                is NetworkState.Success -> {
+//                    Log.e("DATA",state.data?.message.toString())
+//                    giftModel = state?.data!!
+//                    setupRecyclerView(state?.data)
+//                }
+//                is NetworkState.Error -> onError(state.message)
+//                is NetworkState.Failure -> onFailure(getString(R.string.request_error))
+//                else -> onFailure(getString(R.string.connection_error))
+//            }
+//        })
+//        viewModel.redeemState.observe(this, Observer {
+//            it ?: return@Observer
+//            val state = it.getContentIfNotHandled() ?: return@Observer
+//            if (state is NetworkState.Loading) {
+//                return@Observer
+//            }
+//            //hideProgress()
+//            when (state) {
+//                is NetworkState.Success -> {
+//                    Log.e("DATA", state.data?.message.toString())
+//                    onSuccess(state.data!!.message)
+//                }
+//                is NetworkState.Error -> onError(state.message)
+//                is NetworkState.Failure -> onFailure(getString(R.string.request_error))
+//                else -> onFailure(getString(R.string.connection_error))
+//            }
+//        })
     }
 
     private fun setOfferList(data: List<Data>) {

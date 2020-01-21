@@ -2,9 +2,11 @@ package com.dpoints.dpointsmerchant.datasource.remote.shop
 
 import android.util.Log
 import com.dpoint.dpointsuser.datasource.remote.offer.AssignModel
+import com.dpoint.dpointsuser.datasource.remote.shop.ShopModel
 import com.dpoints.dpointsmerchant.datasource.remote.ApiCallbackImpl
 import com.dpoints.dpointsmerchant.datasource.remote.ApiClient
 import com.dpoints.dpointsmerchant.datasource.remote.ApiResult
+import com.dpoints.dpointsmerchant.datasource.remote.dashboard.NotificationModel
 import com.dpoints.dpointsmerchant.datasource.remote.gift.GiftModel
 import com.dpoints.dpointsmerchant.datasource.remote.offer.OfferModel
 import com.dpoints.dpointsmerchant.datasource.remote.offer.OfferService
@@ -17,7 +19,16 @@ class ShopService private constructor() {
     companion object {
         val instance: ShopService by lazy { ShopService() }
     }
+    fun getNotifications(
+    token: String,
+    callback: ApiCallbackImpl<NotificationModel>
+    )
+    {
 
+        val service = ApiClient.retrofit.create(Service::class.java)
+        val call = service.getNotifications("Bearer $token")
+        call.enqueue(CallbackImpl(callback))
+    }
     fun getShops(
         token: String,
         callback: ApiCallbackImpl<ShopModel>
@@ -138,5 +149,9 @@ class ShopService private constructor() {
             @Field("coins") offer: String,
             @Field("offer") ammount: String
         ): Call<ApiResult<AssignModel>>
+        @GET("getNotifications")
+        fun getNotifications(
+            @Header("Authorization") token: String
+        ): Call<ApiResult<NotificationModel>>
     }
 }
