@@ -1,5 +1,6 @@
 package com.dpoints.dpointsmerchant.datasource.remote.gift
 
+import com.dpoint.dpointsuser.datasource.remote.gift.GiftModel
 import com.dpoints.dpointsmerchant.datasource.remote.ApiCallback
 import com.dpoints.dpointsmerchant.datasource.remote.ApiCallbackImpl
 import com.dpoints.dpointsmerchant.datasource.remote.ApiClient
@@ -24,14 +25,14 @@ class GiftService private constructor() {
 
 
 
-    fun getGifts(
-        token: String,
-        callback: ApiCallbackImpl<GiftModel>
-    ) {
-        val service = ApiClient.retrofit.create(Service::class.java)
-        val call = service.getGiftCards("Bearer $token")
-        call.enqueue(CallbackImpl(callback))
-    }
+//    fun getGifts(
+//        token: String,
+//        callback: ApiCallbackImpl<GiftModel>
+//    ) {
+//        val service = ApiClient.retrofit.create(Service::class.java)
+//        val call = service.getGiftCards("Bearer $token")
+//        call.enqueue(CallbackImpl(callback))
+//    }
 
     private interface Service {
         @GET("getAllGiftCards")

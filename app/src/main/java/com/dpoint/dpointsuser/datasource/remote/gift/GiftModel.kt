@@ -1,6 +1,6 @@
-package com.dpoints.dpointsmerchant.datasource.remote.gift
+package com.dpoint.dpointsuser.datasource.remote.gift
 
 data class GiftModel(
-    val `data`: List<Data>?=null,
-    val message: String?=null
+    val `data`: List<Data>,
+    val message: String
 )

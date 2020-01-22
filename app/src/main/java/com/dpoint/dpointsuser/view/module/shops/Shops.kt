@@ -5,6 +5,7 @@ import android.util.Log
 import android.widget.ImageView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dpoint.dpointsuser.R
 import com.dpoint.dpointsuser.datasource.remote.shop.Shop
@@ -26,9 +27,9 @@ class Shops : BaseActivity(), OnItemClickListener {
     lateinit var list:List<Shop>
     private val viewModel by lazy { getVM<ShopViewModel>(this) }
     override fun init() {
-        recyclerView = findViewById<RecyclerView>(R.id.shop_recyclerview)
-        val gridManager = GridLayoutManager(this, 2)
-        recyclerView.layoutManager = gridManager as RecyclerView.LayoutManager?
+        recyclerView = findViewById(R.id.shop_recyclerview)
+
+        recyclerView.layoutManager = LinearLayoutManager(this)
         val btnBack=findViewById<ImageView>(R.id.backBtn)
         btnBack.setOnClickListener {
             onBackPressed()
@@ -77,7 +78,7 @@ class Shops : BaseActivity(), OnItemClickListener {
         })
     }
     private fun setupShops(data: List<Shop>?) {
-        adapter = ShopAdapter(data!!,this,this)
+        adapter = ShopAdapter(data!!,this,this,1)
         recyclerView.adapter = adapter
 
     }

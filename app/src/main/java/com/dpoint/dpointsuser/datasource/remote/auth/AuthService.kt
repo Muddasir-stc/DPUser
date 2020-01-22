@@ -86,6 +86,19 @@ class AuthService private constructor() {
         call.enqueue(CallbackImpl(callback))
         Log.e("ERROR","I AM HERE 3")
     }
+    fun updateProfile(
+        token: String,
+        id: String,
+        name: String,
+        lastName: String,
+        contact: String,
+        dob: String,
+        callback: ApiCallback<LoginModel>
+    ) {
+        val service = ApiClient.retrofit.create(Service::class.java)
+        val call = service.updateProfile("Bearer $token",id, name, lastName,contact,dob)
+        call.enqueue(CallbackImpl(callback))
+    }
 
 
 
@@ -208,5 +221,15 @@ class AuthService private constructor() {
             @Field("device_id") deviceId: String
         ): Call<ApiResult<LoginModel>>
 
+        @PUT("userDashboard/{id}")
+        @FormUrlEncoded
+        fun updateProfile(
+            @Header("Authorization") token: String,
+            @Path("id")id:String,
+            @Field("name") name: String,
+            @Field("last_name") last_name: String,
+            @Field("contact_number") contact_number: String,
+            @Field("dob") dob: String
+        ):Call<ApiResult<LoginModel>>
     }
 }

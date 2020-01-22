@@ -1,19 +1,15 @@
-package com.dpoints.dpointsmerchant.datasource.remote.gift
+package com.dpoint.dpointsuser.datasource.remote.gift
 
-import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
-
-@Parcelize
-class Data(
+data class Data(
+    val amount: String,
+    val created_at: String,
+    val description: String,
     val id: Int,
     val merchant_id: Int,
-    val shop_id: Int,
-    val image: String,
-    val title: String,
-    val description: String,
-    val offer: String,
-    val coins: String,
+    val number_of_units: Int,
     val rand_text: String,
-    val created_at: String,
+    val shop_id: Int,
+    val title: String,
+    val unit: String,
     val updated_at: String
-): Parcelable
+)

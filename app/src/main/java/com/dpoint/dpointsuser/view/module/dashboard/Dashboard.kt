@@ -70,7 +70,9 @@ class Dashboard : BaseActivity(), OnItemClickListener,BottomNavigationView.OnNav
         }
 
         viewProfile.setOnClickListener {
-            startActivity(Intent(this,Profile::class.java))
+            bottomNav.selectedItemId=R.id.navigation_profile
+            applayChanages(profile,"Profile")
+            drawer.closeDrawers()
         }
 //
 //        bottom_navigation.setOnNavigationItemSelectedListener {

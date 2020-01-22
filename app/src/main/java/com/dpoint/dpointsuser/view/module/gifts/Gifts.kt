@@ -1,14 +1,15 @@
 package com.dpoints.view.module.gifts
 
 import android.Manifest
-import android.content.Intent
+import android.app.AlertDialog
 import android.content.pm.PackageManager
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
@@ -21,15 +22,13 @@ import com.budiyev.android.codescanner.DecodeCallback
 import com.budiyev.android.codescanner.ErrorCallback
 import com.budiyev.android.codescanner.ScanMode
 import com.dpoint.dpointsuser.R
-import com.dpoint.dpointsuser.datasource.model.ScanedOffer
 import com.dpoint.dpointsuser.datasource.model.ScannedGift
+import com.dpoint.dpointsuser.datasource.remote.gift.GiftModel
 import com.dpoint.dpointsuser.view.module.gifts.GiftCardsViewModel
+import com.dpoint.dpointsuser.view.module.gifts.QrViewModel
 import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
-import com.dpoints.dpointsmerchant.datasource.remote.gift.GiftModel
-import com.dpoints.dpointsmerchant.datasource.remote.offer.OfferModel
 import com.dpoints.dpointsmerchant.preferences.UserPreferences
 import com.dpoints.dpointsmerchant.utilities.OnItemClickListener
-import com.dpoints.dpointsmerchant.utilities.OnRemoveClickListener
 import com.dpoints.dpointsmerchant.utilities.fromJson
 import com.dpoints.dpointsmerchant.utilities.getVM
 import com.dpoints.dpointsmerchant.view.commons.base.BaseActivity
@@ -45,8 +44,10 @@ class Gifts : BaseActivity(),OnItemClickListener {
     lateinit var selectedData: String
     private val viewModelDash by lazy { getVM<DashboardViewModel>(this) }
     private val CAMERA_PERMISSIONS_REQUEST = 2
+    var qr_image:ImageView?=null
     override val layout: Int = R.layout.activity_gifts
     private val viewModel by lazy { getVM<GiftCardsViewModel>(this) }
+    private val viewQRModel by lazy { getVM<QrViewModel>(this) }
     private var giftModel: GiftModel? = null
     override fun init() {
         viewModel.getGiftCards(UserPreferences.instance.getTokken(this)!!)
@@ -99,6 +100,23 @@ class Gifts : BaseActivity(),OnItemClickListener {
                 else -> onFailure(getString(R.string.connection_error))
             }
         })
+        viewQRModel.qrState.observe(this, Observer {
+            it ?: return@Observer
+            val state = it.getContentIfNotHandled() ?: return@Observer
+            if (state is NetworkState.Loading) {
+                return@Observer showProgress(this)
+            }
+            hideProgress()
+            when (state) {
+                is NetworkState.Success -> {
+                   qr_image!!.setImageBitmap(state.data)
+                }
+                is NetworkState.Error -> onError(state.message)
+                is NetworkState.Failure -> onFailure(getString(R.string.request_error))
+                else -> onFailure(getString(R.string.connection_error))
+            }
+        })
+
 
     }
 
@@ -110,20 +128,27 @@ class Gifts : BaseActivity(),OnItemClickListener {
     }
 
     private fun setupRecyclerView(giftModel: GiftModel?) {
-        var linearlayoutmanger = GridLayoutManager(this, 2)
-        linearlayoutmanger.orientation = LinearLayoutManager.VERTICAL
-        recyclerView.layoutManager = linearlayoutmanger
+
+        recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.isNestedScrollingEnabled = true
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = GiftAdapter(this,this, giftModel!!.data!!)
     }
     override fun onItemClick(index: Int, adapter: Int) {
-        selectedData=giftModel!!.data!![index].id.toString()
+        val giftOffer=giftModel!!.data!![index]
         //  Log.e("OFFER",data[index].toJson().toString())
         //  context?.startActivity(Intent(context,ScanActivity::class.java))
+        val view = LayoutInflater.from(this)
+            .inflate(R.layout.dialog_purchase, null, false)
+        val builder = AlertDialog.Builder(this)
+        builder.setView(view)
+        qr_image=view.findViewById<ImageView>(R.id.qr_image)
+        val data="{\"gift_card_id\":\"${giftOffer?.id}\",\"user_id\":\"${UserPreferences.instance.getUser(this)!!.id}\",\"gift_card_title\":\"${giftOffer?.title}\",\"amount\":\"${giftOffer?.amount}\",\"number_of_units\":\"${giftOffer?.number_of_units}\",\"unit\":\"${giftOffer?.unit}\"}"
+        viewQRModel.getQrImage(data)
+        val dialog = builder.create()
+        dialog.show()
 
-
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN); requestCameraPermission()
+       // getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN); requestCameraPermission()
     }
     private fun requestCameraPermission() {
         if (ContextCompat.checkSelfPermission(

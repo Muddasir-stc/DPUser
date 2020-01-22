@@ -6,8 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.dpoints.dpointsmerchant.datasource.remote.ApiCallbackImpl
 import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
-import com.dpoints.dpointsmerchant.datasource.remote.gift.GiftModel
-import com.dpoints.dpointsmerchant.datasource.remote.gift.GiftService
 import com.dpoints.dpointsmerchant.datasource.remote.offer.OfferModel
 import com.dpoints.dpointsmerchant.datasource.remote.offer.OfferService
 import com.dpoints.dpointsmerchant.utilities.Event

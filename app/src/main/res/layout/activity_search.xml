@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/root_view"
     android:layout_height="match_parent"
     tools:context=".view.module.dashboard.SearchActivity">
 
@@ -13,6 +14,7 @@
             android:focusedByDefault="true"
             android:padding="15dp"
             android:id="@+id/searchView"
+            android:inputType="text"
             android:drawableLeft="@drawable/ic_search_24px"
             android:layout_margin="10dp"
             android:background="@drawable/search_box"

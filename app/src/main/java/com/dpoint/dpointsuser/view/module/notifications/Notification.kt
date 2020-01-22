@@ -59,7 +59,12 @@ class Notification : BaseFragment() {
     }
 
     private fun setupNotifications(data: List<Data>?) {
-        val adapter= NotificationAdapter(context, data!!.reversed() as ArrayList<Data>?)
+        var adapter:NotificationAdapter?=null
+       if(data!!.size>0){
+           adapter= NotificationAdapter(context, data!!.reversed() as ArrayList<Data>?)
+       }else{
+           adapter= NotificationAdapter(context, data!! as ArrayList<Data>?)
+       }
         notificationList.adapter=adapter
     }
 }

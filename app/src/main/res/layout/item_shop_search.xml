@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_margin="@dimen/dimen_10"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/shop_place"
+            android:id="@+id/img"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY" />
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:orientation="horizontal"
+           android:padding="5dp"
+           android:layout_gravity="center_vertical"
+           android:layout_height="wrap_content">
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:orientation="vertical"
+               android:layout_gravity="left"
+               android:layout_height="wrap_content">
+               <TextView
+                   android:id="@+id/shop_name"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textSize="16sp"
+                   android:layout_marginTop="5dp"
+                   android:fontFamily="@font/roboto_medium"
+                   android:textColor="@color/colorBlack"
+                   android:text="Shop name" />
+
+               <TextView
+                   android:id="@+id/shop_details"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginBottom="10dp"
+                   android:textColor="@color/colorBlack"
+                   android:fontFamily="@font/roboto"
+                   android:textSize="12sp"
+                   android:text="This is Amazing" />
+           </LinearLayout>
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:orientation="vertical"
+               android:layout_gravity="right"
+               android:layout_height="wrap_content">
+               <TextView
+                   android:id="@+id/txtRating"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="right"
+                   android:textSize="16sp"
+                   android:layout_marginTop="5dp"
+                   android:drawableRight="@drawable/ic_star_24px"
+                   android:fontFamily="@font/roboto_medium"
+                   android:textColor="@color/colorBlack"
+                   android:text="3.2 " />
+
+               <TextView
+                   android:id="@+id/txtcoinValue"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginBottom="10dp"
+                   android:layout_gravity="right"
+                   android:drawableRight="@drawable/ic_dollar"
+                   android:textColor="@color/colorBlack"
+                   android:fontFamily="@font/roboto"
+                   android:textSize="12sp"
+                   android:text="120 " />
+           </LinearLayout>
+       </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+
+
+

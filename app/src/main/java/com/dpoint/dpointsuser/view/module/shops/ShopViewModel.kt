@@ -4,10 +4,10 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.dpoint.dpointsuser.datasource.remote.gift.GiftModel
 import com.dpoint.dpointsuser.datasource.remote.shop.ShopModel
 import com.dpoints.dpointsmerchant.datasource.remote.ApiCallbackImpl
 import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
-import com.dpoints.dpointsmerchant.datasource.remote.gift.GiftModel
 import com.dpoints.dpointsmerchant.datasource.remote.offer.OfferModel
 import com.dpoints.dpointsmerchant.datasource.remote.shop.ShopService
 import com.dpoints.dpointsmerchant.utilities.Event
@@ -17,6 +17,9 @@ class ShopViewModel : ViewModel() {
 
     private val _shopsState = MutableLiveData<Event<NetworkState<ShopModel>>>()
     val shopsState: LiveData<Event<NetworkState<ShopModel>>> get() = _shopsState
+
+    private val _searchedShopsState = MutableLiveData<Event<NetworkState<ShopModel>>>()
+    val searchedShopsState: LiveData<Event<NetworkState<ShopModel>>> get() = _searchedShopsState
 
     private val _offersState = MutableLiveData<Event<NetworkState<OfferModel>>>()
     val offersState: LiveData<Event<NetworkState<OfferModel>>> get() = _offersState
@@ -59,6 +62,19 @@ class ShopViewModel : ViewModel() {
                 override fun onSuccess(success: ShopModel?) {
                     Log.e("Shop",success?.message)
                     _shopsState.value = Event(NetworkState.Success(success))
+                }
+            })
+    }
+
+    fun getSearchedShops(token: String,name:String) {
+
+        _searchedShopsState.value = Event(NetworkState.Loading())
+
+        ShopService.instance.getSearchedShops(token,name,
+            object : ApiCallbackImpl<ShopModel>(_searchedShopsState) {
+                override fun onSuccess(success: ShopModel?) {
+                    Log.e("Shop",success?.message)
+                    _searchedShopsState.value = Event(NetworkState.Success(success))
                 }
             })
     }

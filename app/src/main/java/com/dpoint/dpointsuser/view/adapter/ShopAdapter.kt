@@ -16,7 +16,8 @@ import com.dpoint.dpointsuser.datasource.remote.shop.Shop
 class ShopAdapter (
     private val listitem :List<Shop>,
     private val listener: OnItemClickListener,
-    val context:Context
+    val context:Context,
+    val type:Int
 ):RecyclerView.Adapter<ShopAdapter.ViewHolder>(){
     class ViewHolder(view: View):RecyclerView.ViewHolder(view) {
         val shop_name:TextView = view.findViewById(R.id.shop_name)
@@ -36,7 +37,13 @@ class ShopAdapter (
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_shop,parent,false)
+
+        var view:View
+        if(type==0){
+            view= LayoutInflater.from(parent.context).inflate(R.layout.item_shop,parent,false)
+        }else{
+           view= LayoutInflater.from(parent.context).inflate(R.layout.item_shop_search,parent,false)
+        }
 
         return ViewHolder(view)
     }

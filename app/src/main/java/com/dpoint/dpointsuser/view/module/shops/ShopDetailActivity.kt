@@ -1,6 +1,8 @@
 package com.dpoints.view.module.shops
 
+import android.Manifest
 import android.app.AlertDialog
+import android.location.Location
 import android.util.Log
 import android.view.LayoutInflater
 import android.widget.ImageView
@@ -17,18 +19,35 @@ import com.dpoints.dpointsmerchant.utilities.getVM
 import com.dpoints.dpointsmerchant.view.commons.base.BaseActivity
 import com.dpoints.dpointsmerchant.view.module.dashboard.DashboardViewModel
 import com.dpoints.dpointsmerchant.view.module.shops.ShopViewModel
+import com.google.android.gms.location.LocationListener
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.activity_shop_detail.*
+import android.location.LocationManager
+import androidx.core.app.ComponentActivity.ExtraData
+import android.content.pm.PackageManager
+import android.Manifest.permission
+import android.Manifest.permission.ACCESS_COARSE_LOCATION
+import androidx.core.app.ActivityCompat
+import android.content.Context
+import androidx.recyclerview.widget.LinearLayoutManager
 
-class ShopDetailActivity : BaseActivity() {
 
+class ShopDetailActivity : BaseActivity(), LocationListener {
+    override fun onLocationChanged(p0: Location?) {
+        Toast.makeText(this,"lat = ${p0?.latitude} lon = ${p0?.longitude}",Toast.LENGTH_SHORT).show()
+    }
+
+    private var locationManager: LocationManager? = null
     private var selectedType: Int = 0
     private lateinit var dialog: BottomSheetDialog
     private lateinit var codeScanner: CodeScanner
     private val CAMERA_PERMISSIONS_REQUEST = 2
     private val viewModelDash by lazy { getVM<DashboardViewModel>(this) }
     var selectedData: String? = null
-    private var giftData: List<com.dpoints.dpointsmerchant.datasource.remote.gift.Data>? = null
+//    private var giftData: List<com.dpoints.dpointsmerchant.datasource.remote.gift.Data>? = null
     private var data: List<Data>? = null
     override val layout: Int = R.layout.activity_shop_detail
     private val viewModel by lazy { getVM<ShopViewModel>(this) }
@@ -40,9 +59,26 @@ class ShopDetailActivity : BaseActivity() {
     override fun init() {
         if (intent.getParcelableExtra<Shop>("SHOP") != null) {
             shop = intent.getParcelableExtra<Shop>("SHOP")
-            Log.e("Shop", shop.shop_name)
+            Log.e("SHOPPER", shop.shop_name)
         }
 
+        menuList.setHasFixedSize(true)
+        val lin=LinearLayoutManager(this)
+        lin.orientation=RecyclerView.HORIZONTAL
+        menuList.layoutManager=lin
+
+        txtFb.setOnClickListener {
+            Toast.makeText(this,shop.facebook,Toast.LENGTH_LONG).show()
+        }
+        txtInsta.setOnClickListener {
+            Toast.makeText(this,shop.instagram,Toast.LENGTH_LONG).show()
+        }
+        txtTweet.setOnClickListener {
+            Toast.makeText(this,shop.twitter,Toast.LENGTH_LONG).show()
+        }
+        txtWeb.setOnClickListener {
+            Toast.makeText(this,shop.website,Toast.LENGTH_LONG).show()
+        }
         val fragmentAdapter = ShopViewPagerAdapter(supportFragmentManager, shop)
         viewPager_shop.adapter = fragmentAdapter
       //  viewPager_shop.isNestedScrollingEnabled=true
@@ -105,7 +141,28 @@ class ShopDetailActivity : BaseActivity() {
             onBackPressed()
         }
 
-
+//        locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+//
+//        if (ActivityCompat.checkSelfPermission(
+//                this,
+//                permission.ACCESS_FINE_LOCATION
+//            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+//                this,
+//                ACCESS_COARSE_LOCATION
+//            ) != PackageManager.PERMISSION_GRANTED
+//        ) {
+//            // TODO: Consider calling
+//            //    ActivityCompat#requestPermissions
+//            // here to request the missing permissions, and then overriding
+//            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+//            //                                          int[] grantResults)
+//            // to handle the case where the user grants the permission. See the documentation
+//            // for ActivityCompat#requestPermissions for more details.
+//            return
+//        }
+//        val location = locationManager!!.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
+//
+//        onLocationChanged(location)
     }
 
 //    private fun addObserver() {

@@ -7,7 +7,7 @@ import kotlinx.android.parcel.Parcelize
 class Shop(
     val address: String,
     val business_hours: String,
-    val category_name: String,
+    var category_name: String,
     val coin_value: Int,
     val contact: String,
     val created_at: String,

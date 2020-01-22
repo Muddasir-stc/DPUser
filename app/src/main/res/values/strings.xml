@@ -52,6 +52,7 @@
     <string name="facebook_app_id">461417987884721</string>
     <string name="fb_login_protocol_scheme">fb461417987884721</string>
     <string name="earn_offer">Earn Offer</string>
+    <string name="update">Update</string>
 
 
     <string-array name="cities">

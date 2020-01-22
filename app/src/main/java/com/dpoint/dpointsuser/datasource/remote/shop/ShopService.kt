@@ -1,15 +1,13 @@
 package com.dpoints.dpointsmerchant.datasource.remote.shop
 
-import android.util.Log
+import com.dpoint.dpointsuser.datasource.remote.gift.GiftModel
 import com.dpoint.dpointsuser.datasource.remote.offer.AssignModel
 import com.dpoint.dpointsuser.datasource.remote.shop.ShopModel
 import com.dpoints.dpointsmerchant.datasource.remote.ApiCallbackImpl
 import com.dpoints.dpointsmerchant.datasource.remote.ApiClient
 import com.dpoints.dpointsmerchant.datasource.remote.ApiResult
 import com.dpoints.dpointsmerchant.datasource.remote.dashboard.NotificationModel
-import com.dpoints.dpointsmerchant.datasource.remote.gift.GiftModel
 import com.dpoints.dpointsmerchant.datasource.remote.offer.OfferModel
-import com.dpoints.dpointsmerchant.datasource.remote.offer.OfferService
 import com.dpoints.dpointsmerchant.successsource.remote.CallbackImpl
 import retrofit2.Call
 import retrofit2.http.*
@@ -96,6 +94,16 @@ class ShopService private constructor() {
         val call = service.getShopOffers("Bearer $token",id)
         call.enqueue(CallbackImpl(callback))
     }
+
+    fun getSearchedShops(
+        token: String,
+        search:String,
+        callback: ApiCallbackImpl<ShopModel>
+    ) {
+        val service = ApiClient.retrofit.create(Service::class.java)
+        val call = service.getSearchedShops("Bearer $token",search)
+        call.enqueue(CallbackImpl(callback))
+    }
     fun getShopGifts(
         token: String,
         id:String,
@@ -114,6 +122,12 @@ class ShopService private constructor() {
             @Header("Authorization") token: String,
             @Query("id") id:String
         ): Call<ApiResult<OfferModel>>
+        @GET("searchShops")
+        fun getSearchedShops(
+            @Header("Authorization") token: String,
+            @Query("name") search:String
+        ): Call<ApiResult<ShopModel>>
+
         @GET("getShopGiftCardDetails")
         fun getShopGifts(
             @Header("Authorization") token: String,
