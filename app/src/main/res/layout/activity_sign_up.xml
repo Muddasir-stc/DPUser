@@ -181,6 +181,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_40"
+                android:visibility="gone"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -204,11 +205,12 @@
                     android:textSize="18sp" />
             </LinearLayout>
 
-            <View style="@style/underline" />
+            <View style="@style/underline" android:visibility="gone" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:layout_marginTop="@dimen/dimen_40"
                 android:gravity="center"
                 android:orientation="horizontal">
@@ -231,12 +233,13 @@
                     android:textSize="18sp" />
             </LinearLayout>
 
-            <View style="@style/underline" />
+            <View style="@style/underline" android:visibility="gone"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_40"
+                android:visibility="gone"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -257,7 +260,7 @@
                     android:textSize="18sp" />
             </LinearLayout>
 
-            <View style="@style/underline" />
+            <View style="@style/underline" android:visibility="gone"/>
 
             <Button
                 android:layout_width="match_parent"

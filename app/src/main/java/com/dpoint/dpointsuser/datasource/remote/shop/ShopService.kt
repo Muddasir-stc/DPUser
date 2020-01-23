@@ -2,6 +2,7 @@ package com.dpoints.dpointsmerchant.datasource.remote.shop
 
 import com.dpoint.dpointsuser.datasource.remote.gift.GiftModel
 import com.dpoint.dpointsuser.datasource.remote.offer.AssignModel
+import com.dpoint.dpointsuser.datasource.remote.shop.MenuModel
 import com.dpoint.dpointsuser.datasource.remote.shop.ShopModel
 import com.dpoints.dpointsmerchant.datasource.remote.ApiCallbackImpl
 import com.dpoints.dpointsmerchant.datasource.remote.ApiClient
@@ -95,6 +96,15 @@ class ShopService private constructor() {
         call.enqueue(CallbackImpl(callback))
     }
 
+    fun getShopMenus(
+        token: String,
+        id:String,
+        callback: ApiCallbackImpl<MenuModel>
+    ) {
+        val service = ApiClient.retrofit.create(Service::class.java)
+        val call = service.getShopMenus("Bearer $token",id)
+        call.enqueue(CallbackImpl(callback))
+    }
     fun getSearchedShops(
         token: String,
         search:String,
@@ -167,5 +177,10 @@ class ShopService private constructor() {
         fun getNotifications(
             @Header("Authorization") token: String
         ): Call<ApiResult<NotificationModel>>
+        @GET("shopMenu")
+        fun getShopMenus(
+            @Header("Authorization") token: String,
+            @Query("shop_id") id:String
+        ): Call<ApiResult<MenuModel>>
     }
 }

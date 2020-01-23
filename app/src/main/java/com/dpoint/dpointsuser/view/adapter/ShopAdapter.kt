@@ -28,6 +28,7 @@ class ShopAdapter (
         val bindview=view
         fun bindto(itemtype:Shop,context: Context){
            shop_name.text= itemtype.shop_name
+
            shop_detail.text = itemtype.description
             txtRating.text = itemtype.rating
             txtcoinValue.text = "${itemtype.coin_value.toString()} "

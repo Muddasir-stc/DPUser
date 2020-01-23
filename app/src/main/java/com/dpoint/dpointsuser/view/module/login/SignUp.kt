@@ -115,15 +115,15 @@ class SignUp : BaseActivity() {
             et_password.requestFocus()
             false
         }
-        (et_dob.text != null && TextUtils.isEmpty(et_dob.text.toString().trim())) -> {
-            et_dob.error = "Please Select DOB"
-            et_dob.requestFocus()
-            false
-        }
-        (sp_city.selectedItem != null && TextUtils.isEmpty(sp_city.selectedItem.toString().trim())) -> {
-            Toast.makeText(this, "Please Select City", Toast.LENGTH_LONG).show()
-            false
-        }
+//        (et_dob.text != null && TextUtils.isEmpty(et_dob.text.toString().trim())) -> {
+//            et_dob.error = "Please Select DOB"
+//            et_dob.requestFocus()
+//            false
+//        }
+//        (sp_city.selectedItem != null && TextUtils.isEmpty(sp_city.selectedItem.toString().trim())) -> {
+//            Toast.makeText(this, "Please Select City", Toast.LENGTH_LONG).show()
+//            false
+//        }
         else -> {
             true
         }

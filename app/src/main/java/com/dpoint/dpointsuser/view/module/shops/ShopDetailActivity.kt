@@ -32,7 +32,14 @@ import android.Manifest.permission
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import androidx.core.app.ActivityCompat
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dpoint.dpointsuser.datasource.remote.shop.MenuModel
+import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
+import com.dpoints.dpointsmerchant.preferences.UserPreferences
+import com.dpoints.view.adapter.MenuAdapter
 
 
 class ShopDetailActivity : BaseActivity(), LocationListener {
@@ -47,7 +54,7 @@ class ShopDetailActivity : BaseActivity(), LocationListener {
     private val CAMERA_PERMISSIONS_REQUEST = 2
     private val viewModelDash by lazy { getVM<DashboardViewModel>(this) }
     var selectedData: String? = null
-//    private var giftData: List<com.dpoints.dpointsmerchant.datasource.remote.gift.Data>? = null
+//    private var giftData: List<com.dpoints.dpointsmerchant.datasource.remote.gift.Menu>? = null
     private var data: List<Data>? = null
     override val layout: Int = R.layout.activity_shop_detail
     private val viewModel by lazy { getVM<ShopViewModel>(this) }
@@ -66,18 +73,18 @@ class ShopDetailActivity : BaseActivity(), LocationListener {
         val lin=LinearLayoutManager(this)
         lin.orientation=RecyclerView.HORIZONTAL
         menuList.layoutManager=lin
-
+        viewModel.getShopMenus(UserPreferences.instance.getTokken(this)!!,shop.id.toString())
         txtFb.setOnClickListener {
-            Toast.makeText(this,shop.facebook,Toast.LENGTH_LONG).show()
+            getBrowser(shop.facebook)
         }
         txtInsta.setOnClickListener {
-            Toast.makeText(this,shop.instagram,Toast.LENGTH_LONG).show()
+            getBrowser(shop.instagram)
         }
         txtTweet.setOnClickListener {
-            Toast.makeText(this,shop.twitter,Toast.LENGTH_LONG).show()
+            getBrowser(shop.twitter)
         }
         txtWeb.setOnClickListener {
-            Toast.makeText(this,shop.website,Toast.LENGTH_LONG).show()
+            getBrowser(shop.website)
         }
         val fragmentAdapter = ShopViewPagerAdapter(supportFragmentManager, shop)
         viewPager_shop.adapter = fragmentAdapter
@@ -135,7 +142,7 @@ class ShopDetailActivity : BaseActivity(), LocationListener {
 //        gifts.layoutManager = layoutManager2
         //  viewModel.getShopOffers(UserPreferences.instance.getTokken(this)!!,shop.id.toString())
         //viewModel.getShopGifts(UserPreferences.instance.getTokken(this)!!,shop.id.toString())
-        // addObserver()
+         addObserver()
        val btnBack = findViewById<ImageView>(R.id.backBtn)
         btnBack.setOnClickListener {
             onBackPressed()
@@ -165,25 +172,38 @@ class ShopDetailActivity : BaseActivity(), LocationListener {
 //        onLocationChanged(location)
     }
 
-//    private fun addObserver() {
-//        viewModel.offersState.observe(this, Observer {
-//            it ?: return@Observer
-//            val state = it.getContentIfNotHandled() ?: return@Observer
-//            if (state is NetworkState.Loading) {
-//                return@Observer //showProgress(this)
-//            }
-//            //hideProgress()
-//            when (state) {
-//                is NetworkState.Success -> {
-//                    Log.e("DATA", state.data?.message.toString())
-//                    data = state?.data?.data!!
-//                    setupRecyclerView(state?.data)
-//                }
-//                is NetworkState.Error -> onError(state.message)
-//                is NetworkState.Failure -> onFailure(getString(R.string.request_error))
-//                else -> onFailure(getString(R.string.connection_error))
-//            }
-//        })
+    private fun getBrowser(url:String) {
+        var url=url
+        if (!url.startsWith("http://") && !url.startsWith("https://")) {
+            url = "http://" + url
+        }
+        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        startActivity(browserIntent)
+    }
+
+   private fun addObserver() {
+        viewModel.menuState.observe(this, Observer {
+            it ?: return@Observer
+            val state = it.getContentIfNotHandled() ?: return@Observer
+            if (state is NetworkState.Loading) {
+                return@Observer //showProgress(this)
+            }
+            //hideProgress()
+            when (state) {
+                is NetworkState.Success -> {
+                    Log.e("DATA", state.data?.message.toString())
+                    setupMenus(state?.data)
+                }
+                is NetworkState.Error -> onError(state.message)
+                is NetworkState.Failure -> onFailure(getString(R.string.request_error))
+                else -> onFailure(getString(R.string.connection_error))
+            }
+        })
+   }
+
+    private fun setupMenus(data: MenuModel?) {
+        menuList.adapter= MenuAdapter(this,data!!.data)
+    }
 //        viewModel.giftsState.observe(this, Observer {
 //            it ?: return@Observer
 //            val state = it.getContentIfNotHandled() ?: return@Observer

@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.dpoint.dpointsuser.datasource.remote.gift.GiftModel
+import com.dpoint.dpointsuser.datasource.remote.shop.MenuModel
 import com.dpoint.dpointsuser.datasource.remote.shop.ShopModel
 import com.dpoints.dpointsmerchant.datasource.remote.ApiCallbackImpl
 import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
@@ -27,6 +28,9 @@ class ShopViewModel : ViewModel() {
     private val _giftsState = MutableLiveData<Event<NetworkState<GiftModel>>>()
     val giftsState: LiveData<Event<NetworkState<GiftModel>>> get() = _giftsState
 
+    private val _menuState = MutableLiveData<Event<NetworkState<MenuModel>>>()
+    val menuState: LiveData<Event<NetworkState<MenuModel>>> get() = _menuState
+
     fun getShopOffers(token: String,id:String) {
         _offersState.value = Event(NetworkState.Loading())
 
@@ -40,6 +44,18 @@ class ShopViewModel : ViewModel() {
             })
     }
 
+    fun getShopMenus(token: String,id:String) {
+        _menuState.value = Event(NetworkState.Loading())
+
+        ShopService.instance.getShopMenus(token,id,
+            object : ApiCallbackImpl<MenuModel>(_menuState) {
+                override fun onSuccess(success: MenuModel?) {
+                    Log.e("RESPONSE HERE",success?.data.toJson())
+                    _menuState.value = Event(NetworkState.Success(success))
+                }
+
+            })
+    }
     fun getShopGifts(token: String,id:String) {
         _giftsState.value = Event(NetworkState.Loading())
 

@@ -35,7 +35,7 @@ import com.smarteist.autoimageslider.SliderView
 
 class Home : BaseFragment(),OnItemClickListener {
 //    private var selectedGift: com.dpoints.dpointsmerchant.datasource.remote.gift?=null
-//    private var selectedOffer: Data?=null
+//    private var selectedOffer: Menu?=null
     private lateinit var dialog: BottomSheetDialog
     private lateinit var codeScanner: CodeScanner
     override val layout: Int=R.layout.fragment_home

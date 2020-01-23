@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dpoint.dpointsuser.R
 import com.dpoint.dpointsuser.view.adapter.NavigationAdapter
+import com.dpoint.dpointsuser.view.module.history.HistoryActivity
 import com.dpoints.dpointsmerchant.datasource.model.Item
 import com.dpoints.dpointsmerchant.datasource.remote.auth.User
 import com.dpoints.dpointsmerchant.preferences.UserPreferences
@@ -186,10 +187,9 @@ class Dashboard : BaseActivity(), OnItemClickListener,BottomNavigationView.OnNav
 
     private fun getDrawerItems() = listOf(
         Item("Shops", R.drawable.ic_users),
-        Item("Orders", R.drawable.ic_box),
-        Item("Offers", R.drawable.ic_tag),
+        //Item("Orders", R.drawable.ic_box),
         Item("Gift Cards", R.drawable.ic_giftcard),
-        Item("Transactions", R.drawable.ic_transaction),
+        Item("History", R.drawable.ic_transaction),
         Item("About Us", R.drawable.ic_question),
         Item("Logout", R.drawable.ic_logout)
 
@@ -199,14 +199,14 @@ class Dashboard : BaseActivity(), OnItemClickListener,BottomNavigationView.OnNav
     override fun onItemClick(index: Int, adapter: Int) {
         if (adapter == DRAWER_NAV) {
             when (getDrawerItems()[index].name) {
-                "Offers" -> {
-                    drawer.closeDrawers()
-                    startActivity(
-                        Intent(
-                            this,
-                            Offers::class.java
-                        )
-                    )}
+//                "Offers" -> {
+//                    drawer.closeDrawers()
+//                    startActivity(
+//                        Intent(
+//                            this,
+//                            Offers::class.java
+//                        )
+//                    )}
                 "Gift Cards" -> {
                     drawer.closeDrawers()
                     startActivity(
@@ -215,14 +215,14 @@ class Dashboard : BaseActivity(), OnItemClickListener,BottomNavigationView.OnNav
                             Gifts::class.java
                         )
                     )}
-                "Orders" -> {
-                    drawer.closeDrawers()
-                    startActivity(
-                        Intent(
-                            this,
-                            Order::class.java
-                        )
-                    )}
+//                "Orders" -> {
+//                    drawer.closeDrawers()
+//                    startActivity(
+//                        Intent(
+//                            this,
+//                            Order::class.java
+//                        )
+//                    )}
                 "Shops" -> {
                     drawer.closeDrawers()
                     startActivity(
@@ -231,12 +231,12 @@ class Dashboard : BaseActivity(), OnItemClickListener,BottomNavigationView.OnNav
                             Shops::class.java
                         )
                     )}
-                "Transactions" -> {
+                "History" -> {
                     drawer.closeDrawers()
                 startActivity(
                     Intent(
                         this,
-                        Transaction::class.java
+                        HistoryActivity::class.java
                     )
                 )}
                 "Logout" -> logout()
