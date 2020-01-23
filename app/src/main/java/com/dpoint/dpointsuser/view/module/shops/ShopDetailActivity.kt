@@ -37,8 +37,10 @@ import android.net.Uri
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dpoint.dpointsuser.datasource.remote.shop.MenuModel
+import com.dpoint.dpointsuser.view.module.shops.ExchangeActivity
 import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
 import com.dpoints.dpointsmerchant.preferences.UserPreferences
+import com.dpoints.dpointsmerchant.utilities.toJson
 import com.dpoints.view.adapter.MenuAdapter
 
 
@@ -66,7 +68,7 @@ class ShopDetailActivity : BaseActivity(), LocationListener {
     override fun init() {
         if (intent.getParcelableExtra<Shop>("SHOP") != null) {
             shop = intent.getParcelableExtra<Shop>("SHOP")
-            Log.e("SHOPPER", shop.shop_name)
+            Log.e("SHOPPER", shop.toJson())
         }
 
         menuList.setHasFixedSize(true)
@@ -85,6 +87,13 @@ class ShopDetailActivity : BaseActivity(), LocationListener {
         }
         txtWeb.setOnClickListener {
             getBrowser(shop.website)
+        }
+
+        btnExchange.setOnClickListener {
+            val intent=Intent(this,ExchangeActivity::class.java)
+            Log.e("COINVALUE",shop.coin_value.toString())
+            intent.putExtra("SHOP",shop)
+            startActivity(intent)
         }
         val fragmentAdapter = ShopViewPagerAdapter(supportFragmentManager, shop)
         viewPager_shop.adapter = fragmentAdapter

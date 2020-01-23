@@ -143,7 +143,7 @@ class Gifts : BaseActivity(),OnItemClickListener {
         val builder = AlertDialog.Builder(this)
         builder.setView(view)
         qr_image=view.findViewById<ImageView>(R.id.qr_image)
-        val data="{\"gift_card_id\":\"${giftOffer?.id}\",\"user_id\":\"${UserPreferences.instance.getUser(this)!!.id}\",\"gift_card_title\":\"${giftOffer?.title}\",\"amount\":\"${giftOffer?.amount}\",\"number_of_units\":\"${giftOffer?.number_of_units}\",\"unit\":\"${giftOffer?.unit}\"}"
+        val data="{\"type\":\"purchase\",\"gift_card_id\":\"${giftOffer?.id}\",\"user_id\":\"${UserPreferences.instance.getUser(this)!!.id}\",\"gift_card_title\":\"${giftOffer?.title}\",\"amount\":\"${giftOffer?.amount}\",\"number_of_units\":\"${giftOffer?.number_of_units}\",\"unit\":\"${giftOffer?.unit}\"}"
         viewQRModel.getQrImage(data)
         val dialog = builder.create()
         dialog.show()

@@ -22,7 +22,7 @@ import com.dpoints.view.adapter.ShopAdapter
 import com.dpoints.view.module.shops.ShopDetailActivity
 
 
-class SearchActivity : BaseActivity(),OnItemClickListener {
+class SearchActivity : BaseActivity() {
 
 
     private var list: List<Shop>? = null
@@ -80,15 +80,15 @@ class SearchActivity : BaseActivity(),OnItemClickListener {
     }
 
     private fun setupShops(data: List<Shop>) {
-       var adapter = ShopAdapter(data!!,this,this,1)
+       var adapter = ShopAdapter(data!!,this,1)
         searchList.adapter = adapter
     }
-    override fun onItemClick(index: Int, adapter: Int) {
-        Log.e("SHOPPER",list?.get(index).toJson())
-        val intent= Intent(this@SearchActivity, ShopDetailActivity::class.java)
-        var dt=list?.get(index)
-        dt!!.category_name = "abc"
-        intent.putExtra("SHOP", dt!!)
-        startActivity(intent)
-    }
+  //  override fun onItemClick(index: Int, adapter: Int) {
+//        Log.e("SHOPPER",list?.get(index).toJson())
+//        val intent= Intent(this@SearchActivity, ShopDetailActivity::class.java)
+//        var dt=list?.get(index)
+//        dt!!.category_name = "abc"
+//        intent.putExtra("SHOP", dt!!)
+//        startActivity(intent)
+//    }
 }

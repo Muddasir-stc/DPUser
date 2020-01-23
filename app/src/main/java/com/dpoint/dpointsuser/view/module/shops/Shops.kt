@@ -17,7 +17,7 @@ import com.dpoints.dpointsmerchant.view.commons.base.BaseActivity
 import com.dpoints.dpointsmerchant.view.module.shops.ShopViewModel
 import com.dpoints.view.adapter.ShopAdapter
 
-class Shops : BaseActivity(), OnItemClickListener {
+class Shops : BaseActivity() {
 
     lateinit var adapter:ShopAdapter
 
@@ -47,14 +47,6 @@ class Shops : BaseActivity(), OnItemClickListener {
         addObserver()
     }
 
-    override fun onItemClick(index: Int, adapter: Int) {
-       // Toast.makeText(this,,Toast.LENGTH_SHORT).show()
-        Log.e("Shop",list.get(index).shop_name)
-        val intent= Intent(this,ShopDetailActivity::class.java)
-        intent.putExtra("SHOP",list.get(index))
-        startActivity(intent)
-
-    }
 
     private fun addObserver() {
         viewModel.shopsState.observe(this, Observer {
@@ -78,7 +70,7 @@ class Shops : BaseActivity(), OnItemClickListener {
         })
     }
     private fun setupShops(data: List<Shop>?) {
-        adapter = ShopAdapter(data!!,this,this,1)
+        adapter = ShopAdapter(data!!,this,1)
         recyclerView.adapter = adapter
 
     }

@@ -1,6 +1,8 @@
 package com.dpoints.view.adapter
 
 import android.content.Context
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,11 +13,12 @@ import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.dpoint.dpointsuser.R
 import com.dpoint.dpointsuser.datasource.remote.shop.Shop
+import com.dpoints.dpointsmerchant.utilities.toJson
+import com.dpoints.view.module.shops.ShopDetailActivity
 
 
 class ShopAdapter (
     private val listitem :List<Shop>,
-    private val listener: OnItemClickListener,
     val context:Context,
     val type:Int
 ):RecyclerView.Adapter<ShopAdapter.ViewHolder>(){
@@ -52,10 +55,13 @@ class ShopAdapter (
 
     override fun getItemCount()=listitem.size
 
-    override fun onBindViewHolder(holder: ShopAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindto(listitem[position],context)
         holder.bindview.setOnClickListener {
-            listener.onItemClick(position,0)
+            Log.e("SHOPPER22",listitem[position].toJson())
+            val intent= Intent(context, ShopDetailActivity::class.java)
+          intent.putExtra("SHOP",listitem.get(position))
+          context!!.startActivity(intent)
         }
 
     }

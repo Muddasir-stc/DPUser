@@ -176,7 +176,6 @@
             android:layout_width="match_parent"
             android:orientation="horizontal"
             android:weightSum="2"
-            android:visibility="gone"
             android:layout_height="wrap_content">
             <RelativeLayout
                 android:layout_width="0dp"
@@ -192,16 +191,15 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:textColor="@color/colorAccent"
-                        android:text=" 200"
+                        android:text="0"
                         android:textSize="25sp"
                         android:layout_gravity="center_horizontal"
                         android:textStyle="bold"
-                        android:id="@+id/profileUsed"
-                        android:drawableLeft="@drawable/ic_dollar"
+                        android:id="@+id/myGifts"
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:layout_width="wrap_content"
-                        android:text="Used"
+                        android:text="MyGifts"
                         android:textColor="@color/colorBlack"
                         android:layout_gravity="center_horizontal"
                         android:layout_height="wrap_content"/>

@@ -26,6 +26,7 @@ import com.dpoint.dpointsuser.datasource.remote.gift.GiftModel
 import com.dpoint.dpointsuser.datasource.remote.shop.Shop
 import com.dpoint.dpointsuser.view.module.dashboard.SearchActivity
 import com.dpoint.dpointsuser.view.module.gifts.GiftCardsViewModel
+import com.dpoints.dpointsmerchant.utilities.toJson
 import com.dpoints.view.module.shops.ShopDetailActivity
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.smarteist.autoimageslider.IndicatorAnimations
@@ -33,8 +34,8 @@ import com.smarteist.autoimageslider.SliderAnimations
 import com.smarteist.autoimageslider.SliderView
 
 
-class Home : BaseFragment(),OnItemClickListener {
-//    private var selectedGift: com.dpoints.dpointsmerchant.datasource.remote.gift?=null
+class Home : BaseFragment() {
+    //    private var selectedGift: com.dpoints.dpointsmerchant.datasource.remote.gift?=null
 //    private var selectedOffer: Menu?=null
     private lateinit var dialog: BottomSheetDialog
     private lateinit var codeScanner: CodeScanner
@@ -127,7 +128,7 @@ class Home : BaseFragment(),OnItemClickListener {
             var textView = view.findViewById<TextView>(R.id.textview_categoryName)
             var recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
             textView.setText(key)
-            adapter = ShopAdapter(value!!, this, context!!,0)
+            adapter = ShopAdapter(value!!, context!!,0)
             recyclerView.layoutManager = LinearLayoutManager(context,
                 LinearLayoutManager.HORIZONTAL,false)
             recyclerView.adapter = adapter
@@ -135,34 +136,34 @@ class Home : BaseFragment(),OnItemClickListener {
         }
 
     }
-    override fun onItemClick(index: Int, adapter: Int) {
-
-          val intent= Intent(context, ShopDetailActivity::class.java)
-          intent.putExtra("SHOP",list.get(index))
-          context!!.startActivity(intent)
-
-
-//      }else if(adapter==1){
-//          selectedData=data[index].id.toString()
-//          selectedOffer=data[index]
-//          selectedType=adapter
-//          //  Log.e("OFFER",data[index].toJson().toString())
-//          //  context?.startActivity(Intent(context,ScanActivity::class.java))
+//    override fun onItemClick(index: Int, adapter: Int) {
+//        Log.e("SHOPPER", list.get(index).toJson())
+//          val intent= Intent(context, ShopDetailActivity::class.java)
+//          intent.putExtra("SHOP",list.get(index))
+//        //  context!!.startActivity(intent)
 //
 //
-//          getActivity()!!. getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN); requestCameraPermission()
-//
-//      }else if(adapter==2){
-//          selectedData= giftModel.data?.get(index)?.id.toString()
-//          selectedGift=giftModel.data?.get(index)
-//          selectedType=adapter
-//          //  Log.e("OFFER",data[index].toJson().toString())
-//          //  context?.startActivity(Intent(context,ScanActivity::class.java))
-//
-//
-//          getActivity()!!. getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN); requestCameraPermission()
-//      }
-    }
+////      }else if(adapter==1){
+////          selectedData=data[index].id.toString()
+////          selectedOffer=data[index]
+////          selectedType=adapter
+////          //  Log.e("OFFER",data[index].toJson().toString())
+////          //  context?.startActivity(Intent(context,ScanActivity::class.java))
+////
+////
+////          getActivity()!!. getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN); requestCameraPermission()
+////
+////      }else if(adapter==2){
+////          selectedData= giftModel.data?.get(index)?.id.toString()
+////          selectedGift=giftModel.data?.get(index)
+////          selectedType=adapter
+////          //  Log.e("OFFER",data[index].toJson().toString())
+////          //  context?.startActivity(Intent(context,ScanActivity::class.java))
+////
+////
+////          getActivity()!!. getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN); requestCameraPermission()
+////      }
+//    }
 
 
 

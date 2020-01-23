@@ -28,7 +28,9 @@
         android:roundIcon="@drawable/login_copy"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.module.history.HistoryActivity"></activity>
+        <activity android:name=".view.module.shops.ExchangeActivity"></activity>
+        <activity android:name=".view.module.profile.MyGiftcardsActivity" />
+        <activity android:name=".view.module.history.HistoryActivity" />
         <activity android:name=".view.module.profile.UpdateProfileActivity" />
         <activity android:name=".view.module.dashboard.SearchActivity" />
         <activity android:name="com.dpoints.view.module.signup.SignUp" />
