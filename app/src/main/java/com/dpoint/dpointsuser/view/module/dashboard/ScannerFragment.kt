@@ -22,6 +22,7 @@ import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
 import com.dpoints.dpointsmerchant.preferences.UserPreferences
 import com.dpoints.dpointsmerchant.utilities.fromJson
 import com.dpoints.dpointsmerchant.utilities.getVM
+import com.dpoints.dpointsmerchant.utilities.toJson
 import com.dpoints.dpointsmerchant.view.commons.base.BaseFragment
 import com.dpoints.dpointsmerchant.view.module.dashboard.DashboardViewModel
 import kotlinx.android.synthetic.main.content_dashboard.*
@@ -36,6 +37,7 @@ class ScannerFragment : BaseFragment(){
     override fun init(view: View) {
         scannerView=view.findViewById<CodeScannerView>(R.id.scanner_view)
         activity!!.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN); requestCameraPermission()
+        addObserver()
     }
     private fun requestCameraPermission() {
         if (ContextCompat.checkSelfPermission(
@@ -71,14 +73,14 @@ class ScannerFragment : BaseFragment(){
             activity!!.runOnUiThread {
                 //Toast.makeText(context, "Scan result: ${it.text}", Toast.LENGTH_LONG).show()
                 val offer = it.text.fromJson<ScanedOffer>()
-
+                    Log.e("SCANNER",offer.toJson())
                     val builder = android.app.AlertDialog.Builder(context)
 
                     // Set the alert dialog title
                     //builder.setTitle("App background color")
 
                     // Display a message on alert dialog
-                    builder.setMessage("Do You want to redeem this offer ?")
+                    builder.setMessage("Do You want get ${offer?.coin_offer_title} offer ?")
 
                     // Set a positive button and its click listener on alert dialog
                     builder.setPositiveButton("YES") { dialog, which ->
