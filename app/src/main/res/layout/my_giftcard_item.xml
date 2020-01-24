@@ -4,13 +4,16 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     app:cardCornerRadius="5dp"
+    android:layout_margin="5dp"
     android:id="@+id/cardView"
-    android:layout_margin="@dimen/dimen_10"
     android:layout_height="wrap_content">
+
     <RelativeLayout
         android:layout_width="match_parent"
+        android:layout_margin="10dp"
         android:background="@drawable/shape_grad"
         android:layout_height="250dp">
+
        <RelativeLayout
            android:layout_width="match_parent"
            android:layout_height="match_parent">
@@ -52,12 +55,14 @@
                 android:layout_width="300dp"
                 android:src="@drawable/gift_strip"
                 android:layout_alignParentRight="true"
+                android:id="@+id/img_strip"
                 android:layout_height="wrap_content"/>
+
             <LinearLayout
             android:layout_width="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="30dp"
                 android:alpha="10"
                 android:layout_below="@id/giftCard"
             android:layout_height="wrap_content">
@@ -86,6 +91,47 @@
                     android:textAllCaps="true"
                     android:id="@+id/txtAmount"
                     android:layout_height="wrap_content"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="Pur"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="20/01/2020"
+                        android:id="@+id/txtPurchased"
+                        android:layout_marginLeft="@dimen/dimen_10"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/roboto_bold"
+                        android:textAllCaps="true"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="Exp"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/roboto_bold"
+                        android:textAllCaps="true"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="20/01/2020"
+                        android:id="@+id/txtExpired"
+                        android:layout_marginLeft="@dimen/dimen_10"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/roboto_bold"
+                        android:textAllCaps="true"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
         </LinearLayout>
             <Button
                 android:layout_width="50dp"
@@ -99,5 +145,14 @@
                 android:layout_margin="20dp"
                 android:layout_height="50dp"/>
         </RelativeLayout>
+
     </RelativeLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:src="@drawable/expired_png"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="right"
+        android:visibility="gone"
+        android:id="@+id/img_expired"
+        android:layout_height="wrap_content"/>
 </androidx.cardview.widget.CardView>

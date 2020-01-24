@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    android:id="@+id/root_view"
     android:layout_height="match_parent">
 
 <androidx.core.widget.NestedScrollView
@@ -126,7 +127,7 @@
             android:layout_width="wrap_content"
             android:gravity="center_vertical"
             android:layout_marginLeft="60dp"
-            android:text="Transaction Details"
+            android:text="History"
             android:layout_centerVertical="true"
             android:textColor="@color/colorBlack"
             android:textSize="18sp"

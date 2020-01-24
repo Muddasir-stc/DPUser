@@ -71,7 +71,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimen_8"
-                    android:text="@string/points_collected"
+                    android:text="Total Gifts"
                     android:textSize="17sp"
                     android:textColor="@color/color_text_1"/>
 

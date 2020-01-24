@@ -1,4 +1,4 @@
-package com.dpoint.dpointsuser.view.module.shops
+package com.dpoint.dpointsuser.view.module.gifts
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,30 +9,38 @@ import android.widget.ImageView
 import androidx.lifecycle.Observer
 import com.dpoint.dpointsuser.R
 import com.dpoint.dpointsuser.datasource.remote.shop.Shop
-import com.dpoint.dpointsuser.view.module.gifts.QrViewModel
+import com.dpoint.dpointsuser.datasource.remote.userdata.MyGift
 import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
 import com.dpoints.dpointsmerchant.preferences.UserPreferences
 import com.dpoints.dpointsmerchant.utilities.getVM
 import com.dpoints.dpointsmerchant.view.commons.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_exchange.*
-import kotlinx.android.synthetic.main.activity_search.*
-import java.lang.Exception
+import kotlinx.android.synthetic.main.activity_redeem_gift.*
+import kotlinx.android.synthetic.main.activity_redeem_gift.btnGenerate
+import kotlinx.android.synthetic.main.activity_redeem_gift.qr_image
+import kotlinx.android.synthetic.main.activity_redeem_gift.tv_value
 
-class ExchangeActivity : BaseActivity() {
-    override val layout: Int=R.layout.activity_exchange
-    lateinit var shop: Shop
+class RedeemGiftActivity : BaseActivity() {
+    private var units: Int=0
+    private var gift: MyGift?=null
+    override val layout: Int=R.layout.activity_redeem_gift
     private val viewQRModel by lazy { getVM<QrViewModel>(this) }
-    override fun init()  {
-        if (intent.getParcelableExtra<Shop>("SHOP") != null) {
-            shop = intent.getParcelableExtra<Shop>("SHOP")
-            Log.e("SHOPPER", shop.shop_name)
+    override fun init() {
+
+        if (intent.getParcelableExtra<MyGift>("GIFT") != null) {
+            gift = intent.getParcelableExtra<MyGift>("GIFT")
+            Log.e("GIFTER", gift!!.title)
         }
         val btnBack = findViewById<ImageView>(R.id.backBtn)
         btnBack.setOnClickListener {
             onBackPressed()
         }
-        tv_value.text="${shop.coin_value}"
-        txtCoins.addTextChangedListener(object : TextWatcher {
+        txtTitle.text=gift!!.title
+        unit.text="${gift!!.unit} Available"
+        tv_value.text="${gift!!.number_of_units}"
+
+
+        et_units.addTextChangedListener(object : TextWatcher {
 
             override fun onTextChanged(
                 s: CharSequence, start: Int, before: Int,
@@ -51,26 +59,25 @@ class ExchangeActivity : BaseActivity() {
 
             override fun afterTextChanged(s: Editable) {
                 var str=s.toString()
-               try {
-                   var coins=Integer.parseInt(str)
-                   txtTotal.setText((coins*shop.coin_value).toString())
-               }catch (e:Exception){
-                   txtTotal.setText("0")
-               }
+                try {
+                    units=Integer.parseInt(str)
+
+                }catch (e:Exception){
+                    et_units.setText("0")
+                }
 
             }
         })
         btnGenerate.setOnClickListener {
-           if(!txtTotal.text.equals("0")){
-               val data="{\"type\":\"exchange\",\"merchant_id\":\"${shop?.merchant_id}\",\"user_id\":\"${UserPreferences.instance.getUser(this)!!.id}\",\"shop_id\":\"${shop?.id}\",\"coins\":\"${txtCoins.text.toString()}\",\"total\":\"${txtTotal.text.toString()}\",\"unitPrice\":\"${shop.coin_value}\"}"
-                viewQRModel.getQrImage(data)
+           if(units>0){
+               val data="{\"type\":\"redeem\",\"gift_card_id\":\"${gift?.gift_card_id}\",\"user_id\":\"${UserPreferences.instance.getUser(this)!!.id}\",\"shop_id\":\"${gift?.shop_id}\",\"user_gift_card_id\":\"${gift?.id}\",\"user_gift_card_title\":\"${gift?.title}\",\"amount\":\"${gift?.amount}\",\"number_of_units\":\"${units}\",\" unit \":\"${gift?.unit}\"}"
+               viewQRModel.getQrImage(data)
            }else{
-               onError("Coins must be greater than 1")
+               onError("Number of units must be greater than 0")
            }
         }
         addObserver()
     }
-
     private fun addObserver() {
         viewQRModel.qrState.observe(this, Observer {
             it ?: return@Observer

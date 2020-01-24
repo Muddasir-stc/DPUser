@@ -9,6 +9,7 @@ import com.dpoint.dpointsuser.datasource.remote.history.ExchangeModel
 import com.dpoint.dpointsuser.datasource.remote.userdata.MyGiftModel
 import com.dpoints.dpointsmerchant.datasource.remote.ApiCallbackImpl
 import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
+import com.dpoints.dpointsmerchant.datasource.remote.auth.LoginModel
 import com.dpoints.dpointsmerchant.datasource.remote.gift.GiftService
 import com.dpoints.dpointsmerchant.datasource.remote.gift.HistoryService
 import com.dpoints.dpointsmerchant.datasource.remote.transaction.UserService
@@ -20,6 +21,9 @@ class UserViewModel:ViewModel() {
     private val _myGiftState = MutableLiveData<Event<NetworkState<MyGiftModel>>>()
     val myGiftState: LiveData<Event<NetworkState<MyGiftModel>>> get() = _myGiftState
 
+    private val _userState = MutableLiveData<Event<NetworkState<LoginModel>>>()
+    val userState: LiveData<Event<NetworkState<LoginModel>>> get() = _userState
+
     fun getMyGiftCards(token: String) {
         _myGiftState.value = Event(NetworkState.Loading())
         UserService.instance.getMyGifts(token,
@@ -27,6 +31,18 @@ class UserViewModel:ViewModel() {
                 override fun onSuccess(success: MyGiftModel?) {
                     Log.e(TAG, success.toString())
                     _myGiftState.value = Event(NetworkState.Success(success))
+                }
+
+            })
+    }
+
+    fun getUser(token: String) {
+        _userState.value = Event(NetworkState.Loading())
+        UserService.instance.getUser(token,
+            object : ApiCallbackImpl<LoginModel>(_userState) {
+                override fun onSuccess(success: LoginModel?) {
+                    Log.e(TAG, success.toString())
+                    _userState.value = Event(NetworkState.Success(success))
                 }
 
             })

@@ -64,7 +64,6 @@ class ShopDetailActivity : BaseActivity(), LocationListener {
     lateinit var offers: RecyclerView
     lateinit var gifts: RecyclerView
 
-
     override fun init() {
         if (intent.getParcelableExtra<Shop>("SHOP") != null) {
             shop = intent.getParcelableExtra<Shop>("SHOP")
@@ -139,7 +138,7 @@ class ShopDetailActivity : BaseActivity(), LocationListener {
 //            }
 //
 //        }
-        Glide.with(this).load(shop.profile_picture).into(banner)
+        Glide.with(this).load(shop.profile_picture).placeholder(R.drawable.error).into(banner)
       //  Glide.with(this).load(shop.image).into(img)
 //        offers = findViewById(R.id.offers)
 //        gifts = findViewById(R.id.gifts)

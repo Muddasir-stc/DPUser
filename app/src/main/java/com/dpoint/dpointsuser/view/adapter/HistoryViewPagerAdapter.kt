@@ -13,9 +13,9 @@ class HistoryViewPagerAdapter(
        if(position==0){
            return ExchangeFragment()
        }else if(position==1) {
-           return OfferFragment()
-       }else{
            return GiftcardFragment()
+       }else{
+           return OfferFragment()
        }
     }
 
@@ -27,8 +27,8 @@ class HistoryViewPagerAdapter(
     override fun getPageTitle(position: Int): CharSequence? {
         return when (position) {
             0 -> "Exchange"
-            2 -> "Offer"
-            else-> "Gift"
+            1 -> "Gift"
+            else-> "Offer"
         }
     }
 }

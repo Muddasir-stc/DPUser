@@ -2,6 +2,7 @@ package com.dpoints.dpointsmerchant.datasource.remote.gift
 
 import com.dpoint.dpointsuser.datasource.remote.gift.GiftModel
 import com.dpoint.dpointsuser.datasource.remote.history.ExchangeModel
+import com.dpoint.dpointsuser.datasource.remote.history.RedeemModel
 import com.dpoints.dpointsmerchant.datasource.remote.ApiCallback
 import com.dpoints.dpointsmerchant.datasource.remote.ApiCallbackImpl
 import com.dpoints.dpointsmerchant.datasource.remote.ApiClient
@@ -22,11 +23,23 @@ class HistoryService private constructor() {
         val call = service.getExchanges("Bearer $token")
         call.enqueue(CallbackImpl(callback))
     }
+    fun getRedeems(
+        token: String,
+        callback: ApiCallbackImpl<RedeemModel>
+    ) {
+        val service = ApiClient.retrofit.create(Service::class.java)
+        val call = service.getRedeems("Bearer $token")
+        call.enqueue(CallbackImpl(callback))
+    }
 
     private interface Service {
         @GET("exchange")
         fun getExchanges(
             @Header("Authorization") token: String
         ): Call<ApiResult<ExchangeModel>>
+        @GET("redeem")
+        fun getRedeems(
+            @Header("Authorization") token: String
+        ): Call<ApiResult<RedeemModel>>
     }
 }

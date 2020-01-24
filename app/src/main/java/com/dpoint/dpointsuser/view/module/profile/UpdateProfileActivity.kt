@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import com.dpoint.dpointsuser.R
 import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
 import com.dpoints.dpointsmerchant.datasource.remote.auth.LoginModel
@@ -26,7 +27,10 @@ class UpdateProfileActivity : BaseActivity() {
     override fun init() {
         val user=UserPreferences.instance.getUser(this)!!
         et_first_name.setText(user.name)
-
+        var backBtn=findViewById<ImageView>(R.id.backBtn)
+        backBtn.setOnClickListener {
+            onBackPressed()
+        }
         if(user.contact_number!=null){
             et_phone.setText("${user.contact_number}")
         }else{

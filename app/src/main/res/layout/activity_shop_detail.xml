@@ -23,7 +23,10 @@
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -94,239 +97,243 @@
                 android:layout_gravity="bottom|center_horizontal"
                 android:textColor="@color/colorBlack"
                 android:textSize="24sp" />
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    <LinearLayout
+        android:id="@+id/info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/dimen_10"
+        android:paddingBottom="@dimen/dimen_10"
+        android:weightSum="12">
+
         <LinearLayout
-            android:id="@+id/info"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="@dimen/dimen_10"
-            android:paddingBottom="@dimen/dimen_10"
-            android:weightSum="12">
+            android:layout_weight="3"
+            android:background="@drawable/box"
+            android:orientation="vertical"
+            android:padding="@dimen/dimen_10">
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:background="@drawable/box"
-                android:orientation="vertical"
-                android:padding="@dimen/dimen_10">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/roboto_bold"
-                    android:text="1340 km"
-                    android:textAlignment="center"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Distance" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:id="@+id/btnRating"
-                android:background="@drawable/box"
-                android:orientation="vertical"
-                android:padding="@dimen/dimen_10">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:id="@+id/txtRating"
-                    android:drawableRight="@drawable/ic_star_24px"
-                    android:fontFamily="@font/roboto_bold"
-                    android:text="3.2"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Rating" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:background="@drawable/box"
-                android:orientation="vertical"
-                android:padding="@dimen/dimen_10">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:id="@+id/txtMembership"
-                    android:fontFamily="@font/roboto_bold"
-                    android:text="Active"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Membership" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:background="@drawable/box"
-                android:orientation="vertical"
-                android:padding="@dimen/dimen_10">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:drawableRight="@drawable/ic_dollar"
-                    android:fontFamily="@font/roboto_bold"
-                    android:text="10 "
-                    android:id="@+id/txtCoinValue"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Current Offer" />
-            </LinearLayout>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/dimen_10"
-                android:text="Description"
-                android:textSize="@dimen/dimen_20"
-                android:fontFamily="@font/roboto_bold"
-                android:textColor="@color/colorBlack" />
-            <TextView
-                android:id="@+id/txtDesc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/dimen_10"
-                android:text="Description" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:orientation="vertical">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/dimen_10"
-                android:text="Exchange"
-                android:gravity="center"
-                android:background="@drawable/bg_button_colorprimary"
-                android:id="@+id/btnExchange"
-                android:paddingTop="@dimen/dimen_10"
-                android:paddingRight="@dimen/dimen_20"
-                android:paddingLeft="@dimen/dimen_20"
-                android:paddingBottom="@dimen/dimen_10"
-                android:textSize="@dimen/dimen_20"
                 android:fontFamily="@font/roboto_bold"
-                android:textColor="@color/colorWhite" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:orientation="vertical">
+                android:text="1340 km"
+                android:textAlignment="center"
+                android:textSize="18sp" />
+
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/dimen_10"
-                android:text="Menu"
-                android:textSize="@dimen/dimen_20"
-                android:fontFamily="@font/roboto_bold"
-                android:textColor="@color/colorBlack" />
-           <androidx.recyclerview.widget.RecyclerView
-               android:layout_width="match_parent"
-               android:layout_marginTop="5dp"
-               android:layout_marginLeft="@dimen/dimen_10"
-               android:id="@+id/menuList"
-               android:layout_height="wrap_content">
-
-           </androidx.recyclerview.widget.RecyclerView>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:weightSum="12"
-                android:layout_marginTop="@dimen/dimen_10"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="4"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:text=""
-                    android:textSize="20sp"
-                    android:textAlignment="center"
-                    android:id="@+id/txtFb"
-                    android:textColor="#3b5998"
-                    android:fontFamily="@font/fontawesome"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:text=""
-                    android:textSize="20sp"
-                    android:id="@+id/txtInsta"
-                    android:textAlignment="center"
-                    android:textColor="#3f729b"
-                    android:fontFamily="@font/fontawesome"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:text=""
-                    android:textSize="20sp"
-                    android:id="@+id/txtTweet"
-                    android:textAlignment="center"
-                    android:textColor="#00acee"
-                    android:fontFamily="@font/fontawesome"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:text=""
-                    android:textSize="20sp"
-                    android:textAlignment="center"
-                    android:id="@+id/txtWeb"
-                    android:textColor="@color/colorBlack"
-                    android:fontFamily="@font/fontawesome"
-                    android:layout_height="wrap_content"/>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="4"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
-
+                android:text="Distance" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:id="@+id/btnRating"
+            android:background="@drawable/box"
+            android:orientation="vertical"
+            android:padding="@dimen/dimen_10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/txtRating"
+                android:drawableRight="@drawable/ic_star_24px"
+                android:fontFamily="@font/roboto_bold"
+                android:text="3.2"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Rating" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="@drawable/box"
+            android:orientation="vertical"
+            android:padding="@dimen/dimen_10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/txtMembership"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Active"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Membership" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="@drawable/box"
+            android:orientation="vertical"
+            android:padding="@dimen/dimen_10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableRight="@drawable/ic_dollar"
+                android:fontFamily="@font/roboto_bold"
+                android:text="10 "
+                android:id="@+id/txtCoinValue"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Current Offer" />
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/dimen_10"
+            android:text="Description"
+            android:textSize="@dimen/dimen_20"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="@color/colorBlack" />
+        <TextView
+            android:id="@+id/txtDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/dimen_10"
+            android:text="Description" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/dimen_10"
+            android:text="Exchange"
+            android:gravity="center"
+            android:background="@drawable/bg_button_colorprimary"
+            android:id="@+id/btnExchange"
+            android:paddingTop="@dimen/dimen_10"
+            android:paddingRight="@dimen/dimen_20"
+            android:paddingLeft="@dimen/dimen_20"
+            android:paddingBottom="@dimen/dimen_10"
+            android:textSize="@dimen/dimen_20"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="@color/colorWhite" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/dimen_10"
+            android:text="Menu"
+            android:textSize="@dimen/dimen_20"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="@color/colorBlack" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="@dimen/dimen_10"
+            android:id="@+id/menuList"
+            android:layout_height="wrap_content">
+
+        </androidx.recyclerview.widget.RecyclerView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="12"
+            android:layout_marginTop="@dimen/dimen_10"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="4"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text=""
+                android:textSize="20sp"
+                android:textAlignment="center"
+                android:id="@+id/txtFb"
+                android:textColor="#3b5998"
+                android:fontFamily="@font/fontawesome"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text=""
+                android:textSize="20sp"
+                android:id="@+id/txtInsta"
+                android:textAlignment="center"
+                android:textColor="#3f729b"
+                android:fontFamily="@font/fontawesome"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text=""
+                android:textSize="20sp"
+                android:id="@+id/txtTweet"
+                android:textAlignment="center"
+                android:textColor="#00acee"
+                android:fontFamily="@font/fontawesome"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text=""
+                android:textSize="20sp"
+                android:textAlignment="center"
+                android:id="@+id/txtWeb"
+                android:textColor="@color/colorBlack"
+                android:fontFamily="@font/fontawesome"
+                android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="4"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs_main"
             android:layout_width="match_parent"
