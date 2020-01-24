@@ -47,64 +47,46 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dimen_40"
-            android:layout_marginRight="@dimen/dimen_40"
-            android:layout_marginBottom="-30dp"
+            android:layout_marginLeft="@dimen/dimen_20"
+            android:layout_marginRight="@dimen/dimen_20"
             android:gravity="center"
+            android:padding="@dimen/dimen_20"
             android:weightSum="12"
             android:orientation="horizontal">
-
-
-
-            <EditText
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:hint="Enter number of coins"
-                android:inputType="date"
-                android:layout_weight="6"
-                android:visibility="invisible"
-                android:padding="15dp"
-                android:textSize="18sp" />
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="6"
-                android:text="Current  Coin Value"
+                android:layout_weight="8"
+                android:padding="10dp"
+                android:text="Coin Value"
                 android:gravity="center"
                 android:textSize="16sp" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dimen_40"
-            android:gravity="center"
-            android:weightSum="12"
-            android:orientation="horizontal">
-
-
-
-            <EditText
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:hint="Enter number of coins"
-                android:id="@+id/txtCoins"
-                android:inputType="numberDecimal"
-                android:layout_weight="8"
-                android:padding="15dp"
-                android:textSize="18sp" />
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
-                android:padding="15dp"
-                android:text="x 0"
+                android:padding="10dp"
                 android:id="@+id/tv_value"
-                android:textColor="@color/colorGrey"
+                android:text="200"
                 android:gravity="center"
-                android:textSize="25sp" />
+                android:drawableStart="@drawable/ic_dollar"
+                android:textColor="@color/colorGrey"
+                android:textSize="16sp" />
         </LinearLayout>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:background="@color/white"
+                android:hint="Enter number of coins"
+                android:id="@+id/txtCoins"
+                android:gravity="center"
+                android:inputType="numberDecimal"
+                android:layout_weight="8"
+                android:padding="15dp"
+                android:textSize="18sp" />
 
         <TextView
             android:layout_width="match_parent"

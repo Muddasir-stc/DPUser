@@ -27,7 +27,7 @@ class ExchangeActivity : BaseActivity() {
             Log.e("SHOPPER", shop.shop_name)
         }
 
-        tv_value.text="x ${shop.coin_value}"
+        tv_value.text="${shop.coin_value}"
         txtCoins.addTextChangedListener(object : TextWatcher {
 
             override fun onTextChanged(
@@ -58,7 +58,7 @@ class ExchangeActivity : BaseActivity() {
         })
         btnGenerate.setOnClickListener {
            if(!txtTotal.text.equals("0")){
-               val data="{\"type\":\"exchange\",\"merchant_id\":\"${shop?.merchant_id}\",\"user_id\":\"${UserPreferences.instance.getUser(this)!!.id}\",\"shop_id\":\"${shop?.id}\",\"coins\":\"${txtCoins.text.toString()}\"}"
+               val data="{\"type\":\"exchange\",\"merchant_id\":\"${shop?.merchant_id}\",\"user_id\":\"${UserPreferences.instance.getUser(this)!!.id}\",\"shop_id\":\"${shop?.id}\",\"coins\":\"${txtCoins.text.toString()}\",\"total\":\"${txtTotal.text.toString()}\",\"`\":\"${shop.coin_value}\"}"
                 viewQRModel.getQrImage(data)
            }else{
                onError("Coins must be greater than 1")
