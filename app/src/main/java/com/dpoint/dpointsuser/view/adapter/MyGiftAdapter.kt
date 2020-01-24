@@ -59,7 +59,7 @@ class MyGiftAdapter(
         val img_strip: ImageView = view.findViewById(R.id.img_strip)
         val btnReddem: Button = view.findViewById(R.id.btnRedeem)
         fun bindto(itemtype: MyGift, context: Context){
-            var expired_at="29/01/2020"
+            var expired_at=itemtype.expired_at.trim()
             val date1 = SimpleDateFormat("dd/MM/yyyy").parse(expired_at)
             val sdf = SimpleDateFormat("dd/MM/yyyy")
             val currentDate = sdf.format(Date())
