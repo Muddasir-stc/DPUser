@@ -103,19 +103,21 @@
                 android:layout_marginTop="@dimen/dimen_40"
                 android:gravity="center"
                 android:orientation="horizontal">
-
-                <ImageView
+                <TextView
                     android:layout_width="24dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
-                    android:adjustViewBounds="true"
-                    app:srcCompat="@drawable/ic_email_gray" />
+                    android:text=""
+                    android:textColor="@color/colorGrey"
+                    android:textSize="@dimen/dimen_24"
+                    android:fontFamily="@font/fontawesome"
+                    />
 
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
-                    android:hint="phone"
+                    android:hint="Phone"
                     android:inputType="phone"
                     android:id="@+id/et_phone"
                     android:padding="5dp"
@@ -133,18 +135,21 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="20dp"
+                <TextView
+                    android:layout_width="24dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
-                    android:adjustViewBounds="true"
-                    app:srcCompat="@drawable/ic_password_gray" />
+                    android:text=""
+                    android:textColor="@color/colorGrey"
+                    android:textSize="@dimen/dimen_24"
+                    android:fontFamily="@font/fontawesome"
+                    />
 
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
-                    android:hint="DOB"
+                    android:hint="DOB (optional)"
                     android:clickable="true"
                     android:focusable="false"
                     android:id="@+id/et_dob"

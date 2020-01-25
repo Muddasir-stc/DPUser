@@ -130,12 +130,15 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <ImageView
+                <TextView
                     android:layout_width="24dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
-                    android:adjustViewBounds="true"
-                    app:srcCompat="@drawable/ic_email_gray" />
+                    android:text=""
+                    android:textColor="@color/colorGrey"
+                    android:textSize="@dimen/dimen_24"
+                    android:fontFamily="@font/fontawesome"
+                     />
 
                 <EditText
                     android:layout_width="match_parent"

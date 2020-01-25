@@ -67,6 +67,7 @@ class MyGiftAdapter(
             if(date1.compareTo(date2)<0){
                 layout.visibility=View.VISIBLE
                 img_strip.visibility=View.GONE
+                btnReddem.isEnabled=false
             }
             txtExpired.setText(expired_at)
 

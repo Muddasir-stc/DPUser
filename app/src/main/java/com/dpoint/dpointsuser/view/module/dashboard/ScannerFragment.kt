@@ -26,6 +26,8 @@ import com.dpoints.dpointsmerchant.utilities.toJson
 import com.dpoints.dpointsmerchant.view.commons.base.BaseFragment
 import com.dpoints.dpointsmerchant.view.module.dashboard.DashboardViewModel
 import kotlinx.android.synthetic.main.content_dashboard.*
+import org.json.JSONObject
+import java.lang.Exception
 
 
 class ScannerFragment : BaseFragment(){
@@ -71,45 +73,49 @@ class ScannerFragment : BaseFragment(){
         // Callbacks
         codeScanner.decodeCallback = DecodeCallback {
             activity!!.runOnUiThread {
-                //Toast.makeText(context, "Scan result: ${it.text}", Toast.LENGTH_LONG).show()
-                val offer = it.text.fromJson<ScanedOffer>()
-                    Log.e("SCANNER",offer.toJson())
-                    val builder = android.app.AlertDialog.Builder(context)
+               try {
+                   //Toast.makeText(context, "Scan result: ${it.text}", Toast.LENGTH_LONG).show()
+                   val offer = JSONObject(it.text)
+                   //Log.e("SCANNER",offer.())
+                   val builder = android.app.AlertDialog.Builder(context)
 
-                    // Set the alert dialog title
-                    //builder.setTitle("App background color")
+                   // Set the alert dialog title
+                   //builder.setTitle("App background color")
 
-                    // Display a message on alert dialog
-                    builder.setMessage("Do You want get ${offer?.coin_offer_title} offer ?")
+                   // Display a message on alert dialog
+                   builder.setMessage("Do You want get ${offer?.getString("coin_offer_title")} offer ?")
 
-                    // Set a positive button and its click listener on alert dialog
-                    builder.setPositiveButton("YES") { dialog, which ->
-                        // Do something when user press the positive button
-                        viewModelDash.assignOffer(
-                            UserPreferences.instance.getTokken(context!!)!!,
-                            UserPreferences.instance.getUser(context!!)!!.id.toString(),
-                            offer!!.merchant_id,
-                            offer!!.shop_id,
-                            offer!!.coin_offer_id,
-                            offer!!.coin_offer_title,
-                            offer!!.offer,
-                            offer!!.amount
-                        )
-                    }
+                   // Set a positive button and its click listener on alert dialog
+                   builder.setPositiveButton("YES") { dialog, which ->
+                       // Do something when user press the positive button
+                       viewModelDash.assignOffer(
+                           UserPreferences.instance.getTokken(context!!)!!,
+                           UserPreferences.instance.getUser(context!!)!!.id.toString(),
+                           offer!!.getString("merchant_id"),
+                           offer!!.getString("shop_id"),
+                           offer!!.getString("coin_offer_id"),
+                           offer!!.getString("coin_offer_title"),
+                           offer!!.getString("offer"),
+                           offer!!.getString("amount")
+                       )
+                   }
 
 
-                    // Display a negative button on alert dialog
-                    builder.setNegativeButton("No") { dialog, which ->
-                        dialog.dismiss()
-                    }
+                   // Display a negative button on alert dialog
+                   builder.setNegativeButton("No") { dialog, which ->
+                       dialog.dismiss()
+                   }
 
-                    // Finally, make the alert dialog using builder
-                    val dialog: android.app.AlertDialog = builder.create()
+                   // Finally, make the alert dialog using builder
+                   val dialog: android.app.AlertDialog = builder.create()
 
-                    // Display the alert dialog on app interface
-                    dialog.show()
-                    //  Toast.makeText(context, "Scan result: ${it.text}", Toast.LENGTH_LONG).show()
+                   // Display the alert dialog on app interface
+                   dialog.show()
+                   //  Toast.makeText(context, "Scan result: ${it.text}", Toast.LENGTH_LONG).show()
 
+               }catch (e:Exception){
+                   onError("Invalid Offer")
+               }
 
             }
         }

@@ -28,10 +28,12 @@ class ProfileFragment : BaseFragment(){
     lateinit var myProfile: CircleImageView
     lateinit var myName: TextView
     lateinit var myEmail: TextView
+    lateinit var btnRefresh: TextView
     lateinit var myNumber: TextView
     lateinit var profileBal: TextView
     lateinit var goToTrans: RelativeLayout
     lateinit var editProfile: RelativeLayout
+    lateinit var giftsLayout: RelativeLayout
 
 
     override val layout: Int=R.layout.fragment_profile
@@ -41,10 +43,12 @@ class ProfileFragment : BaseFragment(){
          myProfile=view.findViewById<CircleImageView>(R.id.myProfile)
          myName=view.findViewById<TextView>(R.id.myName)
          myEmail=view.findViewById<TextView>(R.id.myEmail)
+        btnRefresh=view.findViewById<TextView>(R.id.btnRefresh)
         myGifts=view.findViewById(R.id.myGifts)
          profileBal=view.findViewById<TextView>(R.id.profileBal)
         goToTrans=view.findViewById<RelativeLayout>(R.id.goToTrans)
         editProfile=view.findViewById<RelativeLayout>(R.id.editProfile)
+        giftsLayout=view.findViewById<RelativeLayout>(R.id.giftsLayout)
          myNumber=view.findViewById<TextView>(R.id.myNumber)
         view.findViewById<Button>(R.id.changePasswordProfile).setOnClickListener {
             context!!.startActivity(Intent(context, ChangePasswordActivity::class.java))
@@ -56,6 +60,9 @@ class ProfileFragment : BaseFragment(){
         }
         editProfile.setOnClickListener {
             context!!.startActivity(Intent(context,UpdateProfileActivity::class.java))
+        }
+        btnRefresh.setOnClickListener {
+            loadData()
         }
             loadData()
         viewModel.getMyGiftCards(UserPreferences.instance.getTokken(context!!)!!)
@@ -75,7 +82,7 @@ class ProfileFragment : BaseFragment(){
                 is NetworkState.Success -> {
                     Log.e("DATA", state.data?.message.toString())
                     myGifts!!.setText(state.data!!.data.size.toString())
-                    myGifts.setOnClickListener {
+                    giftsLayout.setOnClickListener {
                         val intent=Intent(context,MyGiftcardsActivity::class.java)
                         intent.putExtra("MYGIFTS",state.data)
                         context!!.startActivity(intent)

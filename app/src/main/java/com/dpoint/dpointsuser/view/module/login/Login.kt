@@ -112,7 +112,7 @@ class Login : BaseActivity() {
 
         FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener(this){ instanceIdResult: InstanceIdResult ->
             token = instanceIdResult.token
-            Log.e("newToken", token)
+            Log.e("FirebaseToken", token)
         }
         return token
     }

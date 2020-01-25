@@ -115,6 +115,11 @@ class SignUp : BaseActivity() {
             et_password.requestFocus()
             false
         }
+        (et_password.text.length !in 6..15)-> {
+            et_password.error = "Password Length Must Be 8-15"
+            et_password.requestFocus()
+            false
+        }
 //        (et_dob.text != null && TextUtils.isEmpty(et_dob.text.toString().trim())) -> {
 //            et_dob.error = "Please Select DOB"
 //            et_dob.requestFocus()

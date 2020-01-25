@@ -11,8 +11,7 @@ import com.dpoints.dpointsmerchant.datasource.remote.transaction.Tran
 import com.dpoints.dpointsmerchant.utilities.OnItemClickListener
 
 class TransactionsAdapter(
-    private val listitem: List<Tran>,
-    private val listener: OnItemClickListener
+    private val listitem: List<Tran>
 ) : RecyclerView.Adapter<TransactionsAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val offername: TextView = view.findViewById(R.id.textView5)
@@ -46,9 +45,7 @@ class TransactionsAdapter(
 
     override fun onBindViewHolder(holder: TransactionsAdapter.ViewHolder, position: Int) {
         holder.bindto(listitem[position])
-        holder.bindview.setOnClickListener {
-            listener.onItemClick(position, 1)
-        }
+
         if(listitem[position].type.trim().equals("Redeem")){
             holder.typeIcon.setImageResource(R.drawable.redeem)
         }else{

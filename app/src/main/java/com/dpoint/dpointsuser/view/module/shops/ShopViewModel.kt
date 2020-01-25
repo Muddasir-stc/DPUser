@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.dpoint.dpointsuser.datasource.remote.gift.GiftModel
+import com.dpoint.dpointsuser.datasource.remote.offer.AssignModel
 import com.dpoint.dpointsuser.datasource.remote.shop.MenuModel
 import com.dpoint.dpointsuser.datasource.remote.shop.ShopModel
 import com.dpoints.dpointsmerchant.datasource.remote.ApiCallbackImpl
@@ -31,6 +32,9 @@ class ShopViewModel : ViewModel() {
     private val _menuState = MutableLiveData<Event<NetworkState<MenuModel>>>()
     val menuState: LiveData<Event<NetworkState<MenuModel>>> get() = _menuState
 
+    private val _ratingState = MutableLiveData<Event<NetworkState<AssignModel>>>()
+    val ratingState: LiveData<Event<NetworkState<AssignModel>>> get() = _ratingState
+
     fun getShopOffers(token: String,id:String) {
         _offersState.value = Event(NetworkState.Loading())
 
@@ -41,6 +45,17 @@ class ShopViewModel : ViewModel() {
                     _offersState.value = Event(NetworkState.Success(success))
                 }
 
+            })
+    }
+    fun submitShopRating(token: String, userId: String, rating: String, shopId: String, feedback: String) {
+        _ratingState.value = Event(NetworkState.Loading())
+
+        ShopService.instance.submitShopRating(token,userId,shopId,rating,feedback,
+            object : ApiCallbackImpl<AssignModel>(_ratingState) {
+                override fun onSuccess(success: AssignModel?) {
+                    Log.e("RATING",success?.message)
+                    _ratingState.value = Event(NetworkState.Success(success))
+                }
             })
     }
 

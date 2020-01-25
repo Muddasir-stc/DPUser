@@ -8,6 +8,7 @@ import kotlinx.android.synthetic.main.activity_search.*
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dpoint.dpointsuser.datasource.remote.shop.Shop
@@ -62,9 +63,10 @@ class SearchActivity : BaseActivity() {
             it ?: return@Observer
             val state = it.getContentIfNotHandled() ?: return@Observer
             if (state is NetworkState.Loading) {
-                return@Observer showProgress(this)
+                progressBar2.visibility= View.VISIBLE
+                return@Observer
             }
-            hideProgress()
+            progressBar2.visibility= View.GONE
             Log.e("DATA",state.toString())
             when (state) {
                 is NetworkState.Success -> {

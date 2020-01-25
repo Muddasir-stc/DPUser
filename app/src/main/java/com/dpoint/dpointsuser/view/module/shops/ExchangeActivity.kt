@@ -52,12 +52,12 @@ class ExchangeActivity : BaseActivity() {
             override fun afterTextChanged(s: Editable) {
                 var str=s.toString()
                try {
-                   var coins=Integer.parseInt(str)
-                   txtTotal.setText((coins*shop.coin_value).toString())
+                   var coins=str.toFloat()
+                   var cn=coins.toInt()
+                   txtTotal.setText((cn*shop.coin_value).toString())
                }catch (e:Exception){
                    txtTotal.setText("0")
                }
-
             }
         })
         btnGenerate.setOnClickListener {

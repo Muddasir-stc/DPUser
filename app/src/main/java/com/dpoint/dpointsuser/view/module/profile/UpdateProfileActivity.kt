@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.EditText
 import android.widget.ImageView
 import com.dpoint.dpointsuser.R
 import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
@@ -23,9 +24,11 @@ import java.util.*
 
 class UpdateProfileActivity : BaseActivity() {
     override val layout: Int=R.layout.activity_update_profile
+    lateinit var et_first_name:EditText
     private val viewModel by lazy { getVM<LoginViewModel>(this) }
     override fun init() {
         val user=UserPreferences.instance.getUser(this)!!
+        et_first_name=findViewById(R.id.et_first_name)
         et_first_name.setText(user.name)
         var backBtn=findViewById<ImageView>(R.id.backBtn)
         backBtn.setOnClickListener {
@@ -67,9 +70,20 @@ class UpdateProfileActivity : BaseActivity() {
         }
 
         updateBtn.setOnClickListener {
-            viewModel.updateProfile(UserPreferences.instance.getTokken(this)!!,user.id.toString(),et_first_name.text.toString(),et_last_name.text.toString(),et_phone.text.toString(),et_dob.text.toString())
+           if(isValidData()){
+               viewModel.updateProfile(UserPreferences.instance.getTokken(this)!!,user.id.toString(),et_first_name.text.toString(),et_last_name.text.toString(),et_phone.text.toString(),et_dob.text.toString())
+           }
         }
         addObserver()
+    }
+
+    private fun isValidData(): Boolean {
+        if(!et_first_name.getText().toString().equals("")){
+            return true
+        }else{
+            onError("First Name Should Not Be Empty")
+            return false
+        }
     }
 
     private fun addObserver() {

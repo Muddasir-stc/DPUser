@@ -11,5 +11,6 @@ data class Data(
     val shop_id: Int,
     val title: String,
     val unit: String,
+    val expired_at: String,
     val updated_at: String
 )

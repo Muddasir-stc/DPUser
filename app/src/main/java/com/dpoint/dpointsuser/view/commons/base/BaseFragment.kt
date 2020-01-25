@@ -46,7 +46,7 @@ abstract class BaseFragment : Fragment() {
         super.onDetach()
     }
     open fun showProgress(context:Context) {
-        progressDialog = ProgressDialog.show(context, "Please wait...", "Processing Shop...", false, false)
+        progressDialog = ProgressDialog.show(context, "Please wait...", "Processing ...", false, false)
     }
 
     open fun hideProgress() {

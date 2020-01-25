@@ -5,9 +5,6 @@ import android.app.AlertDialog
 import android.location.Location
 import android.util.Log
 import android.view.LayoutInflater
-import android.widget.ImageView
-import android.widget.RatingBar
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.budiyev.android.codescanner.CodeScanner
 import com.bumptech.glide.Glide
@@ -19,10 +16,6 @@ import com.dpoints.dpointsmerchant.utilities.getVM
 import com.dpoints.dpointsmerchant.view.commons.base.BaseActivity
 import com.dpoints.dpointsmerchant.view.module.dashboard.DashboardViewModel
 import com.dpoints.dpointsmerchant.view.module.shops.ShopViewModel
-import com.google.android.gms.location.LocationListener
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.activity_shop_detail.*
 import android.location.LocationManager
@@ -33,22 +26,35 @@ import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import androidx.core.app.ActivityCompat
 import android.content.Context
 import android.content.Intent
+import android.location.Geocoder
+import android.location.LocationListener
 import android.net.Uri
+import android.os.Bundle
+import android.widget.*
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dpoint.dpointsuser.datasource.remote.shop.MenuModel
 import com.dpoint.dpointsuser.view.module.shops.ExchangeActivity
 import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
+import com.dpoints.dpointsmerchant.datasource.remote.auth.User
 import com.dpoints.dpointsmerchant.preferences.UserPreferences
 import com.dpoints.dpointsmerchant.utilities.toJson
 import com.dpoints.view.adapter.MenuAdapter
+import java.util.*
 
 
 class ShopDetailActivity : BaseActivity(), LocationListener {
-    override fun onLocationChanged(p0: Location?) {
-        Toast.makeText(this,"lat = ${p0?.latitude} lon = ${p0?.longitude}",Toast.LENGTH_SHORT).show()
+    override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
+
     }
 
+    override fun onProviderEnabled(provider: String?) {
+    }
+
+
+
+    var mRating=""
     private var locationManager: LocationManager? = null
     private var selectedType: Int = 0
     private lateinit var dialog: BottomSheetDialog
@@ -87,7 +93,15 @@ class ShopDetailActivity : BaseActivity(), LocationListener {
         txtWeb.setOnClickListener {
             getBrowser(shop.website)
         }
-
+        if (ContextCompat.checkSelfPermission(applicationContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(applicationContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION), 101)
+        }
+        try {
+            locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+            locationManager!!.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 5f, this as android.location.LocationListener)
+        } catch (e: SecurityException) {
+            e.printStackTrace()
+        }
         btnExchange.setOnClickListener {
             val intent=Intent(this,ExchangeActivity::class.java)
             Log.e("COINVALUE",shop.coin_value.toString())
@@ -105,11 +119,22 @@ class ShopDetailActivity : BaseActivity(), LocationListener {
             val builder = AlertDialog.Builder(this)
             builder.setView(view)
             val ratingBar=view.findViewById<RatingBar>(R.id.rate)
+            val txtFeedback=view.findViewById<TextView>(R.id.txtFeedback)
+            val btnFeedback=view.findViewById<Button>(R.id.btnFeedback)
 
+            mRating=ratingBar.rating.toString()
             ratingBar.onRatingBarChangeListener =
-                RatingBar.OnRatingBarChangeListener { ratingBar, rating, fromUser ->Toast.makeText(this,rating.toString(),Toast.LENGTH_SHORT).show() }
+                RatingBar.OnRatingBarChangeListener { ratingBar, rating, fromUser ->
+                    Toast.makeText(this,rating.toString(),Toast.LENGTH_SHORT).show()
+                    mRating=rating.toString()
+                }
+
             val dialog = builder.create()
             dialog.show()
+            btnFeedback.setOnClickListener {
+                viewModel.submitShopRating(UserPreferences.instance.getTokken(this)!!,UserPreferences.instance.getUser(this)!!.id.toString(),mRating,shop.id.toString(),txtFeedback.text.toString())
+                dialog.dismiss()
+            }
         }
      //   titleTag.setText(shop.title)
         txtTitle.text = shop.shop_name
@@ -121,23 +146,6 @@ class ShopDetailActivity : BaseActivity(), LocationListener {
         //txtEmail.text = shop.email
         //txtAddress.text = "Get Location"
 
-//        txtAddress.setOnClickListener {
-//            try {
-//                val gmmIntentUri = Uri.parse("https://plus.codes/${shop.address}");
-//
-//
-//// Create an Intent from gmmIntentUri. Set the action to ACTION_VIEW
-//                val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri);
-//// Make the Intent explicit by setting the Google Maps package
-//                mapIntent.setPackage("com.google.android.apps.maps");
-//
-//// Attempt to start an activity that can handle the Intent
-//                startActivity(mapIntent);
-//            } catch (e: Exception) {
-//                Toast.makeText(this, "Invalid Location Found!", Toast.LENGTH_SHORT).show()
-//            }
-//
-//        }
         Glide.with(this).load(shop.profile_picture).placeholder(R.drawable.error).into(banner)
       //  Glide.with(this).load(shop.image).into(img)
 //        offers = findViewById(R.id.offers)
@@ -179,7 +187,43 @@ class ShopDetailActivity : BaseActivity(), LocationListener {
 //
 //        onLocationChanged(location)
     }
+    private fun getDistance(lat1:Double,lon1: Double,lat2:Double,lon2:Double): Float {
+        var distance=FloatArray(2)
+        Location.distanceBetween(lat1, lon1, lat2, lon2, distance)
+        return distance[0];
+    }
 
+    override fun onProviderDisabled(provider: String) {
+        Toast.makeText(this, "Please Enable GPS and Internet", Toast.LENGTH_SHORT).show()
+    }
+
+
+    override fun onLocationChanged(location: Location?) {
+        val locationtext = "Latitude:" + location?.latitude + "\n Longitude :" + location?.longitude
+
+      try {
+          var lat2:Double=shop.latitude.toDouble()
+          var lon2:Double=shop.longitude.toDouble()
+          var distance=(getDistance(location!!.latitude,location!!.longitude,lat2,lon2)/1000).toInt()
+          Log.e("DISTANCE",distance.toString())
+          txtDistance.text="$distance km"
+      }catch (e:java.lang.Exception){
+          txtDistance.text="0 km"
+      }
+
+        try {
+            val geocoder = Geocoder(this, Locale.getDefault()) //transforming street address in longitude and latitude
+            val addresses = geocoder.getFromLocation(location!!.latitude, location.longitude, 1)
+            /*locationtext.setText(locationtext.getText() + "\n" + addresses.get(0).getAddressLine(0));*/if (addresses.size > 0) { // locationtext.setText(addresses.get(0).getCountryName());
+//                locationtext1!!.text = addresses[0].adminArea
+//                locationtext2!!.text = addresses[0].locality
+//                locationtext3!!.text = addresses[0].postalCode
+//                locationtext4!!.text = addresses[0].subLocality
+            }
+        } catch (e: Exception) {
+        }
+        Log.e("Location",locationtext)
+    }
     private fun getBrowser(url:String) {
         var url=url
         if (!url.startsWith("http://") && !url.startsWith("https://")) {
@@ -207,6 +251,27 @@ class ShopDetailActivity : BaseActivity(), LocationListener {
                 else -> onFailure(getString(R.string.connection_error))
             }
         })
+       viewModel.ratingState.observe(this, Observer {
+           it ?: return@Observer
+           val state = it.getContentIfNotHandled() ?: return@Observer
+           if (state is NetworkState.Loading) {
+               return@Observer //showProgress(this)
+           }
+           //hideProgress()
+           when (state) {
+               is NetworkState.Success -> {
+                   Log.e("DATA", state.data?.message.toString())
+                    onSuccess(state.data!!.message)
+                   var oldRate=shop.rating.toFloat()
+                   var newRate=mRating.toFloat()
+                   var avgRate=(oldRate+newRate)/2
+                   txtRating.text=avgRate.toString()
+               }
+               is NetworkState.Error -> onError(state.message)
+               is NetworkState.Failure -> onFailure(getString(R.string.request_error))
+               else -> onFailure(getString(R.string.connection_error))
+           }
+       })
    }
 
     private fun setupMenus(data: MenuModel?) {

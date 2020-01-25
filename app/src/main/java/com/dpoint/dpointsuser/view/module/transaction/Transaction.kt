@@ -30,9 +30,9 @@ class Transaction : BaseActivity(), OnItemClickListener {
         backBtn.setOnClickListener {
             onBackPressed()
         }
-        viewModel.getTransactions(UserPreferences.instance.getTokken(this)!!)
+    //    viewModel.getTransactions(UserPreferences.instance.getTokken(this)!!)
 
-        addObserver()
+     //   addObserver()
 
     }
 
@@ -47,7 +47,7 @@ class Transaction : BaseActivity(), OnItemClickListener {
             when (state) {
                 is NetworkState.Success -> {
                     Log.e("DATA",state.data?.message)
-                    setupTransactions(state?.data?.data)
+                 //   setupTransactions(state?.data?.data)
                 }
 //                is NetworkState.Error -> onError(state.message)
 //                is NetworkState.Failure -> onFailure(getString(R.string.request_error))
@@ -60,8 +60,8 @@ class Transaction : BaseActivity(), OnItemClickListener {
 //        Toast.makeText(this,"hello2",Toast.LENGTH_SHORT).show()
     }
 
-    private fun setupTransactions(data: List<Tran>?) {
-        val adapter = TransactionsAdapter(data!!,this)
-        recyclerView.adapter = adapter
-    }
+//    private fun setupTransactions(data: List<Tran>?) {
+//        val adapter = TransactionsAdapter(data!!,this)
+//        recyclerView.adapter = adapter
+//    }
 }

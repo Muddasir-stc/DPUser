@@ -86,6 +86,24 @@ class ShopService private constructor() {
         )
         call.enqueue(CallbackImpl(callback))
     }
+    fun submitShopRating(
+        token: String,
+        userId: String,
+        shopId: String,
+        rating: String,
+        feedback: String,
+        callback: ApiCallbackImpl<AssignModel>
+    ) {
+        val service = ApiClient.retrofit.create(ShopService.Service::class.java)
+        val call = service.submitShopRating(
+            "Bearer $token",
+            userId,
+            shopId,
+            rating,
+            feedback
+        )
+        call.enqueue(CallbackImpl(callback))
+    }
     fun getShopOffers(
         token: String,
         id:String,
@@ -172,6 +190,16 @@ class ShopService private constructor() {
             @Field("gift_card_title") offerTitle: String,
             @Field("coins") offer: String,
             @Field("offer") ammount: String
+        ): Call<ApiResult<AssignModel>>
+
+        @POST("shopRating")
+        @FormUrlEncoded
+        fun submitShopRating(
+            @Header("Authorization") tokken: String,
+            @Field("user_id") userId: String,
+            @Field("shop_id") shopId: String,
+            @Field("rating") rating: String,
+            @Field("feedback") feedback: String
         ): Call<ApiResult<AssignModel>>
         @GET("getNotifications")
         fun getNotifications(

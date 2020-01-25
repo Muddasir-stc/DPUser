@@ -34,7 +34,7 @@ class MyGiftcardsActivity : BaseActivity(), OnItemClickListener {
     }
 
     override fun onItemClick(index: Int, adapter: Int) {
-        Toast.makeText(this,myGiftList!!.data.get(index).unit,Toast.LENGTH_LONG).show()
+       //    Toast.makeText(this,myGiftList!!.data.get(index).unit,Toast.LENGTH_LONG).show()
         val intent= Intent(this, RedeemGiftActivity::class.java)
         intent.putExtra("GIFT",myGiftList!!.data.get(index))
         startActivity(intent)
