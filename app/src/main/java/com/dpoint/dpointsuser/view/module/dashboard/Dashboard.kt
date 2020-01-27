@@ -8,6 +8,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.crashlytics.android.Crashlytics
 import com.dpoint.dpointsuser.R
 import com.dpoint.dpointsuser.view.adapter.NavigationAdapter
 import com.dpoint.dpointsuser.view.module.history.HistoryActivity
@@ -49,6 +50,16 @@ class Dashboard : BaseActivity(), OnItemClickListener,BottomNavigationView.OnNav
         linearLayout = findViewById(R.id.drawer_linearlayout)
         bottomNav.setOnNavigationItemSelectedListener(this)
         showProgress(this)
+
+        if(intent.getStringExtra("NOTIFICATION")!=null){
+            if(intent.getStringExtra("NOTIFICATION").equals("YES")){
+                bottomNav.selectedItemId=R.id.navigation_notifications
+               // applayChanages(notifications,"Notification")
+            }
+        }else{
+            applayChanages(home,"Home")
+        }
+      //  Crashlytics.getInstance().crash()
         ic_ham.setOnClickListener {
             if (drawer.isDrawerOpen(linearLayout))
                 drawer.closeDrawers()
@@ -96,7 +107,7 @@ class Dashboard : BaseActivity(), OnItemClickListener,BottomNavigationView.OnNav
 //            }
 //            false
 //        }
-        applayChanages(home,"Home")
+
         hideProgress()
 
     }
