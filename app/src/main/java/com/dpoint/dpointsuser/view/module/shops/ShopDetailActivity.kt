@@ -125,14 +125,19 @@ class ShopDetailActivity : BaseActivity(), LocationListener {
             mRating=ratingBar.rating.toString()
             ratingBar.onRatingBarChangeListener =
                 RatingBar.OnRatingBarChangeListener { ratingBar, rating, fromUser ->
-                    Toast.makeText(this,rating.toString(),Toast.LENGTH_SHORT).show()
+                  //  Toast.makeText(this,rating.toString(),Toast.LENGTH_SHORT).show()
                     mRating=rating.toString()
                 }
 
             val dialog = builder.create()
             dialog.show()
             btnFeedback.setOnClickListener {
-                viewModel.submitShopRating(UserPreferences.instance.getTokken(this)!!,UserPreferences.instance.getUser(this)!!.id.toString(),mRating,shop.id.toString(),txtFeedback.text.toString())
+                if(!txtFeedback.text.equals("")){
+                    viewModel.submitShopRating(UserPreferences.instance.getTokken(this)!!,UserPreferences.instance.getUser(this)!!.id.toString(),mRating,shop.id.toString(),txtFeedback.text.toString())
+
+                }else{
+                    onError("Feedback Fields Should Not Be Empty!")
+                }
                 dialog.dismiss()
             }
         }

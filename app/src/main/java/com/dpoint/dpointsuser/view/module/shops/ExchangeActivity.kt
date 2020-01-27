@@ -50,10 +50,9 @@ class ExchangeActivity : BaseActivity() {
             }
 
             override fun afterTextChanged(s: Editable) {
-                var str=s.toString()
+
                try {
-                   var coins=str.toFloat()
-                   var cn=coins.toInt()
+                   var cn=txtCoins.text.toString().toLong()
                    txtTotal.setText((cn*shop.coin_value).toString())
                }catch (e:Exception){
                    txtTotal.setText("0")

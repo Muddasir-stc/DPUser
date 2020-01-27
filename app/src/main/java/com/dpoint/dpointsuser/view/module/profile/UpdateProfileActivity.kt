@@ -79,7 +79,12 @@ class UpdateProfileActivity : BaseActivity() {
 
     private fun isValidData(): Boolean {
         if(!et_first_name.getText().toString().equals("")){
-            return true
+           if(et_phone.text.length>=8 && et_phone.text.length<13){
+               return true
+           }else{
+               onError("Invalid Phone Number")
+               return false
+           }
         }else{
             onError("First Name Should Not Be Empty")
             return false
