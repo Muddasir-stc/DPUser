@@ -132,12 +132,7 @@ class ShopDetailActivity : BaseActivity(), LocationListener {
             val dialog = builder.create()
             dialog.show()
             btnFeedback.setOnClickListener {
-                if(!txtFeedback.text.equals("")){
                     viewModel.submitShopRating(UserPreferences.instance.getTokken(this)!!,UserPreferences.instance.getUser(this)!!.id.toString(),mRating,shop.id.toString(),txtFeedback.text.toString())
-
-                }else{
-                    onError("Feedback Fields Should Not Be Empty!")
-                }
                 dialog.dismiss()
             }
         }

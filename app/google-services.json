@@ -15,22 +15,6 @@
       },
       "oauth_client": [
         {
-          "client_id": "504530006856-750204mch1g5e6l4c7tu9htbk5b4k44b.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.dpoint.dpointsuser",
-            "certificate_hash": "f641006036b8a084a683c4534de6ebe439e3f291"
-          }
-        },
-        {
-          "client_id": "504530006856-la31j7tqeu24bcc5d3uh9h9n7ocdkl0m.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.dpoint.dpointsuser",
-            "certificate_hash": "fdce57b23c622e1ef1614ef72ab9c23fa1a0bc0e"
-          }
-        },
-        {
           "client_id": "504530006856-ictq4ionj285ud4tn2l321u42vb8gmcs.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -67,14 +51,6 @@
         }
       },
       "oauth_client": [
-        {
-          "client_id": "504530006856-89do5eaethd0g6cbf50i394ka2pqldi6.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.dpoints.dpointsmerchant",
-            "certificate_hash": "f641006036b8a084a683c4534de6ebe439e3f291"
-          }
-        },
         {
           "client_id": "504530006856-ci9chisujdq662rgnok82g82glu5estq.apps.googleusercontent.com",
           "client_type": 1,

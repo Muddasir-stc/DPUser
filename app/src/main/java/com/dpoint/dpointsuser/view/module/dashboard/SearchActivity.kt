@@ -82,6 +82,11 @@ class SearchActivity : BaseActivity() {
     }
 
     private fun setupShops(data: List<Shop>) {
+        if(data.size>0){
+            noData.visibility=View.GONE
+        }else{
+            noData.visibility=View.VISIBLE
+        }
        var adapter = ShopAdapter(data!!,this,1)
         searchList.adapter = adapter
     }
