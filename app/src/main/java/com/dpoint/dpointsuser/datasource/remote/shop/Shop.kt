@@ -27,5 +27,6 @@ class Shop(
     val shop_name: String,
     val twitter: String,
     val updated_at: String,
-    val website: String
+    val website: String,
+    val shop_percentage: String
 ):Parcelable

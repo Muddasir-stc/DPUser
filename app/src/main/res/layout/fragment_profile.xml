@@ -251,10 +251,21 @@
             </RelativeLayout>
         </LinearLayout>
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView_qrCodeScanner"
+            android:src="@drawable/ic_scanner"
+            android:tint="@color/colorPrimary"
+            android:layout_margin="@dimen/dimen_36"
+
+            android:layout_gravity="center"/>
+
         <Button
             android:layout_width="match_parent"
             android:background="@drawable/bg_button_colorprimary"
-            android:layout_margin="35dp"
+            android:layout_marginRight="36dp"
+            android:layout_marginLeft="@dimen/dimen_36"
             android:text="Change Password"
             android:id="@+id/changePasswordProfile"
             android:textColor="@color/colorWhite"

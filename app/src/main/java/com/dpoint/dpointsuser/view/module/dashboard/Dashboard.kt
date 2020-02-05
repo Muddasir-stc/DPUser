@@ -3,12 +3,10 @@ package com.dpoints.view.module.dashboard
 import android.content.Intent
 import android.view.MenuItem
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.crashlytics.android.Crashlytics
 import com.dpoint.dpointsuser.R
 import com.dpoint.dpointsuser.view.adapter.NavigationAdapter
 import com.dpoint.dpointsuser.view.module.history.HistoryActivity
@@ -19,16 +17,13 @@ import com.dpoints.dpointsmerchant.utilities.OnItemClickListener
 import com.dpoints.dpointsmerchant.view.commons.base.BaseActivity
 import com.dpoints.view.module.gifts.Gifts
 import com.dpoints.view.module.notifications.Notification
-import com.dpoints.view.module.offers.Offers
-import com.dpoints.view.module.order.Order
-import com.dpoints.view.module.profile.Profile
 import com.dpoints.view.module.shops.Shops
-import com.dpoints.view.module.transaction.Transaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.content_dashboard.*
 
-class Dashboard : BaseActivity(), OnItemClickListener,BottomNavigationView.OnNavigationItemSelectedListener {
+class Dashboard : BaseActivity(), OnItemClickListener,
+    BottomNavigationView.OnNavigationItemSelectedListener {
 
 
     private lateinit var drawer: DrawerLayout
@@ -39,7 +34,7 @@ class Dashboard : BaseActivity(), OnItemClickListener,BottomNavigationView.OnNav
     private val profile = ProfileFragment()
     private val scanner = ScannerFragment()
     private val notifications = Notification()
-    private var tag="Home"
+    private var tag = "Home"
     override val layout: Int = R.layout.activity_dashboard
 
     override fun init() {
@@ -51,15 +46,15 @@ class Dashboard : BaseActivity(), OnItemClickListener,BottomNavigationView.OnNav
         bottomNav.setOnNavigationItemSelectedListener(this)
         showProgress(this)
 
-        if(intent.getStringExtra("NOTIFICATION")!=null){
-            if(intent.getStringExtra("NOTIFICATION").equals("YES")){
-                bottomNav.selectedItemId=R.id.navigation_notifications
-               // applayChanages(notifications,"Notification")
+        if (intent.getStringExtra("NOTIFICATION") != null) {
+            if (intent.getStringExtra("NOTIFICATION").equals("YES")) {
+                bottomNav.selectedItemId = R.id.navigation_notifications
+                // applayChanages(notifications,"Notification")
             }
-        }else{
-            applayChanages(home,"Home")
+        } else {
+            applayChanages(home, "Home")
         }
-      //  Crashlytics.getInstance().crash()
+        //  Crashlytics.getInstance().crash()
         ic_ham.setOnClickListener {
             if (drawer.isDrawerOpen(linearLayout))
                 drawer.closeDrawers()
@@ -82,8 +77,8 @@ class Dashboard : BaseActivity(), OnItemClickListener,BottomNavigationView.OnNav
         }
 
         viewProfile.setOnClickListener {
-            bottomNav.selectedItemId=R.id.navigation_profile
-            applayChanages(profile,"Profile")
+            bottomNav.selectedItemId = R.id.navigation_profile
+            applayChanages(profile, "Profile")
             drawer.closeDrawers()
         }
 //
@@ -113,41 +108,44 @@ class Dashboard : BaseActivity(), OnItemClickListener,BottomNavigationView.OnNav
     }
 
     override fun onBackPressed() {
-        if(!tag.equals("Home")){
-            bottomNav.selectedItemId=R.id.navigation_home
-            applayChanages(home,"Home")
-        }else {
+        if (!tag.equals("Home")) {
+            bottomNav.selectedItemId = R.id.navigation_home
+            applayChanages(home, "Home")
+        } else {
             super.onBackPressed()
         }
     }
+
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.navigation_home->{
-                applayChanages(home,"Home")
+        when (item.itemId) {
+            R.id.navigation_home -> {
+                applayChanages(home, "Home")
                 return true
             }
-            R.id.navigation_notifications->{
-                applayChanages(notifications,"Notification")
+            R.id.navigation_notifications -> {
+                applayChanages(notifications, "Notification")
                 //Toast.makeText(this,"Notification",Toast.LENGTH_SHORT).show()
                 return true
             }
-            R.id.navigation_profile->{
-                applayChanages(profile,"Profile")
-                return true
-            }R.id.va_scanner->{
-                applayChanages(scanner,"Scan Offer")
+            R.id.navigation_profile -> {
+                applayChanages(profile, "Profile")
                 return true
             }
-            else->{
+            R.id.va_scanner -> {
+                applayChanages(scanner, "Scan Offer")
+                return true
+            }
+            else -> {
                 return false
             }
         }
 
 
     }
-    private fun applayChanages(fr: Fragment,tag:String){
-        this.tag=tag
-        titleBarName.text=tag
+
+    private fun applayChanages(fr: Fragment, tag: String) {
+        this.tag = tag
+        titleBarName.text = tag
         supportFragmentManager.beginTransaction().replace(R.id.container, fr).commit()
     }
 //    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -201,6 +199,7 @@ class Dashboard : BaseActivity(), OnItemClickListener,BottomNavigationView.OnNav
         //Item("Orders", R.drawable.ic_box),
         Item("Gift Cards", R.drawable.ic_giftcard),
         Item("History", R.drawable.ic_transaction),
+        Item("Shops With Offer", R.drawable.ic_users),
         Item("About Us", R.drawable.ic_question),
         Item("Logout", R.drawable.ic_logout)
 
@@ -225,7 +224,8 @@ class Dashboard : BaseActivity(), OnItemClickListener,BottomNavigationView.OnNav
                             this,
                             Gifts::class.java
                         )
-                    )}
+                    )
+                }
 //                "Orders" -> {
 //                    drawer.closeDrawers()
 //                    startActivity(
@@ -241,15 +241,23 @@ class Dashboard : BaseActivity(), OnItemClickListener,BottomNavigationView.OnNav
                             this,
                             Shops::class.java
                         )
-                    )}
+                    )
+                }
+                "Shops With Offer" -> {
+                    drawer.closeDrawers()
+                    var intent = Intent(this, Shops::class.java)
+                    intent.putExtra("data","offer")
+                    startActivity(intent)
+                }
                 "History" -> {
                     drawer.closeDrawers()
-                startActivity(
-                    Intent(
-                        this,
-                        HistoryActivity::class.java
+                    startActivity(
+                        Intent(
+                            this,
+                            HistoryActivity::class.java
+                        )
                     )
-                )}
+                }
                 "Logout" -> logout()
 
                 //Toast.makeText(this, get.get(index).name, Toast.LENGTH_LONG).show()

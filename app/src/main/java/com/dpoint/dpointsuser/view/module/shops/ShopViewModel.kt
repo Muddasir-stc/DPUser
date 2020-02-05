@@ -97,6 +97,22 @@ class ShopViewModel : ViewModel() {
             })
     }
 
+
+    private val _shopsWithOfferState = MutableLiveData<Event<NetworkState<ShopModel>>>()
+    val shopsWithOfferState: LiveData<Event<NetworkState<ShopModel>>> get() = _shopsWithOfferState
+    fun getShopsWithOffers(token: String) {
+
+        _shopsState.value = Event(NetworkState.Loading())
+
+        ShopService.instance.getShopsWithOffers(token,
+            object : ApiCallbackImpl<ShopModel>(_shopsState) {
+                override fun onSuccess(success: ShopModel?) {
+                    Log.e("Shop",success?.message)
+                    _shopsState.value = Event(NetworkState.Success(success))
+                }
+            })
+    }
+
     fun getSearchedShops(token: String,name:String) {
 
         _searchedShopsState.value = Event(NetworkState.Loading())

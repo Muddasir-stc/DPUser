@@ -37,6 +37,15 @@ class ShopService private constructor() {
         call.enqueue(CallbackImpl(callback))
     }
 
+    fun getShopsWithOffers(
+        token: String,
+        callback: ApiCallbackImpl<ShopModel>
+    ) {
+        val service = ApiClient.retrofit.create(ShopService.Service::class.java)
+        val call = service.getShopsWithOffers("Bearer $token")
+        call.enqueue(CallbackImpl(callback))
+    }
+
     fun assignOffer(
         token: String,
         userId: String,
@@ -163,6 +172,11 @@ class ShopService private constructor() {
         ): Call<ApiResult<GiftModel>>
         @GET("getAllShopsForUser")
         fun getShops(
+            @Header("Authorization") token: String
+        ): Call<ApiResult<ShopModel>>
+
+      @GET("getAllShopsForUserWithOffers")
+        fun getShopsWithOffers(
             @Header("Authorization") token: String
         ): Call<ApiResult<ShopModel>>
 
