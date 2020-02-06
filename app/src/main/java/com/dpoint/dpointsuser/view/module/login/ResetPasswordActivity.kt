@@ -1,10 +1,7 @@
 package com.dpoints.dpointsmerchant.view.module.login
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
-import android.util.Patterns
 import android.widget.ImageView
 import androidx.lifecycle.Observer
 import com.dpoint.dpointsuser.R
@@ -19,10 +16,10 @@ import kotlinx.android.synthetic.main.activity_reset_password.*
 class ResetPasswordActivity : BaseActivity() {
     override val layout: Int = R.layout.activity_reset_password
     private val viewModel by lazy { getVM<LoginViewModel>(this) }
-    var email:String = ""
+    var email: String = ""
 
     override fun init() {
-        val backBtn=findViewById<ImageView>(R.id.backBtn)
+        val backBtn = findViewById<ImageView>(R.id.backBtn)
         backBtn.setOnClickListener {
             onBackPressed()
         }
@@ -30,7 +27,7 @@ class ResetPasswordActivity : BaseActivity() {
         verifyEmail.text = email
 
         resetPassBtn.setOnClickListener {
-            if(validate()){
+            if (validate()) {
                 viewModel.resetPassword(email, newPass.text.toString(), forgotOTP.text.toString())
             }
         }
@@ -58,6 +55,14 @@ class ResetPasswordActivity : BaseActivity() {
         (newPass.text.toString().trim() != confrmPass.text.toString().trim()) -> {
             confrmPass.error = "Password and Confirm password does not match"
             confrmPass.requestFocus()
+            false
+        }
+        (newPass.text.length < 6) -> {
+            newPass.error = "Please give minimum of 6 character "
+            false
+        }
+        (confrmPass.text.length < 6) -> {
+            confrmPass.error = "Please give minimum of 6 character "
             false
         }
         else -> {

@@ -41,6 +41,7 @@ class ProfileFragment : BaseFragment() {
     lateinit var giftsLayout: RelativeLayout
 
 
+
     override val layout: Int = R.layout.fragment_profile
     private val viewModel by lazy { getVM<UserViewModel>(activity!!) }
     private val viewQRModel by lazy { getVM<QrViewModel>(activity!!) }
