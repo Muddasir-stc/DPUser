@@ -50,7 +50,12 @@ abstract class BaseFragment : Fragment() {
     }
 
     open fun hideProgress() {
-        progressDialog.dismiss()
+        Log.e("initialized", "" + ::progressDialog.isInitialized)
+        when {
+            (::progressDialog.isInitialized) -> {
+                progressDialog.dismiss()
+            }
+        }
     }
 
 

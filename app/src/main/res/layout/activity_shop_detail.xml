@@ -121,12 +121,13 @@
                 android:text="0 km"
                 android:id="@+id/txtDistance"
                 android:textAlignment="center"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textSize="13sp"
                 android:text="Distance" />
         </LinearLayout>
 
@@ -147,12 +148,13 @@
                 android:drawableRight="@drawable/ic_star_24px"
                 android:fontFamily="@font/roboto_bold"
                 android:text="3.2"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textSize="13sp"
                 android:text="Rating" />
         </LinearLayout>
 
@@ -171,12 +173,13 @@
                 android:id="@+id/txtMembership"
                 android:fontFamily="@font/roboto_bold"
                 android:text="Active"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textSize="13sp"
                 android:text="Membership" />
         </LinearLayout>
 
@@ -196,12 +199,13 @@
                 android:fontFamily="@font/roboto_bold"
                 android:text="10 "
                 android:id="@+id/txtCoinValue"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textSize="13sp"
                 android:text="Current Offer" />
         </LinearLayout>
 

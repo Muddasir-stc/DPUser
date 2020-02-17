@@ -19,15 +19,19 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:id="@+id/imageView"
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
             android:src="@drawable/offer_place" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginLeft="12dp"
+            android:layout_marginTop="@dimen/dimen_8"
+            android:layout_marginBottom="@dimen/dimen_8"
             android:orientation="vertical">
 
             <LinearLayout
@@ -59,7 +63,7 @@
                     android:background="@drawable/bg_dash"
                     android:paddingLeft="@dimen/dimen_16"
                     android:paddingTop="6dp"
-                    android:layout_marginTop="@dimen/dimen_4"
+                    android:layout_marginTop="@dimen/dimen_8"
                     android:layout_marginBottom="@dimen/dimen_4"
                     android:paddingRight="@dimen/dimen_16"
                     android:paddingBottom="6dp"
@@ -74,13 +78,13 @@
                     android:id="@+id/textView_coins"
                     android:maxLines="2"
                     android:paddingRight="5dp"
+                    android:visibility="gone"
                     android:textSize="15sp"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
                     android:textStyle="bold" />
             </LinearLayout>
 
-            <View style="@style/underline" />
 
             <LinearLayout
                 android:layout_width="match_parent"
