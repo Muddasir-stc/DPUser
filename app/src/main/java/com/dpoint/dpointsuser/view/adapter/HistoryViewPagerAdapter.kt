@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.dpoint.dpointsuser.datasource.remote.shop.Shop
+import com.dpoint.dpointsuser.view.module.history.Points
 import com.dpoints.view.module.dashboard.*
 
 class HistoryViewPagerAdapter(
@@ -11,7 +12,7 @@ class HistoryViewPagerAdapter(
 ) : FragmentPagerAdapter(fm) {
     override fun getItem(position: Int): Fragment {
        if(position==0){
-           return ExchangeFragment()
+           return Points()
        }else if(position==1) {
            return GiftcardFragment()
        }else{
@@ -26,9 +27,9 @@ class HistoryViewPagerAdapter(
 
     override fun getPageTitle(position: Int): CharSequence? {
         return when (position) {
-            0 -> "Exchange"
-            1 -> "Gift"
-            else-> "Offer"
+            0 -> "Points"
+            1 -> "Gifts"
+            else-> "Offers"
         }
     }
 }

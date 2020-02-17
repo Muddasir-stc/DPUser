@@ -1,55 +1,51 @@
 package com.dpoints.view.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.dpoint.dpointsuser.R
-import com.dpoints.dpointsmerchant.datasource.remote.transaction.Tran
-import com.dpoints.dpointsmerchant.utilities.OnItemClickListener
+import com.dpoint.dpointsuser.datasource.remote.transaction.UsedOffer
 
 class TransactionsAdapter(
-    private val listitem: List<Tran>
+    private val listitem: List<UsedOffer>,
+    private val context: Context
 ) : RecyclerView.Adapter<TransactionsAdapter.ViewHolder>() {
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val offername: TextView = view.findViewById(R.id.textView5)
-        val offerdetail: TextView = view.findViewById(R.id.text)
-        val transactionsid: TextView = view.findViewById(R.id.textView4)
-        val points: TextView = view.findViewById(R.id.textView6)
-        val txtType: TextView = view.findViewById(R.id.txtType)
-        val typeIcon: ImageView = view.findViewById(R.id.typeIcon)
-        val bindview = view
-        fun bindto(itemtype: Tran) {
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val cardView: CardView = view.findViewById(R.id.cardView)
+        val imageView: ImageView = view.findViewById(R.id.imageView)
+        val textView_offerName: TextView = view.findViewById(R.id.textView_offerName)
+        val textView_restrauntName: TextView = view.findViewById(R.id.textView_restrauntName)
+        val textView_offer: TextView = view.findViewById(R.id.textView_offer)
+        val textView_coins: TextView = view.findViewById(R.id.textView_coins)
+        val mEarn: TextView = view.findViewById(R.id.textView_assign)
 
-          offername.text = itemtype.transaction_title
-            txtType.text = itemtype.type
-           offerdetail.text = "$${itemtype.offer_amount} for ${itemtype.coins} DPoints"
-            transactionsid.text = "txn-zypg-${itemtype.id}-trans"
-            points.text = itemtype.coins
-        }
 
     }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): TransactionsAdapter.ViewHolder {
+    ): ViewHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_transactions, parent, false)
-        return TransactionsAdapter.ViewHolder(view)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_offer, parent, false)
+        return ViewHolder(view)
     }
 
     override fun getItemCount() = listitem.size
 
     override fun onBindViewHolder(holder: TransactionsAdapter.ViewHolder, position: Int) {
-        holder.bindto(listitem[position])
-
-        if(listitem[position].type.trim().equals("Redeem")){
-            holder.typeIcon.setImageResource(R.drawable.redeem)
-        }else{
-            holder.typeIcon.setImageResource(R.drawable.assign)
-        }
+        var model = listitem[position]
+        Glide.with(context).load(model.offer_image).placeholder(R.drawable.error)
+            .into(holder.imageView)
+        holder.textView_offerName.text = model.offer
+        holder.textView_restrauntName.text = "Shop - " + model.shop_name
+        holder.textView_offer.text = model.shop_description
+        holder.textView_coins.text = model.offer + " DPoints on Shopping of " + model.amount
     }
 }

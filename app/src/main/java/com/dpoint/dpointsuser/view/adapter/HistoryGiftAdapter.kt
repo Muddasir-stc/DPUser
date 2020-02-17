@@ -1,4 +1,5 @@
-package com.dpoints.view.adapter
+package com.dpoint.dpointsuser.view.adapter
+
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -11,11 +12,11 @@ import com.bumptech.glide.Glide
 import com.dpoint.dpointsuser.R
 import com.dpoint.dpointsuser.datasource.remote.history.Exchange
 
-class ExchangeAdapter(
+class HistoryGiftAdapter(
     private val listitem: List<Exchange>,
     private val context: Context
-) : RecyclerView.Adapter<ExchangeAdapter.ViewHolder>() {
-   inner class ViewHolder(view: View, context: Context) : RecyclerView.ViewHolder(view) {
+) : RecyclerView.Adapter<HistoryGiftAdapter.ViewHolder>() {
+    inner class ViewHolder(view: View, context: Context) : RecyclerView.ViewHolder(view) {
         val txtShop=view.findViewById<TextView>(R.id.txtShop)
         val imageView=view.findViewById<ImageView>(R.id.imageView)
         val txtAmount=view.findViewById<TextView>(R.id.txtAmount)

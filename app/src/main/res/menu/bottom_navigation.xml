@@ -8,11 +8,11 @@
         android:id="@+id/navigation_home"
         android:title="Home" />
     <item
-        android:icon="@drawable/ic_notification"
+        android:icon="@drawable/ic_sale"
         android:enabled="true"
         app:showAsAction="ifRoom"
         android:id="@+id/navigation_notifications"
-        android:title="Notification" />
+        android:title="Offers" />
     <item
         android:icon="@drawable/ic_qrcodescan_120401"
         android:enabled="true"
@@ -20,11 +20,11 @@
         android:id="@+id/va_scanner"
         android:title="Scanner" />
     <item
-        android:icon="@drawable/ic_setting"
+        android:icon="@drawable/ic_account_balance_wallet_black_24dp"
         android:enabled="true"
         app:showAsAction="ifRoom"
-        android:id="@+id/navigation_setting"
-        android:title="Setting" />
+        android:id="@+id/navigation_wallet"
+        android:title="Wallet" />
     <item
         android:icon="@drawable/ic_avatar_male_circle_fill_dark_copy"
         android:enabled="true"

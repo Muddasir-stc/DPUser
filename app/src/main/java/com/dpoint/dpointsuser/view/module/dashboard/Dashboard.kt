@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dpoint.dpointsuser.R
 import com.dpoint.dpointsuser.view.adapter.NavigationAdapter
 import com.dpoint.dpointsuser.view.module.history.HistoryActivity
+import com.dpoint.dpointsuser.view.offers.OfferFragment
 import com.dpoints.dpointsmerchant.datasource.model.Item
 import com.dpoints.dpointsmerchant.datasource.remote.auth.User
 import com.dpoints.dpointsmerchant.preferences.UserPreferences
@@ -34,6 +35,7 @@ class Dashboard : BaseActivity(), OnItemClickListener,
     private val profile = ProfileFragment()
     private val scanner = ScannerFragment()
     private val notifications = Notification()
+    private val offers = OfferFragment()
     private var tag = "Home"
     override val layout: Int = R.layout.activity_dashboard
 
@@ -123,7 +125,7 @@ class Dashboard : BaseActivity(), OnItemClickListener,
                 return true
             }
             R.id.navigation_notifications -> {
-                applayChanages(notifications, "Notification")
+                applayChanages(offers, "Offers")
                 //Toast.makeText(this,"Notification",Toast.LENGTH_SHORT).show()
                 return true
             }
@@ -133,6 +135,10 @@ class Dashboard : BaseActivity(), OnItemClickListener,
             }
             R.id.va_scanner -> {
                 applayChanages(scanner, "Scan Offer")
+                return true
+            }
+            R.id.navigation_wallet -> {
+                startActivity(Intent(this, HistoryActivity::class.java))
                 return true
             }
             else -> {
@@ -246,7 +252,7 @@ class Dashboard : BaseActivity(), OnItemClickListener,
                 "Shops With Offer" -> {
                     drawer.closeDrawers()
                     var intent = Intent(this, Shops::class.java)
-                    intent.putExtra("data","offer")
+                    intent.putExtra("data", "offer")
                     startActivity(intent)
                 }
                 "History" -> {

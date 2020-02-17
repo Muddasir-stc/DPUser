@@ -256,9 +256,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/imageView_qrCodeScanner"
             android:src="@drawable/ic_scanner"
-            android:tint="@color/colorPrimary"
             android:layout_margin="@dimen/dimen_36"
-
             android:layout_gravity="center"/>
 
         <Button

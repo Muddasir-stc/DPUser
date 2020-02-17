@@ -1,6 +1,7 @@
 package com.dpoints.dpointsmerchant.datasource.remote.transaction
 
 import android.util.Log
+import com.dpoint.dpointsuser.datasource.remote.transaction.UsedOfferModel
 import com.dpoints.dpointsmerchant.datasource.remote.ApiCallbackImpl
 import com.dpoints.dpointsmerchant.datasource.remote.ApiClient
 import com.dpoints.dpointsmerchant.datasource.remote.ApiResult
@@ -14,7 +15,7 @@ class TransactionService private constructor() {
 
     fun getTransactions(
         token: String,
-        callback: ApiCallbackImpl<TransactionModel>
+        callback: ApiCallbackImpl<UsedOfferModel>
     )
     {
 
@@ -25,10 +26,10 @@ class TransactionService private constructor() {
 
 
     private interface Service {
-        @GET("getAllTransactionsForSingleUser")
+        @GET("getAllUserUsedOffers")
         fun getTransactions(
             @Header("Authorization") token: String
-        ): Call<ApiResult<TransactionModel>>
+        ): Call<ApiResult<UsedOfferModel>>
 
 
     }

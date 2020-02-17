@@ -102,13 +102,13 @@ class ShopViewModel : ViewModel() {
     val shopsWithOfferState: LiveData<Event<NetworkState<ShopModel>>> get() = _shopsWithOfferState
     fun getShopsWithOffers(token: String) {
 
-        _shopsState.value = Event(NetworkState.Loading())
+        _shopsWithOfferState.value = Event(NetworkState.Loading())
 
         ShopService.instance.getShopsWithOffers(token,
-            object : ApiCallbackImpl<ShopModel>(_shopsState) {
+            object : ApiCallbackImpl<ShopModel>(_shopsWithOfferState) {
                 override fun onSuccess(success: ShopModel?) {
                     Log.e("Shop",success?.message)
-                    _shopsState.value = Event(NetworkState.Success(success))
+                    _shopsWithOfferState.value = Event(NetworkState.Success(success))
                 }
             })
     }

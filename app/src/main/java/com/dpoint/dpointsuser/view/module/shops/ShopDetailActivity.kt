@@ -25,6 +25,7 @@ import com.bumptech.glide.Glide
 import com.dpoint.dpointsuser.R
 import com.dpoint.dpointsuser.datasource.remote.shop.MenuModel
 import com.dpoint.dpointsuser.datasource.remote.shop.Shop
+
 import com.dpoint.dpointsuser.view.adapter.ShopViewPagerAdapter
 import com.dpoint.dpointsuser.view.module.gifts.QrViewModel
 import com.dpoint.dpointsuser.view.module.shops.ExchangeActivity
@@ -63,32 +64,32 @@ class ShopDetailActivity : BaseActivity(), LocationListener {
     private var data: List<Data>? = null
     override val layout: Int = R.layout.activity_shop_detail
     private val viewModel by lazy { getVM<ShopViewModel>(this) }
-    lateinit var shop: Shop
+    var shop: Shop? = null
     lateinit var offers: RecyclerView
     lateinit var gifts: RecyclerView
     private val viewQRModel by lazy { getVM<QrViewModel>(this) }
     override fun init() {
         if (intent.getParcelableExtra<Shop>("SHOP") != null) {
             shop = intent.getParcelableExtra<Shop>("SHOP")
-            Log.e("SHOPPER", shop.toJson())
+            Log.e("SHOPPER", shop!!.toJson())
         }
 
         menuList.setHasFixedSize(true)
         val lin = LinearLayoutManager(this)
         lin.orientation = RecyclerView.HORIZONTAL
         menuList.layoutManager = lin
-        viewModel.getShopMenus(UserPreferences.instance.getTokken(this)!!, shop.id.toString())
+        viewModel.getShopMenus(UserPreferences.instance.getTokken(this)!!, shop!!.id.toString())
         txtFb.setOnClickListener {
-            getBrowser(shop.facebook)
+            getBrowser(shop!!.facebook)
         }
         txtInsta.setOnClickListener {
-            getBrowser(shop.instagram)
+            getBrowser(shop!!.instagram)
         }
         txtTweet.setOnClickListener {
-            getBrowser(shop.twitter)
+            getBrowser(shop!!.twitter)
         }
         txtWeb.setOnClickListener {
-            getBrowser(shop.website)
+            getBrowser(shop!!.website)
         }
         if (ContextCompat.checkSelfPermission(
                 applicationContext,
@@ -120,13 +121,13 @@ class ShopDetailActivity : BaseActivity(), LocationListener {
         }
         btnExchange.setOnClickListener {
             val intent = Intent(this, ExchangeActivity::class.java)
-            Log.e("COINVALUE", shop.coin_value.toString())
+            Log.e("COINVALUE", shop!!.coin_value.toString())
             intent.putExtra("SHOP", shop)
             startActivity(intent)
         }
-        val fragmentAdapter = ShopViewPagerAdapter(supportFragmentManager, shop)
-        viewPager_shop.adapter = fragmentAdapter
-        //  viewPager_shop.isNestedScrollingEnabled=true
+        val fragmentAdapter = ShopViewPagerAdapter(supportFragmentManager, shop!!)
+        viewPager_shop!!.adapter = fragmentAdapter
+        //  viewPager_shop!!.isNestedScrollingEnabled=true
         tabs_main.setupWithViewPager(viewPager_shop)
 
 /*        coin_offer.setOnClickListener {
@@ -159,24 +160,24 @@ class ShopDetailActivity : BaseActivity(), LocationListener {
                     UserPreferences.instance.getTokken(this)!!,
                     UserPreferences.instance.getUser(this)!!.id.toString(),
                     mRating,
-                    shop.id.toString(),
+                    shop!!.id.toString(),
                     txtFeedback.text.toString()
                 )
                 dialog.dismiss()
             }
         }
-        //   titleTag.setText(shop.title)
-        txtTitle.text = shop.shop_name
-        txtDesc.text = shop.description
-        txtRating.text = shop.rating
-        txtMembership.text = shop.membership_status
-        txtCoinValue.text = "${shop.shop_percentage.toString()}" + " %"
-        //txtPhone.text = shop.contact
-        //txtEmail.text = shop.email
+        //   titleTag.setText(shop!!.title)
+        txtTitle.text = shop!!.shop_name
+        txtDesc.text = shop!!.description
+        txtRating.text = shop!!.rating
+        txtMembership.text = shop!!.membership_status
+        txtCoinValue.text = "${shop!!.shop_percentage.toString()}" + " %"
+        //txtPhone.text = shop!!.contact
+        //txtEmail.text = shop!!.email
         //txtAddress.text = "Get Location"
 
-        Glide.with(this).load(shop.profile_picture).placeholder(R.drawable.error).into(banner)
-        //  Glide.with(this).load(shop.image).into(img)
+        Glide.with(this).load(shop!!.profile_picture).placeholder(R.drawable.error).into(banner)
+        //  Glide.with(this).load(shop!!.image).into(img)
 //        offers = findViewById(R.id.offers)
 //        gifts = findViewById(R.id.gifts)
 //        offers.setHasFixedSize(true)
@@ -185,8 +186,8 @@ class ShopDetailActivity : BaseActivity(), LocationListener {
 //        val layoutManager2 = LinearLayoutManager(this, HORIZONTAL, false)
 //        offers.layoutManager = layoutManager
 //        gifts.layoutManager = layoutManager2
-        //  viewModel.getShopOffers(UserPreferences.instance.getTokken(this)!!,shop.id.toString())
-        //viewModel.getShopGifts(UserPreferences.instance.getTokken(this)!!,shop.id.toString())
+        //  viewModel.getShopOffers(UserPreferences.instance.getTokken(this)!!,shop!!.id.toString())
+        //viewModel.getShopGifts(UserPreferences.instance.getTokken(this)!!,shop!!.id.toString())
         addObserver()
         val btnBack = findViewById<ImageView>(R.id.backBtn)
         btnBack.setOnClickListener {
@@ -232,8 +233,8 @@ class ShopDetailActivity : BaseActivity(), LocationListener {
         val locationtext = "Latitude:" + location?.latitude + "\n Longitude :" + location?.longitude
 
         try {
-            var lat2: Double = shop.latitude.toDouble()
-            var lon2: Double = shop.longitude.toDouble()
+            var lat2: Double = shop!!.latitude.toDouble()
+            var lon2: Double = shop!!.longitude.toDouble()
             var distance =
                 (getDistance(location!!.latitude, location!!.longitude, lat2, lon2) / 1000).toInt()
             Log.e("DISTANCE", distance.toString())
@@ -278,7 +279,8 @@ class ShopDetailActivity : BaseActivity(), LocationListener {
 
             when (state) {
                 is NetworkState.Success -> {
-                    val builder: androidx.appcompat.app.AlertDialog.Builder = androidx.appcompat.app.AlertDialog.Builder(this)
+                    val builder: androidx.appcompat.app.AlertDialog.Builder =
+                        androidx.appcompat.app.AlertDialog.Builder(this)
                     val dialogView: View =
                         LayoutInflater.from(this)
                             .inflate(R.layout.layout_qr_code, null, false)
@@ -323,7 +325,7 @@ class ShopDetailActivity : BaseActivity(), LocationListener {
                 is NetworkState.Success -> {
                     Log.e("DATA", state.data?.message.toString())
                     onSuccess(state.data!!.message)
-                    var oldRate = shop.rating.toFloat()
+                    var oldRate = shop!!.rating.toFloat()
                     var newRate = mRating.toFloat()
                     var avgRate = (oldRate + newRate) / 2
                     txtRating.text = avgRate.toString()

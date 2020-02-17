@@ -95,6 +95,5 @@ class Shops : BaseActivity() {
     private fun setupShops(data: List<Shop>?) {
         adapter = ShopAdapter(data!!, this, 1)
         recyclerView.adapter = adapter
-
     }
 }

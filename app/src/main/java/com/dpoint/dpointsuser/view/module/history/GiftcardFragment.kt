@@ -20,6 +20,7 @@ import com.budiyev.android.codescanner.ErrorCallback
 import com.budiyev.android.codescanner.ScanMode
 import com.dpoint.dpointsuser.R
 import com.dpoint.dpointsuser.datasource.model.ScanedOffer
+import com.dpoint.dpointsuser.datasource.remote.history.HistoryGiftData
 import com.dpoint.dpointsuser.datasource.remote.history.Redeem
 import com.dpoint.dpointsuser.view.module.history.HistoryViewModel
 import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
@@ -41,11 +42,11 @@ class GiftcardFragment : BaseFragment(){
         redeemList.setHasFixedSize(true)
         redeemList.layoutManager= LinearLayoutManager(context)
 
-        viewModel.getRedeems(UserPreferences.instance.getTokken(context!!)!!)
+        viewModel.getAllUserUsedGiftCards(UserPreferences.instance.getTokken(context!!)!!)
         addObserver()
     }
     private fun addObserver() {
-        viewModel.redeemHistoryState.observe(this, Observer {
+        viewModel.historyGiftState.observe(this, Observer {
             it ?: return@Observer
             val state = it.getContentIfNotHandled() ?: return@Observer
             if (state is NetworkState.Loading) {
@@ -64,7 +65,7 @@ class GiftcardFragment : BaseFragment(){
         })
     }
 
-    private fun loadData(data: List<Redeem>?) {
+    private fun loadData(data: List<HistoryGiftData>?) {
         redeemList.adapter= RedeemAdapter(data!!,context!!)
     }
 

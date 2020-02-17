@@ -9,6 +9,7 @@ class Exchange(
     val coins: Int,
     val created_at: String,
     val shop_name: String,
+    val shop_image: String,
     val id: Int,
     val merchant_id: Int,
     val shop_id: Int,

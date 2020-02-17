@@ -4,16 +4,15 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.dpoint.dpointsuser.datasource.remote.gift.GiftModel
 import com.dpoint.dpointsuser.datasource.remote.history.ExchangeModel
+import com.dpoint.dpointsuser.datasource.remote.history.HistoryGift
 import com.dpoint.dpointsuser.datasource.remote.history.RedeemModel
 import com.dpoints.dpointsmerchant.datasource.remote.ApiCallbackImpl
 import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
-import com.dpoints.dpointsmerchant.datasource.remote.gift.GiftService
 import com.dpoints.dpointsmerchant.datasource.remote.gift.HistoryService
 import com.dpoints.dpointsmerchant.utilities.Event
 
-class HistoryViewModel:ViewModel() {
+class HistoryViewModel : ViewModel() {
     private val TAG = HistoryViewModel::class.qualifiedName
 
     private val _exchangeHistoryState = MutableLiveData<Event<NetworkState<ExchangeModel>>>()
@@ -33,6 +32,37 @@ class HistoryViewModel:ViewModel() {
 
             })
     }
+
+    private val _historyGiftState = MutableLiveData<Event<NetworkState<HistoryGift>>>()
+    val historyGiftState: LiveData<Event<NetworkState<HistoryGift>>> get() = _historyGiftState
+
+    fun getAllUserUsedGiftCards(token: String) {
+        _historyGiftState.value = Event(NetworkState.Loading())
+        HistoryService.instance.getAllUserUsedGiftCards(token,
+            object : ApiCallbackImpl<HistoryGift>(_historyGiftState) {
+                override fun onSuccess(success: HistoryGift?) {
+                    Log.e(TAG, success.toString())
+                    _historyGiftState.value = Event(NetworkState.Success(success))
+                }
+
+            })
+    }
+
+    private val _pointsState = MutableLiveData<Event<NetworkState<ExchangeModel>>>()
+    val pointsState: LiveData<Event<NetworkState<ExchangeModel>>> get() = _pointsState
+
+    fun getPoints(token: String) {
+        _pointsState.value = Event(NetworkState.Loading())
+        HistoryService.instance.getPoints(token,
+            object : ApiCallbackImpl<ExchangeModel>(_pointsState) {
+                override fun onSuccess(success: ExchangeModel?) {
+                    Log.e(TAG, success.toString())
+                    _pointsState.value = Event(NetworkState.Success(success))
+                }
+
+            })
+    }
+
     fun getRedeems(token: String) {
         _exchangeHistoryState.value = Event(NetworkState.Loading())
         HistoryService.instance.getRedeems(token,

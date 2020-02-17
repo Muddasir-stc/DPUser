@@ -6,6 +6,8 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dpoint.dpointsuser.R
+import com.dpoint.dpointsuser.datasource.remote.transaction.UsedOffer
+import com.dpoint.dpointsuser.datasource.remote.transaction.UsedOfferModel
 import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
 import com.dpoints.dpointsmerchant.datasource.remote.transaction.Tran
 import com.dpoints.dpointsmerchant.preferences.UserPreferences
@@ -50,8 +52,8 @@ class OfferFragment : BaseFragment() {
         })
     }
 
-    private fun setupTransactions(data: List<Tran>?) {
+    private fun setupTransactions(data: List<UsedOffer>?) {
         Log.e("DATTA", data?.size.toString())
-        recyclerView.adapter = TransactionsAdapter(data!!)
+        recyclerView.adapter = TransactionsAdapter(data!!,context!!)
     }
 }

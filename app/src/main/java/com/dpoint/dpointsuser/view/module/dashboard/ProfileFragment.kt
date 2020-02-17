@@ -74,12 +74,13 @@ class ProfileFragment : BaseFragment() {
         loadData()
         viewModel.getMyGiftCards(UserPreferences.instance.getTokken(context!!)!!)
         viewModel.getUser(UserPreferences.instance.getTokken(context!!)!!)
-        imageView_qrCodeScanner.setOnClickListener {
-            var user = UserPreferences.instance.getUser(context!!)
-            val data =
-                "{\"user_id\":\"${user?.id}\",\"name\":\"${user?.name}\"}"
-            viewQRModel.getQrImage(data)
-        }
+        var user = UserPreferences.instance.getUser(context!!)
+        val data =
+            "{\"user_id\":\"${user?.id}\",\"name\":\"${user?.name}\"}"
+        viewQRModel.getQrImage(data)
+        /*imageView_qrCodeScanner.setOnClickListener {
+
+        }*/
         addObserver()
     }
 
@@ -94,7 +95,9 @@ class ProfileFragment : BaseFragment() {
 
             when (state) {
                 is NetworkState.Success -> {
-                    val builder: AlertDialog.Builder = AlertDialog.Builder(context!!)
+
+                    imageView_qrCodeScanner.setImageBitmap(state.data)
+                    /*val builder: AlertDialog.Builder = AlertDialog.Builder(context!!)
                     val dialogView: View =
                         LayoutInflater.from(context!!)
                             .inflate(R.layout.layout_qr_code, null, false)
@@ -103,7 +106,7 @@ class ProfileFragment : BaseFragment() {
 
                     val alertDialog: AlertDialog = builder.create()
                     imageView.setImageBitmap(state.data)
-                    alertDialog.show()
+                    alertDialog.show()*/
                 }
                 is NetworkState.Error -> onError(state.message)
                 is NetworkState.Failure -> onFailure(getString(R.string.request_error))
