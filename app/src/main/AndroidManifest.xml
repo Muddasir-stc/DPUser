@@ -28,7 +28,8 @@
         android:roundIcon="@drawable/login_copy"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.module.gifts.RedeemGiftActivity"></activity>
+        <activity android:name=".view.module.shops_near_me.ShopsNearMeActivity"></activity>
+        <activity android:name=".view.module.gifts.RedeemGiftActivity" />
         <activity android:name=".view.module.shops.ExchangeActivity" />
         <activity android:name=".view.module.profile.MyGiftcardsActivity" />
         <activity android:name=".view.module.history.HistoryActivity" />

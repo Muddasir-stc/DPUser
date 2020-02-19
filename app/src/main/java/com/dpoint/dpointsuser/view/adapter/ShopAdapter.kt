@@ -71,7 +71,7 @@ class ShopAdapter(
                 model.facebook = ""
             if (model.instagram == null)
                 model.instagram = ""
-            intent.putExtra("SHOP", listitem.get(position))
+            intent.putExtra("SHOP", model)
             context!!.startActivity(intent)
         }
 

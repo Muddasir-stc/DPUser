@@ -1,21 +1,27 @@
 package com.dpoints.view.module.dashboard
 
 import android.content.Intent
+import android.util.Log
 import android.view.MenuItem
 import android.widget.LinearLayout
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dpoint.dpointsuser.R
 import com.dpoint.dpointsuser.view.adapter.NavigationAdapter
 import com.dpoint.dpointsuser.view.module.history.HistoryActivity
+import com.dpoint.dpointsuser.view.module.shops_near_me.ShopsNearMeActivity
 import com.dpoint.dpointsuser.view.offers.OfferFragment
 import com.dpoints.dpointsmerchant.datasource.model.Item
+import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
 import com.dpoints.dpointsmerchant.datasource.remote.auth.User
 import com.dpoints.dpointsmerchant.preferences.UserPreferences
 import com.dpoints.dpointsmerchant.utilities.OnItemClickListener
+import com.dpoints.dpointsmerchant.utilities.getVM
 import com.dpoints.dpointsmerchant.view.commons.base.BaseActivity
+import com.dpoints.dpointsmerchant.view.module.shops.ShopViewModel
 import com.dpoints.view.module.gifts.Gifts
 import com.dpoints.view.module.notifications.Notification
 import com.dpoints.view.module.shops.Shops
@@ -37,6 +43,7 @@ class Dashboard : BaseActivity(), OnItemClickListener,
     private val notifications = Notification()
     private val offers = OfferFragment()
     private var tag = "Home"
+    private val viewModel by lazy { getVM<ShopViewModel>(this) }
     override val layout: Int = R.layout.activity_dashboard
 
     override fun init() {
@@ -206,6 +213,7 @@ class Dashboard : BaseActivity(), OnItemClickListener,
         Item("Gift Cards", R.drawable.ic_giftcard),
         Item("History", R.drawable.ic_transaction),
         Item("Shops With Offer", R.drawable.ic_users),
+        Item("Shops Near Me", R.drawable.ic_users),
         Item("About Us", R.drawable.ic_question),
         Item("Logout", R.drawable.ic_logout)
 
@@ -255,6 +263,11 @@ class Dashboard : BaseActivity(), OnItemClickListener,
                     intent.putExtra("data", "offer")
                     startActivity(intent)
                 }
+                "Shops Near Me" -> {
+                    drawer.closeDrawers()
+                    viewModel.getShops(UserPreferences.instance.getTokken(this)!!)
+                    addObserver()
+                }
                 "History" -> {
                     drawer.closeDrawers()
                     startActivity(
@@ -271,6 +284,40 @@ class Dashboard : BaseActivity(), OnItemClickListener,
 
         }
 
+
+    }
+
+    private fun addObserver() {
+        viewModel.shopsState.observe(this, Observer {
+            it ?: return@Observer
+            val state = it.getContentIfNotHandled() ?: return@Observer
+            if (state is NetworkState.Loading) {
+                return@Observer showProgress(this)
+            }
+            hideProgress()
+            Log.e("DATA", state.toString())
+            when (state) {
+                is NetworkState.Success -> {
+                    Log.e("DATA", state.data?.message)
+                    for (model in state.data!!.data) {
+                        if (model.website == null)
+                            model.website = ""
+                        if (model.twitter == null)
+                            model.twitter = ""
+                        if (model.facebook == null)
+                            model.facebook = ""
+                        if (model.instagram == null)
+                            model.instagram = ""
+                    }
+                    var intent = Intent(this, ShopsNearMeActivity::class.java)
+                    intent.putExtra("data", state.data)
+                    startActivity(intent)
+                }
+                is NetworkState.Error -> onError(state.message)
+                is NetworkState.Failure -> onFailure(getString(R.string.request_error))
+                else -> onFailure(getString(R.string.connection_error))
+            }
+        })
 
     }
 }
