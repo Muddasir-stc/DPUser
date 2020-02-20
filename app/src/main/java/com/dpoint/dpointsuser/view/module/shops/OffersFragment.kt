@@ -2,6 +2,7 @@ package com.dpoints.view.module.dashboard
 
 import android.util.Log
 import android.view.View
+import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,20 +16,23 @@ import com.dpoints.dpointsmerchant.utilities.getVM
 import com.dpoints.dpointsmerchant.view.commons.base.BaseFragment
 import com.dpoints.dpointsmerchant.view.module.shops.ShopViewModel
 import com.dpoints.view.adapter.OfferAdapter
+import kotlinx.android.synthetic.main.fragment_offers.*
 
 
-class OffersFragment(shop: Shop) : BaseFragment(),OnItemClickListener{
+class OffersFragment(shop: Shop) : BaseFragment(), OnItemClickListener {
 
-    var shop=shop
-    override val layout: Int=R.layout.fragment_offers
+    var shop = shop
+    override val layout: Int = R.layout.fragment_offers
     lateinit var offers: RecyclerView
+    lateinit var noOffers: TextView
     private val viewModel by lazy { getVM<ShopViewModel>(activity!!) }
     override fun init(view: View) {
-        Log.e("SHOPID",shop.id.toString())
-        offers=view.findViewById(R.id.shop_offers)
+        Log.e("SHOPID", shop.id.toString())
+        offers = view.findViewById(R.id.shop_offers)
+        noOffers = view.findViewById(R.id.textView_noOffers)
         offers.setHasFixedSize(true)
-        offers.layoutManager= LinearLayoutManager(context)
-        viewModel.getShopOffers(UserPreferences.instance.getTokken(context!!)!!,shop.id.toString())
+        offers.layoutManager = LinearLayoutManager(context)
+        viewModel.getShopOffers(UserPreferences.instance.getTokken(context!!)!!, shop.id.toString())
         addObserver()
     }
 
@@ -58,15 +62,22 @@ class OffersFragment(shop: Shop) : BaseFragment(),OnItemClickListener{
             }
         })
     }
+
     private fun setupRecyclerView(data: OfferModel) {
-        Log.e("GOTDATA",data.data.size.toString())
-        offers.adapter= OfferAdapter(data.data,this,context!!)
+        Log.e("GOTDATA", data.data.size.toString())
+        if (data.data.size > 0) {
+            offers.visibility = View.VISIBLE
+            offers.adapter = OfferAdapter(data.data, this, context!!)
+            textView_noOffers.visibility = View.GONE
+        } else {
+            offers.visibility = View.GONE
+            textView_noOffers.visibility = View.VISIBLE
+        }
     }
+
     override fun onItemClick(index: Int, adapter: Int) {
 
     }
-
-
 
 
 }

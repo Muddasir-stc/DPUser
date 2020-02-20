@@ -338,7 +338,13 @@ class ShopDetailActivity : BaseActivity(), LocationListener {
     }
 
     private fun setupMenus(data: MenuModel?) {
-        menuList.adapter = MenuAdapter(this, data!!.data)
+        if (data!!.data.size > 0) {
+            textView_noMenu.visibility = View.GONE
+            menuList.adapter = MenuAdapter(this, data!!.data)
+        } else {
+            textView_noMenu.visibility = View.VISIBLE
+            menuList.visibility = View.GONE
+        }
     }
 //        viewModel.giftsState.observe(this, Observer {
 //            it ?: return@Observer

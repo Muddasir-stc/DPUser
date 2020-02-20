@@ -54,7 +54,7 @@ class FirebaseService : FirebaseMessagingService() {
                 .setBigContentTitle(data["title"])
                     .setSummaryText(data["body"])
             )
-            .setSmallIcon(R.drawable.login_copy)
+            .setSmallIcon(R.drawable.dpoint_logo)
             .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
             .setContentIntent(pendingIntent)
         val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?

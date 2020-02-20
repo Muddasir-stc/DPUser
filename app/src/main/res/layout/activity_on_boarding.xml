@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorGrey"
+    android:background="@color/white"
     tools:context=".view.module.splash.OnBoardingActivity">
 
    <LinearLayout
@@ -14,7 +14,8 @@
        android:layout_height="wrap_content">
        <ImageView
            android:layout_width="200dp"
-           android:src="@drawable/login_copy"
+           android:src="@drawable/dpoint_logo"
+           android:adjustViewBounds="true"
            android:layout_height="200dp" />
 
 

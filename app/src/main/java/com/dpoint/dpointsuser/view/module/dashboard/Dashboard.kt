@@ -152,8 +152,6 @@ class Dashboard : BaseActivity(), OnItemClickListener,
                 return false
             }
         }
-
-
     }
 
     private fun applayChanages(fr: Fragment, tag: String) {
@@ -161,6 +159,7 @@ class Dashboard : BaseActivity(), OnItemClickListener,
         titleBarName.text = tag
         supportFragmentManager.beginTransaction().replace(R.id.container, fr).commit()
     }
+
 //    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 //
 //        val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)

@@ -40,6 +40,7 @@
                     android:text="Gift Card"
                     android:fontFamily="@font/roboto_bold"
                     android:textSize="18dp"
+                    android:id="@+id/textView_title"
                     android:textColor="@color/white"
                     android:layout_height="wrap_content"/>
                 <TextView
