@@ -20,7 +20,6 @@ class Shop(
     var instagram: String,
     var latitude: String,
     var longitude: String,
-    var map: String,
     var membership_status: String,
     var merchant_id: Int,
     var profile_picture: String,
