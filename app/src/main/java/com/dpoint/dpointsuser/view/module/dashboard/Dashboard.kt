@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dpoint.dpointsuser.R
 import com.dpoint.dpointsuser.view.adapter.NavigationAdapter
+import com.dpoint.dpointsuser.view.module.dashboard.HistoryFragment
 import com.dpoint.dpointsuser.view.module.history.HistoryActivity
 import com.dpoint.dpointsuser.view.module.shops_near_me.ShopsNearMeActivity
 import com.dpoint.dpointsuser.view.offers.OfferFragment
@@ -40,6 +41,7 @@ class Dashboard : BaseActivity(), OnItemClickListener,
     private val home = Home()
     private val profile = ProfileFragment()
     private val scanner = ScannerFragment()
+    private val history = HistoryFragment()
     private val notifications = Notification()
     private val offers = OfferFragment()
     private var tag = "Home"
@@ -145,7 +147,7 @@ class Dashboard : BaseActivity(), OnItemClickListener,
                 return true
             }
             R.id.navigation_wallet -> {
-                startActivity(Intent(this, HistoryActivity::class.java))
+                applayChanages(history, "History")
                 return true
             }
             else -> {
@@ -159,52 +161,6 @@ class Dashboard : BaseActivity(), OnItemClickListener,
         titleBarName.text = tag
         supportFragmentManager.beginTransaction().replace(R.id.container, fr).commit()
     }
-
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//
-//        val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
-//        if (result != null) {
-//            if (result.contents == null) {
-//             //   Log.d("RESULT", "Cancelled scan")
-//            } else {
-//                Log.d("RESULT", result.contents)
-//               // val offer=result.contents.toString().fromJson<ScanedOffer>()
-//                Home().onActivityResult(requestCode,resultCode,data)
-//            }
-//        } else {
-//            super.onActivityResult(requestCode, resultCode, data)
-//        }
-//    }
-    /*  override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
-      return onNavigarionItemSelected(menuItem)
-      *//*when (menuItem.itemId) {
-            R.id.home_menu -> {
-                startActivity<DashboardActivity>()
-
-                return true
-            }
-            R.id.orders_menu -> {
-                startActivity<OrdersActivity>()
-                return true
-            }
-            R.id.chat_menu -> {
-                startActivity<ChatUserActivity>()
-                return true
-            }
-            R.id.inbox_menu -> {
-                Toast.makeText(this,"friends",Toast.LENGTH_SHORT).show()
-                return true
-            }
-            R.id.account_menu -> {
-                startActivity<ProfileActivity>()
-
-                return true
-                startActivity<ProfileActivity>()
-            }
-        }
-        return false*//*
-    }
-*/
 
     private fun getDrawerItems() = listOf(
         Item("Shops", R.drawable.ic_users),

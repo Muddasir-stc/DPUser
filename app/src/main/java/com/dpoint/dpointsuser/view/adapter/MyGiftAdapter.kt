@@ -48,6 +48,7 @@ class MyGiftAdapter(
         val txtUnits: TextView = view.findViewById(R.id.txtUnits)
         val txtCardNo: TextView = view.findViewById(R.id.txtCardNo)
         val txtAmount: TextView = view.findViewById(R.id.txtAmount)
+        val textView_title: TextView = view.findViewById(R.id.textView_title)
         val txtPurchased: TextView = view.findViewById(R.id.txtPurchased)
         val txtExpired: TextView = view.findViewById(R.id.txtExpired)
         val layout: ImageView = view.findViewById(R.id.img_expired)
@@ -69,6 +70,7 @@ class MyGiftAdapter(
 
                 txtPurchased.setText(itemtype.created_at.split(" ")[0])
                 txtAmount.text = itemtype.amount
+                textView_title.text = itemtype.title+" By "+itemtype.shop_name
                 txtCardNo.text = itemtype.rand_text
                 txtUnits.text = "${itemtype.number_of_units} ${itemtype.unit}"
             } catch (e: Exception) {

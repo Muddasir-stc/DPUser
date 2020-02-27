@@ -16,5 +16,6 @@ class MyGift(
     val unit: String,
     val updated_at: String,
     val expired_at: String,
+    val shop_name: String,
     val user_id: Int
 ):Parcelable

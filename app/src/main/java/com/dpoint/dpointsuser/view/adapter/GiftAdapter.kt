@@ -79,7 +79,7 @@ class GiftAdapter(
 
                 txtPurchased.setText(itemtype.created_at.split(" ")[0])
                 txtAmount.text = itemtype.amount
-                textView_title.text = itemtype.title
+                textView_title.text = itemtype.title+" By "+itemtype.shop_name
                 txtCardNo.text = itemtype.rand_text
                 txtUnits.text = "${itemtype.number_of_units} ${itemtype.unit}"
             } catch (e: Exception) {
