@@ -8,22 +8,26 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dpoint.dpointsuser.R
 import com.dpoint.dpointsuser.datasource.remote.shop.Shop
 import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
+import com.dpoints.dpointsmerchant.datasource.remote.offer.Data
+import com.dpoints.dpointsmerchant.datasource.remote.offer.OfferModel
 import com.dpoints.dpointsmerchant.preferences.UserPreferences
+import com.dpoints.dpointsmerchant.utilities.OnItemClickListener
 import com.dpoints.dpointsmerchant.utilities.getVM
 import com.dpoints.dpointsmerchant.view.commons.base.BaseFragment
 import com.dpoints.dpointsmerchant.view.module.shops.ShopViewModel
+import com.dpoints.view.adapter.OfferAdapter
 import com.dpoints.view.adapter.ShopAdapter
 
-class OfferFragment : BaseFragment() {
+class OfferFragment : BaseFragment(), OnItemClickListener {
     override val layout: Int = R.layout.fragment_offer
     private val viewModel by lazy { getVM<ShopViewModel>(activity!!) }
-    lateinit var list: List<Shop>
+    lateinit var list: List<Data>
     lateinit var recyclerView_offers: RecyclerView
 
     override fun init(view: View) {
         activity?.title = "Offers"
 
-        viewModel.getShopsWithOffers(UserPreferences.instance.getTokken(context!!)!!)
+        viewModel.getAllMerchantOffers(UserPreferences.instance.getTokken(context!!)!!)
         recyclerView_offers = view.findViewById<RecyclerView>(R.id.recyclerView_offers)
         recyclerView_offers.layoutManager = LinearLayoutManager(context!!)
         recyclerView_offers.setHasFixedSize(true)
@@ -31,7 +35,7 @@ class OfferFragment : BaseFragment() {
     }
 
     private fun addObserver() {
-        viewModel.shopsWithOfferState.observe(activity!!, Observer {
+        viewModel.allMerchantOfferState.observe(activity!!, Observer {
             it ?: return@Observer
             val state = it.getContentIfNotHandled() ?: return@Observer
             if (state is NetworkState.Loading) {
@@ -42,7 +46,7 @@ class OfferFragment : BaseFragment() {
             when (state) {
                 is NetworkState.Success -> {
                     Log.e("DATA", state.data?.message)
-                    list = state?.data?.data!!
+                    list = state.data!!.data
                     setupShops(list)
                 }
                 is NetworkState.Error -> onError(state.message)
@@ -52,9 +56,13 @@ class OfferFragment : BaseFragment() {
         })
     }
 
-    lateinit var adapter: ShopAdapter
-    private fun setupShops(data: List<Shop>?) {
-        adapter = ShopAdapter(data!!, context!!, 1)
+    lateinit var adapter: OfferAdapter
+    private fun setupShops(data: List<Data>?) {
+        adapter = OfferAdapter(data!!, this, context!!)
         recyclerView_offers.adapter = adapter
+    }
+
+    override fun onItemClick(index: Int, adapter: Int) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

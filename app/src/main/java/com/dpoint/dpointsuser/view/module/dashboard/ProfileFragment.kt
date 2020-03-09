@@ -53,7 +53,7 @@ class ProfileFragment : BaseFragment() {
         btnRefresh = view.findViewById<TextView>(R.id.btnRefresh)
         myGifts = view.findViewById(R.id.myGifts)
         profileBal = view.findViewById<TextView>(R.id.profileBal)
-        goToTrans = view.findViewById<RelativeLayout>(R.id.goToTrans)
+        goToTrans = view.findViewById(R.id.goToTrans)
         editProfile = view.findViewById<RelativeLayout>(R.id.editProfile)
         giftsLayout = view.findViewById<RelativeLayout>(R.id.giftsLayout)
         myNumber = view.findViewById<TextView>(R.id.myNumber)

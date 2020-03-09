@@ -38,6 +38,7 @@ class ScannerFragment : BaseFragment(){
     private val CAMERA_PERMISSIONS_REQUEST = 2
     override fun init(view: View) {
         scannerView=view.findViewById<CodeScannerView>(R.id.scanner_view)
+        codeScanner = CodeScanner(context!!, scannerView)
         activity!!.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN); requestCameraPermission()
         addObserver()
     }
@@ -59,7 +60,7 @@ class ScannerFragment : BaseFragment(){
     }
 
     private fun openCamera() {
-        codeScanner = CodeScanner(context!!, scannerView)
+
         // Parameters (default values)
         codeScanner.camera = CodeScanner.CAMERA_BACK // or CAMERA_FRONT or specific camera id
         codeScanner.formats = CodeScanner.ALL_FORMATS // list of type BarcodeFormat,
@@ -103,6 +104,7 @@ class ScannerFragment : BaseFragment(){
 
                    // Display a negative button on alert dialog
                    builder.setNegativeButton("No") { dialog, which ->
+                       openCamera()
                        dialog.dismiss()
                    }
 
@@ -130,6 +132,7 @@ class ScannerFragment : BaseFragment(){
 
         }
     }
+
    private fun addObserver(){
        viewModelDash.assignState.observe(this, Observer {
            it ?: return@Observer
@@ -142,6 +145,7 @@ class ScannerFragment : BaseFragment(){
                is NetworkState.Success -> {
                    Log.e("DATA", state.data?.message.toString())
                    onSuccess(state.data!!.message)
+                   openCamera()
                }
                is NetworkState.Error -> onError(state.message)
                is NetworkState.Failure -> onFailure(getString(R.string.request_error))

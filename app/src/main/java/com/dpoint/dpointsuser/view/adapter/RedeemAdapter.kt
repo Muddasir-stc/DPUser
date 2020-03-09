@@ -21,11 +21,13 @@ class RedeemAdapter(
 ) : RecyclerView.Adapter<RedeemAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val txtShop=view.findViewById<TextView>(R.id.shop_name)
+        val txtTitle=view.findViewById<TextView>(R.id.txtTitle)
         val txtUnits=view.findViewById<TextView>(R.id.txtUnits)
         val txtDate=view.findViewById<TextView>(R.id.txtDate)
         val unit=view.findViewById<TextView>(R.id.unit)
         val bindview = view
         fun bindto(itemtype: HistoryGiftData) {
+            txtTitle.text="@${itemtype.title}"
             txtShop.text="@${itemtype.shop_name}"
             txtUnits.text="${itemtype.number_of_units}"
             txtDate.text=itemtype.created_at.split(" ")[0]

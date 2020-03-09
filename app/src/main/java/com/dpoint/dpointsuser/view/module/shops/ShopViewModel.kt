@@ -113,6 +113,23 @@ class ShopViewModel : ViewModel() {
             })
     }
 
+
+    private val _allMerchantOfferState = MutableLiveData<Event<NetworkState<OfferModel>>>()
+    val allMerchantOfferState: LiveData<Event<NetworkState<OfferModel>>> get() = _allMerchantOfferState
+    fun getAllMerchantOffers(token: String) {
+
+        _allMerchantOfferState.value = Event(NetworkState.Loading())
+
+        ShopService.instance.getAllMerchantOffers(token,
+            object : ApiCallbackImpl<OfferModel>(_allMerchantOfferState) {
+                override fun onSuccess(success: OfferModel?) {
+                    Log.e("Shop",success?.message)
+                    _allMerchantOfferState.value = Event(NetworkState.Success(success))
+                }
+            })
+    }
+
+
     fun getSearchedShops(token: String,name:String) {
 
         _searchedShopsState.value = Event(NetworkState.Loading())

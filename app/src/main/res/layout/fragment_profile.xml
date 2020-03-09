@@ -1,278 +1,308 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
     android:id="@+id/root_view"
-    android:layout_height="match_parent">
-
-<androidx.core.widget.NestedScrollView
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <LinearLayout
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:orientation="vertical"
         android:layout_height="match_parent">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:weightSum="12"
-            android:padding="10dp"
-            android:background="@color/colorPrimaryDark"
-            android:layout_height="wrap_content">
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="0dp"
-                android:src="@drawable/profile"
-                android:layout_weight="4"
-                android:id="@+id/myProfile"
-                android:padding="5dp"
-                android:layout_height="150dp"/>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_marginLeft="@dimen/dimen_10"
-                android:layout_weight="8"
-                android:orientation="vertical"
-                android:layout_gravity="center_vertical"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:orientation="horizontal"
-                    android:weightSum="12"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:text="Robert Downey jr"
-                        android:id="@+id/myName"
-                        android:layout_weight="10"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="22sp"
-                        android:textStyle="bold"
-
-                        android:layout_height="wrap_content"/>
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:adjustViewBounds="true"
-                        android:layout_weight="2"
-                        android:padding="5dp"
-                        android:layout_marginLeft="@dimen/dimen_10"
-                        android:tint="@color/colorWhite"
-                        app:srcCompat="@drawable/ic_notification"
-                        android:layout_height="30dp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:text=""
-                        android:textSize="20sp"
-                        android:textColor="@color/colorBlack"
-                        android:fontFamily="@font/fontawesome"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:textSize="18sp"
-                        android:layout_gravity="center_vertical"
-                        android:textColor="@color/colorBlack"
-                        android:layout_marginLeft="@dimen/dimen_10"
-                        android:id="@+id/myNumber"
-                        android:text="(581)-307-6902"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:adjustViewBounds="true"
-                        android:layout_weight="2"
-                        android:padding="5dp"
-                        android:text=""
-                        android:gravity="right"
-                        android:layout_marginRight="@dimen/dimen_10"
-                        android:textSize="20sp"
-                        android:id="@+id/btnRefresh"
-                        android:fontFamily="@font/fontawesome"
-                        android:textColor="@color/colorWhite"
-                        android:layout_height="30dp"/>
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:padding="@dimen/dimen_20"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryDark"
                 android:orientation="horizontal"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:text=""
-                    android:textSize="20sp"
-                    android:textColor="@color/colorBlack"
-                    android:fontFamily="@font/fontawesome"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:textSize="18sp"
+                android:padding="10dp"
+                android:weightSum="12">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/myProfile"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_weight="4"
+                    android:padding="5dp"
+                    android:src="@drawable/profile" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:textColor="@color/colorBlack"
-                    android:layout_marginLeft="@dimen/dimen_40"
-                    android:id="@+id/myEmail"
-                    android:text="robert.jowneyjr@gmail.com"
-                    android:layout_height="wrap_content"/>
+                    android:layout_marginLeft="@dimen/dimen_10"
+                    android:layout_weight="8"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="12">
+
+                        <TextView
+                            android:id="@+id/myName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="10"
+                            android:text="Robert Downey jr"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="22sp"
+
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="@dimen/dimen_10"
+                            android:layout_weight="2"
+                            android:adjustViewBounds="true"
+                            android:padding="5dp"
+                            android:tint="@color/colorWhite"
+                            app:srcCompat="@drawable/ic_notification" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/fontawesome"
+                            android:text=""
+                            android:textColor="@color/colorBlack"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/myNumber"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/dimen_10"
+                            android:text="(581)-307-6902"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/btnRefresh"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginRight="@dimen/dimen_10"
+                            android:layout_weight="2"
+                            android:adjustViewBounds="true"
+                            android:fontFamily="@font/fontawesome"
+                            android:gravity="right"
+                            android:padding="5dp"
+                            android:text=""
+                            android:textColor="@color/colorWhite"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:background="@drawable/box"
-        android:padding="20dp"
-        android:id="@+id/goToTrans"
-        android:layout_marginTop="@dimen/dimen_10"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:layout_width="20dp"
-            android:src="@drawable/trans_icon"
-            android:id="@+id/tran_icon"
-            android:layout_height="20dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:gravity="center_vertical"
-            android:layout_marginLeft="60dp"
-            android:text="History"
-            android:layout_centerVertical="true"
-            android:textColor="@color/colorBlack"
-            android:textSize="18sp"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:gravity="center_vertical"
-            android:layout_alignParentRight="true"
-            android:text=""
-            android:fontFamily="@font/fontawesome"
-            android:layout_centerVertical="true"
-            android:textColor="@color/colorBlack"
-            android:textSize="18sp"
-            android:layout_height="wrap_content"/>
-    </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:background="@drawable/box"
-            android:padding="20dp"
-            android:id="@+id/editProfile"
-            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/dimen_20">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/fontawesome"
+                        android:text=""
+                        android:textColor="@color/colorBlack"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/myEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/dimen_40"
+                        android:text="robert.jowneyjr@gmail.com"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="18sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/goToTrans"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_10"
+                android:background="@drawable/box"
+                android:padding="20dp">
+
+                <ImageView
+                    android:id="@+id/tran_icon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/trans_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="60dp"
+                    android:gravity="center_vertical"
+                    android:text="Wallet"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:fontFamily="@font/fontawesome"
+                    android:gravity="center_vertical"
+                    android:text=""
+                    android:textColor="@color/colorBlack"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/editProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/box"
+                android:padding="20dp">
+
+                <ImageView
+                    android:layout_width="@dimen/dimen_20"
+                    android:layout_height="@dimen/dimen_20"
+                    android:src="@drawable/ic_pencil" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="60dp"
+                    android:gravity="center_vertical"
+                    android:text="Edit Profile"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:fontFamily="@font/fontawesome"
+                    android:gravity="center_vertical"
+                    android:text=""
+                    android:textColor="@color/colorBlack"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <RelativeLayout
+                    android:id="@+id/giftsLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/box"
+                    android:padding="@dimen/dimen_20">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/myGifts"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="0"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="25sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="My Gifts"
+                            android:textColor="@color/colorBlack" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/box"
+                    android:padding="@dimen/dimen_20">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/profileBal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:drawableLeft="@drawable/ic_dollar"
+                            android:text=" 2000"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="25sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="Balance"
+                            android:textColor="@color/colorBlack" />
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+
             <ImageView
-                android:layout_width="@dimen/dimen_20"
-                android:src="@drawable/ic_pencil"
-                android:layout_height="@dimen/dimen_20"/>
-            <TextView
+                android:id="@+id/imageView_qrCodeScanner"
                 android:layout_width="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_marginLeft="60dp"
-                android:text="Edit Profile"
-                android:layout_centerVertical="true"
-                android:textColor="@color/colorBlack"
-                android:textSize="18sp"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_alignParentRight="true"
-                android:text=""
-                android:fontFamily="@font/fontawesome"
-                android:layout_centerVertical="true"
-                android:textColor="@color/colorBlack"
-                android:textSize="18sp"
-                android:layout_height="wrap_content"/>
-        </RelativeLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:weightSum="2"
-            android:layout_height="wrap_content">
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:padding="@dimen/dimen_20"
-                android:background="@drawable/box"
-                android:layout_weight="1"
-                android:id="@+id/giftsLayout"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_centerInParent="true"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:textColor="@color/colorAccent"
-                        android:text="0"
-                        android:textSize="25sp"
-                        android:layout_gravity="center_horizontal"
-                        android:textStyle="bold"
-                        android:id="@+id/myGifts"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:text="My Gifts"
-                        android:textColor="@color/colorBlack"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_height="wrap_content"/>
-                </LinearLayout>
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:padding="@dimen/dimen_20"
-                android:background="@drawable/box"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:orientation="vertical"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:textColor="@color/colorAccent"
-                        android:text=" 2000"
-                        android:textSize="25sp"
-                        android:id="@+id/profileBal"
-                        android:layout_gravity="center_horizontal"
-                        android:textStyle="bold"
-                        android:drawableLeft="@drawable/ic_dollar"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:text="Balance"
-                        android:textColor="@color/colorBlack"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_height="wrap_content"/>
-                </LinearLayout>
-            </RelativeLayout>
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/dimen_36"
+                android:src="@drawable/ic_scanner" />
+
+            <Button
+                android:id="@+id/changePasswordProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_36"
+                android:layout_marginRight="36dp"
+                android:background="@drawable/bg_button_colorprimary"
+                android:padding="18dp"
+                android:text="Change Password"
+                android:textAllCaps="false"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp" />
         </LinearLayout>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageView_qrCodeScanner"
-            android:src="@drawable/ic_scanner"
-            android:layout_margin="@dimen/dimen_36"
-            android:layout_gravity="center"/>
-
-        <Button
-            android:layout_width="match_parent"
-            android:background="@drawable/bg_button_colorprimary"
-            android:layout_marginRight="36dp"
-            android:layout_marginLeft="@dimen/dimen_36"
-            android:text="Change Password"
-            android:id="@+id/changePasswordProfile"
-            android:textColor="@color/colorWhite"
-            android:padding="18dp"
-            android:textAllCaps="false"
-            android:textSize="18sp"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 
 </LinearLayout>
