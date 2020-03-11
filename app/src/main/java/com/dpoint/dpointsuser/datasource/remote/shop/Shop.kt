@@ -40,7 +40,11 @@ class Shop(
     }
 
     override fun getPosition(): LatLng {
-        return LatLng(latitude.toDouble(), longitude.toDouble())
+        return try {
+            LatLng(latitude.toDouble(), longitude.toDouble())
+        } catch (e: NumberFormatException) {
+            LatLng(0.0, 0.0)
+        }
     }
 
 }

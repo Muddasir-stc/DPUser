@@ -166,6 +166,7 @@ class Dashboard : BaseActivity(), OnItemClickListener,
         Item("Shops", R.drawable.ic_users),
         //Item("Orders", R.drawable.ic_box),
         Item("Gift Cards", R.drawable.ic_giftcard),
+        Item("MemberShip Card", R.drawable.ic_giftcard),
         Item("History", R.drawable.ic_transaction),
         Item("Shops With Offer", R.drawable.ic_users),
         Item("Shops Near Me", R.drawable.ic_users),
@@ -187,6 +188,14 @@ class Dashboard : BaseActivity(), OnItemClickListener,
 //                        )
 //                    )}
                 "Gift Cards" -> {
+                    drawer.closeDrawers()
+                    startActivity(
+                        Intent(
+                            this,
+                            Gifts::class.java
+                        )
+                    )
+                } "MemberShip Card" -> {
                     drawer.closeDrawers()
                     startActivity(
                         Intent(
