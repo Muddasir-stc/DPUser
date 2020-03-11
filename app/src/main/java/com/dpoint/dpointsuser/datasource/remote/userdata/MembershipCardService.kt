@@ -35,35 +35,41 @@ class MembershipCardService private constructor() {
 
     fun addMemberShipCard(
         token: String,
-        menuModel: Menu,
+        user_id: Int,
+        title: String,
+        image: String,
+        ext:String,
         apiCallbackImpl: ApiCallbackImpl<MenuModel>
     ) {
         val service = ApiClient.retrofit.create(Service::class.java)
         val call = service.addMemberShipCard(
             "Bearer $token",
-            menuModel.title,
-            menuModel.image,
-            menuModel.ext
+            user_id,
+            title,
+            image,
+            ext
         )
         call.enqueue(CallbackImpl(apiCallbackImpl))
     }
 
     private interface Service {
-        @DELETE("membershipcard/{id}")
+        @DELETE("membershipCard/{id}")
         fun deleteMemberShipCard(
             @Header("Authorization") token: String,
             @Path("id") id: String
         ): Call<ApiResult<MenuModel>>
 
-        @GET("membershipcard")
+        @GET("membershipCard")
         fun getMemberShipCard(@Header("Authorization") token: String): Call<ApiResult<MenuModel>>
 
-        @POST("membershipcard")
+        @POST("membershipCard")
+        @FormUrlEncoded
         fun addMemberShipCard(
             @Header("Authorization") token: String,
+            @Field("user_id") user_id: Int,
             @Field("title") title: String,
             @Field("image") image: String,
-            @Field("ext") ext: String
+            @Field("ext")ext:String
         ): Call<ApiResult<MenuModel>>
     }
 }

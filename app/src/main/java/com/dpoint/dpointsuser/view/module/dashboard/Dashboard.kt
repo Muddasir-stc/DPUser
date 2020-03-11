@@ -13,6 +13,7 @@ import com.dpoint.dpointsuser.R
 import com.dpoint.dpointsuser.view.adapter.NavigationAdapter
 import com.dpoint.dpointsuser.view.module.dashboard.HistoryFragment
 import com.dpoint.dpointsuser.view.module.history.HistoryActivity
+import com.dpoint.dpointsuser.view.module.membership.MemberShipCardActivity
 import com.dpoint.dpointsuser.view.module.shops_near_me.ShopsNearMeActivity
 import com.dpoint.dpointsuser.view.offers.OfferFragment
 import com.dpoints.dpointsmerchant.datasource.model.Item
@@ -200,7 +201,7 @@ class Dashboard : BaseActivity(), OnItemClickListener,
                     startActivity(
                         Intent(
                             this,
-                            Gifts::class.java
+                            MemberShipCardActivity::class.java
                         )
                     )
                 }

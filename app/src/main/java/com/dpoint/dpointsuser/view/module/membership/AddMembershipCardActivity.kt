@@ -2,9 +2,11 @@ package com.dpoint.dpointsuser.view.module.membership
 
 import android.Manifest
 import android.app.Activity
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.ContentResolver
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.database.Cursor
@@ -15,24 +17,17 @@ import android.text.TextUtils
 import android.util.Log
 import android.webkit.MimeTypeMap
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.dpoint.dpointsuser.R
 import com.dpoint.dpointsuser.datasource.remote.shop.Menu
-import com.dpoints.dpointsmerchant.R
 import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
-import com.dpoints.dpointsmerchant.datasource.remote.shop.Menu
-import com.dpoints.dpointsmerchant.datasource.remote.shop.MenuModel
 import com.dpoints.dpointsmerchant.preferences.AppPreferences
 import com.dpoints.dpointsmerchant.preferences.UserPreferences
 import com.dpoints.dpointsmerchant.utilities.getVM
 import com.dpoints.dpointsmerchant.view.commons.base.BaseActivity
-import com.iceteck.silicompressorr.SiliCompressor
 import kotlinx.android.synthetic.main.activity_add_membership_card.*
-import kotlinx.android.synthetic.main.activity_add_menu.*
-import kotlinx.android.synthetic.main.fragment_first_form_page.*
-import kotlinx.android.synthetic.main.fragment_first_form_page.btnImage
-import kotlinx.android.synthetic.main.fragment_first_form_page.nextBT
 import java.io.ByteArrayOutputStream
 
 class AddMembershipCardActivity : BaseActivity() {
@@ -44,15 +39,13 @@ class AddMembershipCardActivity : BaseActivity() {
     private var shop_id: Int = 0
     private var actionType = "add"
     private var menuModel: Menu? = null
+
     override fun init() {
         backBtn.setOnClickListener {
             onBackPressed()
         }
-        if (intent.getStringExtra("actionType") != null) {
-            actionType = intent.getStringExtra("actionType")
-            menuModel = intent.getSerializableExtra("menu") as Menu
-            setData(menuModel!!)
-        } else shop_id = Integer.valueOf(intent.getStringExtra("data"))
+        checkPermission_WRITE_EXTERNAL_STORAGE(this)
+        var membership_title:String = et_membership_title.text.toString()
         btnImage.setOnClickListener {
             val intent = Intent()
             intent.action = Intent.ACTION_GET_CONTENT
@@ -61,85 +54,38 @@ class AddMembershipCardActivity : BaseActivity() {
         }
         nextBT.setOnClickListener {
             if (validate()) {
+                viewModel.addMemberShipCardState(UserPreferences.instance.getTokken(this)!!, UserPreferences.instance.getUser(this)!!.id,et_membership_title.text.toString(),imgStr,ext)
+
                 showProgress(this)
-                if (actionType.equals("add", true))
-                    viewModel.addMenu(
-                        UserPreferences.instance.getTokken(this)!!,
-                        Menu("", "", 0, imgStr, shop_id, etMenuTitle.text.toString(), ext, "")
-                    ) else if (actionType.equals("edit", true))
-                    viewModel.editMenu(
-                        UserPreferences.instance.getTokken(this)!!,
-                        Menu(
-                            "",
-                            "",
-                            menuModel!!.id,
-                            imgStr,
-                            menuModel!!.shop_id,
-                            etMenuTitle.text.toString(),
-                            ext,
-                            ""
-                        )
-                    )
+
             }
         }
         addObserver()
     }
-
-    private fun setData(model: Menu) {
-        shop_id = model.shop_id
-        Glide.with(this).load(model!!.image).into(btnImage)
-        ext = model.image!!.substring(model!!.image!!.length - 4, model!!.image!!.length)
-        imgStr = ""
-        etMenuTitle!!.setText(model.title)
-    }
-
     private fun addObserver() {
-        viewModel.addMenuState.observe(this, Observer {
+
+        viewModel.addMemberShipCardState.observe(this, Observer {
             it ?: return@Observer
             val state = it.getContentIfNotHandled() ?: return@Observer
             if (state is NetworkState.Loading) {
-                return@Observer //showProgress(this)
+                return@Observer
             }
             //hideProgress()
             when (state) {
                 is NetworkState.Success -> {
-                    Log.e("DATA", state.data?.message.toString())
+                    Log.e("DATAMEMBERSHIP", state.data?.message.toString())
+                    onSuccess(state.data!!.message)
                     hideProgress()
                     finish()
+
+
                 }
                 is NetworkState.Error -> onError(state.message)
                 is NetworkState.Failure -> onFailure(getString(R.string.request_error))
                 else -> onFailure(getString(R.string.connection_error))
             }
         })
-        viewModel.editMenuState.observe(this, Observer {
-            it ?: return@Observer
-            val state = it.getContentIfNotHandled() ?: return@Observer
-            if (state is NetworkState.Loading) {
-                return@Observer //showProgress(this)
-            }
-            //hideProgress()
-            when (state) {
-                is NetworkState.Success -> {
-                    Log.e("DATA", state.data?.message.toString())
-                    hideProgress()
-                    finish()
-                }
-                is NetworkState.Error -> {
-                    onError(state.message)
-                    hideProgress()
-                }
 
-                is NetworkState.Failure -> {
-                    onFailure(getString(R.string.request_error))
-                    hideProgress()
-                }
-                else -> {
-                    onFailure(getString(R.string.connection_error))
-                    hideProgress()
-                }
-            }
-        })
     }
 
     lateinit var progress: ProgressDialog
@@ -160,8 +106,8 @@ class AddMembershipCardActivity : BaseActivity() {
     }
 
     private fun validate(): Boolean {
-        if (etMenuTitle.text.isNullOrEmpty()) {
-            Toast.makeText(this, "Please give menu title.", Toast.LENGTH_SHORT).show()
+        if (et_membership_title.text.isNullOrEmpty()) {
+            Toast.makeText(this, "Please give membership title.", Toast.LENGTH_SHORT).show()
             return false
         } else if (imgStr.isNullOrEmpty()) {
             if (actionType.equals("edit", true))
@@ -184,7 +130,7 @@ class AddMembershipCardActivity : BaseActivity() {
             extension = mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(data.data))
             val filePath = getRealPathFromURI(bitmap, contentResolver)
             Log.e("PATH", filePath)
-            bitmap = SiliCompressor.with(applicationContext).getCompressBitmap(filePath, true);
+      //      bitmap = SiliCompressor.with(applicationContext).getCompressBitmap(filePath, true);
             imgStr = AppPreferences.instance.getStringImage(bitmap)
 
             ext = extension
@@ -192,22 +138,6 @@ class AddMembershipCardActivity : BaseActivity() {
         }
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-        when (requestCode) {
-            MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE -> {
-
-                if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-                    val intent = Intent()
-                    intent.action = Intent.ACTION_GET_CONTENT
-                    intent.type = "image/*"
-                    startActivityForResult(intent, 102)
-                } else {
-                    showPermissionDialog("External storage permission is necessary to access photos for upload", applicationContext,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE);
-                }
-            }
-        }
-    }
 
     fun getRealPathFromURI(inImage: Bitmap, contentResolver: ContentResolver):String {
         val bytes = ByteArrayOutputStream();
