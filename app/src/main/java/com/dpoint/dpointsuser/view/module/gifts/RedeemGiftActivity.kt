@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.activity_redeem_gift.btnGenerate
 import kotlinx.android.synthetic.main.activity_redeem_gift.qr_image
 import kotlinx.android.synthetic.main.activity_redeem_gift.tv_value
 
-class RedeemGiftActivity : BaseActivity() {
+class   RedeemGiftActivity : BaseActivity() {
     private var units: Int=0
     private var gift: MyGift?=null
     override val layout: Int=R.layout.activity_redeem_gift
