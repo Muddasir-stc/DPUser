@@ -4,6 +4,7 @@ data class Menu(
     val created_at: String,
     val description: String,
     val id: Int,
+    val user_id:Int,
     val image: String,
     val ext: String,
     val shop_id: Int,

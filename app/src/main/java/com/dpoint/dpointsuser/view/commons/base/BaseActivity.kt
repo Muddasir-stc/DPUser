@@ -1,12 +1,16 @@
 package com.dpoints.dpointsmerchant.view.commons.base
 
+import android.Manifest
 import android.app.Activity
 import android.app.NotificationManager
 import android.app.ProgressDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.location.LocationManager
 import android.net.ConnectivityManager
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -16,7 +20,9 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.annotation.DrawableRes
 import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.chancecoin.chance.views.commons.dialog.ResponseDialog
 import com.dpoint.dpointsuser.R
@@ -197,6 +203,47 @@ abstract class BaseActivity : AppCompatActivity(){
     fun isGpsEnabled(): Boolean {
         val manager = getSystemService(Context.LOCATION_SERVICE) as LocationManager?
         return manager?.isProviderEnabled(LocationManager.GPS_PROVIDER) ?: false
+    }
+    val MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 123;
+
+    fun showPermissionDialog(msg:String, context:Context,permission:String) {
+        val alertBuilder = AlertDialog.Builder(context);
+        alertBuilder.setCancelable(true);
+        alertBuilder.setTitle("Permission necessary");
+        alertBuilder.setMessage(msg);
+        alertBuilder.setPositiveButton(android.R.string.yes, DialogInterface.OnClickListener { dialogInterface, i ->
+            ActivityCompat.requestPermissions(context as Activity,
+                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+        })
+        val alert = alertBuilder.create();
+        alert.show();
+    }
+    fun checkPermission_WRITE_EXTERNAL_STORAGE(context:Context):Boolean {
+        val currentAPIVersion = Build.VERSION.SDK_INT;
+        if (currentAPIVersion >= android.os.Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(context,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(
+                        context as Activity,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                    showPermissionDialog("External storage permission is necessary to access photos for upload", context,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+                } else {
+                    ActivityCompat.requestPermissions(
+                        context,
+                        arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                        MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+                }
+                return false;
+            } else {
+                return true;
+            }
+
+        } else {
+            return true;
+        }
     }
 
     companion object {

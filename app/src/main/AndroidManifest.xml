@@ -40,6 +40,8 @@
         <activity android:name="com.dpoints.view.module.login.Login" />
         <activity android:name="com.dpoints.view.module.offers.Offers" />
         <activity android:name="com.dpoints.view.module.order.Order" />
+        <activity android:name=".view.module.membership.AddMembershipCardActivity" />
+
         <activity android:name="com.dpoints.view.module.shops.Shops" />
         <activity android:name="com.dpoints.dpointsmerchant.view.module.login.ForgotPasswordActivity" />
         <activity android:name="com.dpoints.dpointsmerchant.view.module.login.VerifyActivity" />

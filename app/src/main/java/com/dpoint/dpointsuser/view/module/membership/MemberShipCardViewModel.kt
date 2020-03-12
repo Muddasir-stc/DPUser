@@ -15,13 +15,13 @@ class MemberShipCardViewModel : ViewModel() {
     private val _addMemberShipCardState = MutableLiveData<Event<NetworkState<MenuModel>>>()
     val addMemberShipCardState: LiveData<Event<NetworkState<MenuModel>>> get() = _addMemberShipCardState
 
-    fun addMemberShipCardState(token: String, memberShipCardModel: Menu) {
+    fun addMemberShipCardState(token: String, userid:Int,title:String,image:String,ext:String) {
         _addMemberShipCardState.value = Event(NetworkState.Loading())
 
-        MembershipCardService.instance.addMemberShipCard(token, memberShipCardModel,
+        MembershipCardService.instance.addMemberShipCard(token,userid,title,image,ext,
             object : ApiCallbackImpl<MenuModel>(_addMemberShipCardState) {
                 override fun onSuccess(success: MenuModel?) {
-                    Log.e("Data", success?.message)
+                    Log.e("DataMEMBERSHIP", success?.message)
                     _addMemberShipCardState.value = Event(NetworkState.Success(success))
                 }
             })
@@ -36,7 +36,7 @@ class MemberShipCardViewModel : ViewModel() {
         MembershipCardService.instance.getMemberShipCard(token,
             object : ApiCallbackImpl<MenuModel>(_getMemberShipCardState) {
                 override fun onSuccess(success: MenuModel?) {
-                    Log.e("Data", success?.message)
+                    Log.e("DataMEM", success?.data.toString())
                     _getMemberShipCardState.value = Event(NetworkState.Success(success))
                 }
             })
