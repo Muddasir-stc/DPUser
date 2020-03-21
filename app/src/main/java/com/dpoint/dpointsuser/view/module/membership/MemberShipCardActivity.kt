@@ -15,20 +15,17 @@ import com.dpoint.dpointsuser.datasource.remote.shop.Menu
 import com.dpoint.dpointsuser.datasource.remote.shop.MenuModel
 import com.dpoint.dpointsuser.view.adapter.MembershipAdapter
 import com.dpoints.dpointsmerchant.utilities.OnItemClickListener
+import com.dpoints.dpointsmerchant.view.commons.base.BaseFragment
 import kotlinx.android.synthetic.main.activity_member_ship__cards.*
 
-class MemberShipCardActivity : BaseActivity(), OnItemClickListener {
+class MemberShipCardActivity : BaseFragment(), OnItemClickListener {
     override val layout: Int
         get() = R.layout.activity_member_ship__cards
-    private val viewModel by lazy { getVM<MemberShipCardViewModel>(this) }
+    private val viewModel by lazy { getVM<MemberShipCardViewModel>(activity!!) }
     private var membership: MenuModel? = null
-    override fun init() {
-        var backBtn = findViewById<ImageView>(R.id.backBtn)
-        backBtn.setOnClickListener {
-            onBackPressed()
-        }
+    override fun init(view : View) {
         addMembershipCard.setOnClickListener {
-            var intent = Intent(this, AddMembershipCardActivity::class.java)
+            var intent = Intent(activity!!, AddMembershipCardActivity::class.java)
 
             //  intent.putExtra("data", id.toString())
             intent.putExtra("action", "add_shop")
@@ -74,7 +71,7 @@ class MemberShipCardActivity : BaseActivity(), OnItemClickListener {
             when (state) {
                 is NetworkState.Success -> {
                     onSuccess(state.data!!.message)
-                    viewModel.getMemberShipCard(UserPreferences.instance.getTokken(this)!!)
+                    viewModel.getMemberShipCard(UserPreferences.instance.getTokken(activity!!)!!)
                     Log.e("DATADELETE", state.data?.message.toString())
 
                 }
@@ -86,23 +83,23 @@ class MemberShipCardActivity : BaseActivity(), OnItemClickListener {
     }
 
     private fun setData(data: MenuModel) {
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = LinearLayoutManager(activity!!)
         recyclerView.isNestedScrollingEnabled = true
         recyclerView.setHasFixedSize(true)
-        recyclerView.adapter = MembershipAdapter(this, this, data.data)
+        recyclerView.adapter = MembershipAdapter(activity!!, this, data.data)
 
 
     }
 
     override fun onResume() {
         super.onResume()
-        viewModel.getMemberShipCard(UserPreferences.instance.getTokken(this)!!)
+        viewModel.getMemberShipCard(UserPreferences.instance.getTokken(activity!!)!!)
     }
 
     override fun onItemClick(index: Int, adapter: Int) {
         val memberships = membership!!.data!![index]
         viewModel.deleteMemberShipCard(
-            UserPreferences.instance.getTokken(this)!!,
+            UserPreferences.instance.getTokken(activity!!)!!,
             memberships.id.toString()
         )
 

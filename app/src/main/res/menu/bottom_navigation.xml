@@ -8,11 +8,11 @@
         android:id="@+id/navigation_home"
         android:title="Home" />
     <item
-        android:icon="@drawable/ic_sale"
+        android:icon="@drawable/ic_location"
         android:enabled="true"
         app:showAsAction="ifRoom"
-        android:id="@+id/navigation_notifications"
-        android:title="Offers" />
+        android:id="@+id/navigation_shop_near_me"
+        android:title="Shops Near Me" />
     <item
         android:icon="@drawable/ic_qrcodescan_120401"
         android:enabled="true"

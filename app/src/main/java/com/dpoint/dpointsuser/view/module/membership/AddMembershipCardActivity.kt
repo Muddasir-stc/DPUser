@@ -1,25 +1,18 @@
 package com.dpoint.dpointsuser.view.module.membership
 
-import android.Manifest
 import android.app.Activity
-import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.ContentResolver
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.database.Cursor
 import android.graphics.Bitmap
 import android.net.Uri
 import android.provider.MediaStore
-import android.text.TextUtils
 import android.util.Log
 import android.webkit.MimeTypeMap
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
-import com.bumptech.glide.Glide
 import com.dpoint.dpointsuser.R
 import com.dpoint.dpointsuser.datasource.remote.shop.Menu
 import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
@@ -45,7 +38,7 @@ class AddMembershipCardActivity : BaseActivity() {
             onBackPressed()
         }
         checkPermission_WRITE_EXTERNAL_STORAGE(this)
-        var membership_title:String = et_membership_title.text.toString()
+        var membership_title: String = et_membership_title.text.toString()
         btnImage.setOnClickListener {
             val intent = Intent()
             intent.action = Intent.ACTION_GET_CONTENT
@@ -54,7 +47,13 @@ class AddMembershipCardActivity : BaseActivity() {
         }
         nextBT.setOnClickListener {
             if (validate()) {
-                viewModel.addMemberShipCardState(UserPreferences.instance.getTokken(this)!!, UserPreferences.instance.getUser(this)!!.id,et_membership_title.text.toString(),imgStr,ext)
+                viewModel.addMemberShipCardState(
+                    UserPreferences.instance.getTokken(this)!!,
+                    UserPreferences.instance.getUser(this)!!.id,
+                    et_membership_title.text.toString(),
+                    imgStr,
+                    ext
+                )
 
                 showProgress(this)
 
@@ -62,6 +61,7 @@ class AddMembershipCardActivity : BaseActivity() {
         }
         addObserver()
     }
+
     private fun addObserver() {
 
         viewModel.addMemberShipCardState.observe(this, Observer {
@@ -122,31 +122,42 @@ class AddMembershipCardActivity : BaseActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 102 && resultCode == Activity.RESULT_OK && data != null) {
             var bitmap =
-                MediaStore.Images.Media.getBitmap(applicationContext.getContentResolver(), data.data)
+                MediaStore.Images.Media.getBitmap(
+                    applicationContext.contentResolver,
+                    data.data
+                )
             btnImage.setImageBitmap(bitmap)
             val extension: String?
             val contentResolver = applicationContext.contentResolver
             val mimeTypeMap = MimeTypeMap.getSingleton()
             extension = mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(data.data))
-            val filePath = getRealPathFromURI(bitmap, contentResolver)
+            val filePath = getRealPathFromURI(data.data, contentResolver)
             Log.e("PATH", filePath)
-      //      bitmap = SiliCompressor.with(applicationContext).getCompressBitmap(filePath, true);
+            //      bitmap = SiliCompressor.with(applicationContext).getCompressBitmap(filePath, true);
+            val bytes = ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, bytes)
             imgStr = AppPreferences.instance.getStringImage(bitmap)
-
             ext = extension
             Log.e("EXTEN", imgStr)
         }
     }
 
 
-    fun getRealPathFromURI(inImage: Bitmap, contentResolver: ContentResolver):String {
-        val bytes = ByteArrayOutputStream();
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-        val path = MediaStore.Images.Media.insertImage(contentResolver, inImage, "shop_image", null);
-        val cursor: Cursor = contentResolver.query(Uri.parse(path), null, null, null, null)!!
-        cursor.moveToFirst();
-        val idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
-        return cursor.getString(idx);
+    fun getRealPathFromURI(uri: Uri?, contentResolver: ContentResolver): String {
+        var result: String? = null
+        var proj = arrayOf(MediaStore.Images.Media.DATA)
+        val cursor: Cursor = contentResolver.query(uri, proj, null, null, null)!!
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                var index = cursor.getColumnIndexOrThrow(proj[0])
+                result = cursor.getString(index)
+            }
+            cursor.close()
+        }
+        if (result == null) {
+            result = "Url Not Found"
+        }
+        return result
     }
 
 }

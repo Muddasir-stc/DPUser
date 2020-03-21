@@ -15,7 +15,6 @@ import com.dpoint.dpointsuser.view.module.dashboard.HistoryFragment
 import com.dpoint.dpointsuser.view.module.history.HistoryActivity
 import com.dpoint.dpointsuser.view.module.membership.MemberShipCardActivity
 import com.dpoint.dpointsuser.view.module.shops_near_me.ShopsNearMeActivity
-import com.dpoint.dpointsuser.view.offers.OfferFragment
 import com.dpoints.dpointsmerchant.datasource.model.Item
 import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
 import com.dpoints.dpointsmerchant.datasource.remote.auth.User
@@ -26,6 +25,7 @@ import com.dpoints.dpointsmerchant.view.commons.base.BaseActivity
 import com.dpoints.dpointsmerchant.view.module.shops.ShopViewModel
 import com.dpoints.view.module.gifts.Gifts
 import com.dpoints.view.module.notifications.Notification
+import com.dpoints.view.module.offers.Offers
 import com.dpoints.view.module.shops.Shops
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_dashboard.*
@@ -44,7 +44,7 @@ class Dashboard : BaseActivity(), OnItemClickListener,
     private val scanner = ScannerFragment()
     private val history = HistoryFragment()
     private val notifications = Notification()
-    private val offers = OfferFragment()
+    private val shopsNearMe = ShopsNearMeActivity()
     private var tag = "Home"
     private val viewModel by lazy { getVM<ShopViewModel>(this) }
     override val layout: Int = R.layout.activity_dashboard
@@ -60,11 +60,11 @@ class Dashboard : BaseActivity(), OnItemClickListener,
 
         if (intent.getStringExtra("NOTIFICATION") != null) {
             if (intent.getStringExtra("NOTIFICATION").equals("YES")) {
-                bottomNav.selectedItemId = R.id.navigation_notifications
-                // applayChanages(notifications,"Notification")
+                bottomNav.selectedItemId = R.id.navigation_shop_near_me
+                // applyChanges(notifications,"Notification")
             }
         } else {
-            applayChanages(home, "Home")
+            applyChanges(home, "Home")
         }
         //  Crashlytics.getInstance().crash()
         ic_ham.setOnClickListener {
@@ -90,7 +90,7 @@ class Dashboard : BaseActivity(), OnItemClickListener,
 
         viewProfile.setOnClickListener {
             bottomNav.selectedItemId = R.id.navigation_profile
-            applayChanages(profile, "Profile")
+            applyChanges(profile, "Profile")
             drawer.closeDrawers()
         }
 //
@@ -98,18 +98,18 @@ class Dashboard : BaseActivity(), OnItemClickListener,
 //            when (it.itemId) {
 //                R.id.navigation_home -> {
 //                    titleBarName.text = "Dashboard"
-//                    applayChanages(Home())
+//                    applyChanges(Home())
 //                }
 //                R.id.navigation_notifications -> {
 //                    titleBarName.text = "Notifications"
-//                    applayChanages(Notification())
+//                    applyChanges(Notification())
 //                }
 //                R.id.navigation_setting -> {
 //                    true
 //                }
 //                R.id.navigation_profile -> {
 //                    titleBarName.text = "Profile"
-//                    applayChanages(Profile())
+//                    applyChanges(Profile())
 //                }
 //            }
 //            false
@@ -122,7 +122,7 @@ class Dashboard : BaseActivity(), OnItemClickListener,
     override fun onBackPressed() {
         if (!tag.equals("Home")) {
             bottomNav.selectedItemId = R.id.navigation_home
-            applayChanages(home, "Home")
+            applyChanges(home, "Home")
         } else {
             super.onBackPressed()
         }
@@ -131,24 +131,25 @@ class Dashboard : BaseActivity(), OnItemClickListener,
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.navigation_home -> {
-                applayChanages(home, "Home")
+                applyChanges(home, "Home")
                 return true
             }
-            R.id.navigation_notifications -> {
-                applayChanages(offers, "Offers")
+            R.id.navigation_shop_near_me -> {
+                viewModel.getShops(UserPreferences.instance.getTokken(this)!!)
+                addObserver()
                 //Toast.makeText(this,"Notification",Toast.LENGTH_SHORT).show()
                 return true
             }
             R.id.navigation_profile -> {
-                applayChanages(profile, "Profile")
+                applyChanges(profile, "Profile")
                 return true
             }
             R.id.va_scanner -> {
-                applayChanages(scanner, "Scan Offer")
+                applyChanges(scanner, "Scan Offer")
                 return true
             }
             R.id.navigation_wallet -> {
-                applayChanages(history, "History")
+                applyChanges(HistoryFragment(), "Wallet")
                 return true
             }
             else -> {
@@ -157,7 +158,7 @@ class Dashboard : BaseActivity(), OnItemClickListener,
         }
     }
 
-    private fun applayChanages(fr: Fragment, tag: String) {
+    private fun applyChanges(fr: Fragment, tag: String) {
         this.tag = tag
         titleBarName.text = tag
         supportFragmentManager.beginTransaction().replace(R.id.container, fr).commit()
@@ -167,10 +168,10 @@ class Dashboard : BaseActivity(), OnItemClickListener,
         Item("Shops", R.drawable.ic_users),
         //Item("Orders", R.drawable.ic_box),
         Item("Gift Cards", R.drawable.ic_giftcard),
-        Item("MemberShip Card", R.drawable.ic_giftcard),
+     //   Item("MemberShip Card", R.drawable.ic_giftcard),
         Item("History", R.drawable.ic_transaction),
         Item("Shops With Offer", R.drawable.ic_users),
-        Item("Shops Near Me", R.drawable.ic_users),
+        Item("Offers", R.drawable.ic_users),
         Item("About Us", R.drawable.ic_question),
         Item("Logout", R.drawable.ic_logout)
 
@@ -196,7 +197,8 @@ class Dashboard : BaseActivity(), OnItemClickListener,
                             Gifts::class.java
                         )
                     )
-                } "MemberShip Card" -> {
+                }
+                "MemberShip Card" -> {
                     drawer.closeDrawers()
                     startActivity(
                         Intent(
@@ -228,10 +230,14 @@ class Dashboard : BaseActivity(), OnItemClickListener,
                     intent.putExtra("data", "offer")
                     startActivity(intent)
                 }
-                "Shops Near Me" -> {
+                "Offers" -> {
                     drawer.closeDrawers()
-                    viewModel.getShops(UserPreferences.instance.getTokken(this)!!)
-                    addObserver()
+                    startActivity(
+                        Intent(
+                            this,
+                            Offers::class.java
+                        )
+                    )
                 }
                 "History" -> {
                     drawer.closeDrawers()
@@ -274,9 +280,10 @@ class Dashboard : BaseActivity(), OnItemClickListener,
                         if (model.instagram == null)
                             model.instagram = ""
                     }
-                    var intent = Intent(this, ShopsNearMeActivity::class.java)
-                    intent.putExtra("data", state.data)
-                    startActivity(intent)
+                    applyChanges(
+                        ShopsNearMeActivity.newInstance("Shops Near By", state.data),
+                        "Shops Near By"
+                    )
                 }
                 is NetworkState.Error -> onError(state.message)
                 is NetworkState.Failure -> onFailure(getString(R.string.request_error))

@@ -102,7 +102,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_ver"
 
     //Qr Code
-    implementation 'com.journeyapps:zxing-android-embedded:3.0.2@aar'
+    implementation 'com.journeyapps:zxing-android-embedded:3.6.0@aar'
     implementation 'com.google.zxing:core:3.4.0'
     // implementation 'com.google.zxing:android-core:3.3.0'
 
@@ -112,7 +112,6 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt "com.github.bumptech.glide:compiler:$glide_ver"
     annotationProcessor "com.github.bumptech.glide:compiler:$glide_ver"
-
 
     //Retrofit
     def retrofit_ver = '2.5.0'
@@ -141,6 +140,5 @@ dependencies {
     //Qrscanner
     implementation 'com.budiyev.android:code-scanner:2.1.0'
     implementation 'com.google.maps.android:android-maps-utils:0.5'
-
 }
 apply plugin: 'com.google.gms.google-services'

@@ -70,7 +70,7 @@ class   RedeemGiftActivity : BaseActivity() {
         })
         btnGenerate.setOnClickListener {
            if(units>0){
-               val data="{\"type\":\"redeem\",\"gift_card_id\":\"${gift?.gift_card_id}\",\"user_id\":\"${UserPreferences.instance.getUser(this)!!.id}\",\"shop_id\":\"${gift?.shop_id}\",\"user_gift_card_id\":\"${gift?.id}\",\"user_gift_card_title\":\"${gift?.title}\",\"amount\":\"${gift?.amount}\",\"number_of_units\":\"${units}\",\" unit \":\"${gift?.unit}\"}"
+               val data="{\"type\":\"redeem\",\"gift_card_id\":\"${gift?.gift_card_id}\",\"user_id\":\"${UserPreferences.instance.getUser(this)!!.id}\",\"shop_id\":\"${gift?.shop_id}\",\"user_gift_card_id\":\"${gift?.id}\",\"user_gift_card_title\":\"${gift?.title}\",\"amount\":\"${gift?.amount}\",\"number_of_units\":\"${units}\",\"unit\":\"${gift?.unit}\"}"
                viewQRModel.getQrImage(data)
            }else{
                onError("Number of units must be greater than 0")

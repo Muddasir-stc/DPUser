@@ -1,21 +1,16 @@
 package com.dpoint.dpointsuser.view.module.gifts
 
 import android.graphics.Bitmap
-import android.graphics.Color
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.dpoints.dpointsmerchant.datasource.remote.ApiCallbackImpl
 import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
-import com.dpoints.dpointsmerchant.datasource.remote.editoffer.EditOfferService
-import com.dpoints.dpointsmerchant.datasource.remote.editoffer.ShopModel
-import com.dpoints.dpointsmerchant.datasource.remote.offer.AddOfferModel
-import com.dpoints.dpointsmerchant.datasource.remote.offer.OfferService
 import com.dpoints.dpointsmerchant.utilities.Event
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
+import com.google.zxing.WriterException
 import com.google.zxing.common.BitMatrix
+import com.journeyapps.barcodescanner.BarcodeEncoder
 
 class QrViewModel : ViewModel() {
    lateinit var bitMatrix: BitMatrix
@@ -24,6 +19,20 @@ class QrViewModel : ViewModel() {
 
 
     fun getQrImage(value: String) {
+            _qrState.value = Event(NetworkState.Loading())
+            val multiFormatWriter = MultiFormatWriter()
+            try {
+                val bitMatrix =
+                    multiFormatWriter.encode(value, BarcodeFormat.QR_CODE, 500, 500)
+                val barcodeEncoder = BarcodeEncoder()
+                val bitmap = barcodeEncoder.createBitmap(bitMatrix)
+                _qrState.value = Event(NetworkState.Success(bitmap))
+            } catch (e: WriterException) {
+                e.printStackTrace()
+                _qrState.value = Event(NetworkState.Error("Argument Exception"))
+            }
+    }
+    /* fun getQrImage(value: String) {
         val QRcodeWidth=500
         _qrState.value = Event(NetworkState.Loading())
 
@@ -59,6 +68,6 @@ class QrViewModel : ViewModel() {
         val bitmap = Bitmap.createBitmap(bitMatrixWidth, bitMatrixHeight, Bitmap.Config.ARGB_4444)
         bitmap.setPixels(pixels, 0, 500, 0, 0, bitMatrixWidth, bitMatrixHeight)
         _qrState.value = Event(NetworkState.Success(bitmap))
-    }
+    }*/
 
 }

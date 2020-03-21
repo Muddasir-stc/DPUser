@@ -8,13 +8,14 @@ import android.location.Location
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import com.dpoint.dpointsuser.R
 import com.dpoint.dpointsuser.datasource.remote.shop.Shop
 import com.dpoint.dpointsuser.datasource.remote.shop.ShopModel
-import com.dpoints.dpointsmerchant.view.commons.base.BaseActivity
+import com.dpoints.dpointsmerchant.view.commons.base.BaseFragment
 import com.dpoints.view.module.shops.ShopDetailActivity
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GooglePlayServicesUtil
@@ -29,14 +30,17 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.maps.android.clustering.Cluster
 import com.google.maps.android.clustering.ClusterManager
 import com.google.maps.android.clustering.view.DefaultClusterRenderer
-import kotlinx.android.synthetic.main.activity_shops_near_me.*
 
-class ShopsNearMeActivity : BaseActivity(), OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,
+private const val ARG_PARAM1 = "param1"
+private const val ARG_PARAM2 = "param2"
+
+class ShopsNearMeActivity : BaseFragment(), OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,
     GoogleApiClient.OnConnectionFailedListener, LocationListener,
     ClusterManager.OnClusterClickListener<Shop>,
     ClusterManager.OnClusterItemClickListener<Shop>,
     ClusterManager.OnClusterItemInfoWindowClickListener<Shop> {
     override val layout: Int = R.layout.activity_shops_near_me
+
     private var googleMap: GoogleMap? = null
     private var mapFragment: SupportMapFragment? = null
     private var clusterManager: ClusterManager<Shop>? = null
@@ -44,20 +48,16 @@ class ShopsNearMeActivity : BaseActivity(), OnMapReadyCallback, GoogleApiClient.
     private var mGoogleApiClient: GoogleApiClient? = null
     private val PLAY_SERVICES_RESOLUTION_REQUEST = 9000
     private val TAG = "MAP LOCATION"
-    override fun init() {
-        backBtn.setOnClickListener {
-            onBackPressed()
-        }
-        mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
+    override fun init(view: View) {
+        mapFragment =
+            childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment!!.getMapAsync(this)
-        shop = intent.getParcelableExtra("data")
-        Log.e("Shops near me", shop!!.data.size.toString())
         if (checkPlayService()) {
             // If this check succeeds, proceed with normal processing.
             // Otherwise, prompt user to get valid Play Services APK.
-            if (!AppUtils.isLocationEnabled(this)) { // notify user
+            if (!AppUtils.isLocationEnabled(activity!!)) { // notify user
                 val dialog =
-                    AlertDialog.Builder(this)
+                    AlertDialog.Builder(activity!!)
                 dialog.setMessage("Location not enabled!")
                 dialog.setPositiveButton(
                     "Open location settings"
@@ -75,14 +75,14 @@ class ShopsNearMeActivity : BaseActivity(), OnMapReadyCallback, GoogleApiClient.
             }
             buildGoogleApiClient()
         } else {
-            Toast.makeText(this, "Location not supported in this device", Toast.LENGTH_SHORT)
+            Toast.makeText(activity!!, "Location not supported in this device", Toast.LENGTH_SHORT)
                 .show()
         }
     }
 
     @Synchronized
     protected fun buildGoogleApiClient() {
-        mGoogleApiClient = GoogleApiClient.Builder(this)
+        mGoogleApiClient = GoogleApiClient.Builder(activity!!)
             .addConnectionCallbacks(this)
             .addOnConnectionFailedListener(this)
             .addApi(LocationServices.API)
@@ -110,11 +110,11 @@ class ShopsNearMeActivity : BaseActivity(), OnMapReadyCallback, GoogleApiClient.
     }
 
     private fun checkPlayService(): Boolean {
-        val resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this)
+        val resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(activity!!)
         if (resultCode != ConnectionResult.SUCCESS) {
             if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
                 GooglePlayServicesUtil.getErrorDialog(
-                    resultCode, this,
+                    resultCode, activity!!,
                     PLAY_SERVICES_RESOLUTION_REQUEST
                 ).show()
             } else { //finish();
@@ -127,7 +127,7 @@ class ShopsNearMeActivity : BaseActivity(), OnMapReadyCallback, GoogleApiClient.
     override fun onMapReady(mMap: GoogleMap?) {
         this.googleMap = mMap
         setupMap(mMap)
-        clusterManager = ClusterManager<Shop>(this, mMap)
+        clusterManager = ClusterManager<Shop>(activity!!, mMap)
         googleMap!!.moveCamera(
             CameraUpdateFactory.newLatLngZoom(
                 LatLng(-26.167616, 28.079329),
@@ -139,7 +139,7 @@ class ShopsNearMeActivity : BaseActivity(), OnMapReadyCallback, GoogleApiClient.
         googleMap!!.setOnInfoWindowClickListener(clusterManager)
         addShops()
         clusterManager!!.cluster()
-        var renderer = CustomMarkerRenderer(this, googleMap!!, clusterManager!!)
+        var renderer = CustomMarkerRenderer(activity!!, googleMap!!, clusterManager!!)
         clusterManager!!.renderer = renderer
         clusterManager!!.setOnClusterClickListener(this)
         clusterManager!!.setOnClusterItemClickListener(this)
@@ -168,10 +168,10 @@ class ShopsNearMeActivity : BaseActivity(), OnMapReadyCallback, GoogleApiClient.
         // permissions
         // permissions
         if (ActivityCompat.checkSelfPermission(
-                this,
+                activity!!,
                 Manifest.permission.ACCESS_FINE_LOCATION
             ) !== PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                this,
+                activity!!,
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) !== PackageManager.PERMISSION_GRANTED
         ) {
@@ -180,14 +180,33 @@ class ShopsNearMeActivity : BaseActivity(), OnMapReadyCallback, GoogleApiClient.
         mMap.setMyLocationEnabled(true)
     }
 
+    private var param1: String? = null
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            param1 = it.getString(ARG_PARAM1)
+            shop = it.getParcelable(ARG_PARAM2)
+        }
+    }
+
+    companion object {
+        @JvmStatic
+        fun newInstance(param1: String, param2: ShopModel) =
+            ShopsNearMeActivity().apply {
+                arguments = Bundle().apply {
+                    putString(ARG_PARAM1, param1)
+                    putParcelable(ARG_PARAM2, param2)
+                }
+            }
+    }
 
     private fun changeMap(location: Location) {
         Log.d("FetchLocationActivity", "Reaching map$googleMap")
         if (ActivityCompat.checkSelfPermission(
-                this,
+                activity!!,
                 Manifest.permission.ACCESS_FINE_LOCATION
             ) !== PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                this,
+                activity!!,
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) !== PackageManager.PERMISSION_GRANTED
         ) { // TODO: Consider calling
@@ -199,7 +218,7 @@ class ShopsNearMeActivity : BaseActivity(), OnMapReadyCallback, GoogleApiClient.
             val latLong: LatLng
             latLong = LatLng(location.latitude, location.longitude)
             val cameraPosition = CameraPosition.Builder()
-                .target(latLong).zoom(8f).build()
+                .target(latLong).zoom(10.5f).build()
             googleMap!!.setMyLocationEnabled(true)
             googleMap!!.getUiSettings().isMyLocationButtonEnabled = true
             googleMap!!.animateCamera(
@@ -209,7 +228,7 @@ class ShopsNearMeActivity : BaseActivity(), OnMapReadyCallback, GoogleApiClient.
 
         } else {
             Toast.makeText(
-                applicationContext,
+                activity!!,
                 "Sorry! unable to create maps", Toast.LENGTH_SHORT
             )
                 .show()
@@ -218,10 +237,10 @@ class ShopsNearMeActivity : BaseActivity(), OnMapReadyCallback, GoogleApiClient.
 
     override fun onConnected(bundle: Bundle?) {
         if (ActivityCompat.checkSelfPermission(
-                this,
+                activity!!,
                 Manifest.permission.ACCESS_FINE_LOCATION
             ) !== PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                this,
+                activity!!,
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) !== PackageManager.PERMISSION_GRANTED
         ) { // TODO: Consider calling
@@ -309,7 +328,7 @@ class ShopsNearMeActivity : BaseActivity(), OnMapReadyCallback, GoogleApiClient.
     }
 
     override fun onClusterItemInfoWindowClick(p0: Shop?) {
-        val intent = Intent(this, ShopDetailActivity::class.java)
+        val intent = Intent(activity!!, ShopDetailActivity::class.java)
         var model = p0
         if (model!!.website == null)
             model.website = ""

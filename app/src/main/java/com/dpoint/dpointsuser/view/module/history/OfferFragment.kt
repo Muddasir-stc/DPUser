@@ -16,6 +16,7 @@ import com.dpoints.dpointsmerchant.utilities.getVM
 import com.dpoints.dpointsmerchant.view.commons.base.BaseFragment
 import com.dpoints.dpointsmerchant.view.module.transaction.TransactionViewModel
 import com.dpoints.view.adapter.TransactionsAdapter
+import kotlinx.android.synthetic.main.fragment_offer_history.*
 
 
 class OfferFragment : BaseFragment() {
@@ -42,8 +43,16 @@ class OfferFragment : BaseFragment() {
             // hideProgress()
             when (state) {
                 is NetworkState.Success -> {
-                    Log.e("DATTA", state.data?.data?.size.toString())
-                    setupTransactions(state?.data?.data)
+
+                    if (state.data!!.data.isNullOrEmpty()) {
+                        textView_noDataFound.visibility = View.VISIBLE
+                        recyclerView.visibility = View.GONE
+
+                    } else {
+                        textView_noDataFound.visibility = View.GONE
+                        recyclerView.visibility = View.VISIBLE
+                        setupTransactions(state?.data?.data)
+                    }
                 }
                 is NetworkState.Error -> onError(state.message)
                 is NetworkState.Failure -> onFailure(getString(R.string.request_error))
