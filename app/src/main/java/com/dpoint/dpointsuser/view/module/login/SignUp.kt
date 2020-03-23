@@ -116,7 +116,7 @@ class SignUp : BaseActivity() {
             false
         }
         (et_password.text.length !in 6..15)-> {
-            et_password.error = "Password Length Must Be 8-15"
+            et_password.error = "Password Length Must Be 6-15"
             et_password.requestFocus()
             false
         }

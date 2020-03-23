@@ -50,6 +50,12 @@ class ChangePasswordActivity : BaseActivity() {
             newPasss.requestFocus()
             false
         }
+        (newPasss.text.length !in 6..15)->{
+            newPasss.error="Password Length Must Be 6-15"
+            newPasss.requestFocus()
+            false
+        }
+       
         (confrmPasss.text != null && TextUtils.isEmpty(confrmPasss.text.toString().trim())) -> {
             confrmPasss.error = "Please Conform Password"
             confrmPasss.requestFocus()

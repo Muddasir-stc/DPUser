@@ -6,6 +6,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.dpoint.dpointsuser.R
 import com.dpoint.dpointsuser.datasource.remote.shop.Shop
@@ -47,6 +48,7 @@ class   RedeemGiftActivity : BaseActivity() {
                 count: Int
             ) {
 
+
             }
 
 
@@ -69,7 +71,10 @@ class   RedeemGiftActivity : BaseActivity() {
             }
         })
         btnGenerate.setOnClickListener {
-           if(units>0){
+            if(units>gift!!.number_of_units){
+               onError("Please enter unit less than available unit")
+            }
+           else if(units>0){
                val data="{\"type\":\"redeem\",\"gift_card_id\":\"${gift?.gift_card_id}\",\"user_id\":\"${UserPreferences.instance.getUser(this)!!.id}\",\"shop_id\":\"${gift?.shop_id}\",\"user_gift_card_id\":\"${gift?.id}\",\"user_gift_card_title\":\"${gift?.title}\",\"amount\":\"${gift?.amount}\",\"number_of_units\":\"${units}\",\"unit\":\"${gift?.unit}\"}"
                viewQRModel.getQrImage(data)
            }else{

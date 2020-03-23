@@ -170,6 +170,7 @@ class ShopDetailActivity : BaseActivity(), LocationListener {
         txtTitle.text = shop!!.shop_name
         txtDesc.text = shop!!.description
         txtRating.text = shop!!.rating
+        Log.d("rating123",shop!!.rating)
         txtMembership.text = shop!!.membership_status
         txtCoinValue.text = "${shop!!.shop_percentage.toString()}" + " %"
         //txtPhone.text = shop!!.contact

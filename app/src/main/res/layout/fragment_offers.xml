@@ -23,7 +23,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="No Menu available."
+            android:layout_gravity="center"
+            android:text="No Offer available."
             android:textSize="18sp"
             android:textStyle="bold" />
     </FrameLayout>

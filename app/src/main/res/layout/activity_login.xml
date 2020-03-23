@@ -76,6 +76,7 @@
                     android:background="@color/white"
                     android:hint="@string/enter_password"
                     android:padding="5dp"
+                    android:maxLength="15"
                     android:inputType="textPassword"
                     android:id="@+id/et_password"
                     android:textSize="18sp" />
