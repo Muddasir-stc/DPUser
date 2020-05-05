@@ -1,6 +1,7 @@
 package com.dpoint.dpointsuser.view.adapter
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.graphics.Color
 import android.os.Build
 import android.view.LayoutInflater
@@ -18,7 +19,9 @@ class NavigationAdapter(
     private val items:List<Item>,
     private val listener: OnItemClickListener
 ) : RecyclerView.Adapter<NavigationAdapter.ViewHolder>() {
+    private var context: Context?=null
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
+        context = p0.context
         val view = LayoutInflater.from(p0.context).inflate(R.layout.item_drawer,p0,false)
         return ViewHolder(view)
     }
@@ -29,12 +32,12 @@ class NavigationAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindTo(items[position])
         if(position %2 == 1) {
-            holder.view.setBackgroundColor(Color.parseColor("#12a6a2"))
+            holder.view.setBackgroundColor(context!!.resources.getColor(R.color.colorPrimary))
 
 
         }
         else {
-            holder.view.setBackgroundColor(Color.parseColor("#0abab5"))
+            holder.view.setBackgroundColor(context!!.resources.getColor(R.color.colorPrimaryDark))
 
 
         }

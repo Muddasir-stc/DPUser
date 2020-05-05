@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".view.module.login.LoginOptionActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="140dp"
+            android:layout_marginTop="72dp"
+            android:layout_marginBottom="@dimen/dimen_36"
+            android:adjustViewBounds="true"
+            app:srcCompat="@drawable/login_copy" />
+
+        <TextView
+            android:id="@+id/textView_google"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_24"
+            android:layout_marginTop="@dimen/dimen_24"
+            android:layout_marginRight="@dimen/dimen_24"
+            android:background="@drawable/bg_rounded_white"
+            android:drawableLeft="@drawable/ic_google_icon"
+            android:gravity="center"
+            android:paddingLeft="@dimen/dimen_24"
+            android:paddingTop="@dimen/dimen_16"
+            android:paddingRight="@dimen/dimen_24"
+            android:paddingBottom="@dimen/dimen_16"
+            android:text="@string/sign_in_google"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_facebook"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_24"
+            android:layout_marginTop="@dimen/dimen_24"
+            android:layout_marginRight="@dimen/dimen_24"
+            android:background="@drawable/bg_rounded_white"
+            android:drawableLeft="@drawable/ic_facebook"
+            android:gravity="center"
+            android:paddingLeft="@dimen/dimen_24"
+            android:paddingTop="@dimen/dimen_16"
+            android:paddingRight="@dimen/dimen_24"
+            android:paddingBottom="@dimen/dimen_16"
+            android:text="@string/sign_in_facebook"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_24"
+            android:layout_marginTop="@dimen/dimen_24"
+            android:layout_marginRight="@dimen/dimen_24"
+            android:background="@drawable/bg_rounded_white"
+            android:drawableLeft="@drawable/ic_email_gray"
+            android:gravity="center"
+            android:paddingLeft="@dimen/dimen_24"
+            android:paddingTop="@dimen/dimen_16"
+            android:paddingRight="@dimen/dimen_24"
+            android:paddingBottom="@dimen/dimen_16"
+            android:text="@string/sign_in_email"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_signup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_24"
+            android:layout_marginTop="@dimen/dimen_24"
+            android:layout_marginRight="@dimen/dimen_24"
+            android:background="@drawable/bg_rounded_white"
+            android:drawableLeft="@drawable/ic_email_gray"
+            android:gravity="center"
+            android:paddingLeft="@dimen/dimen_24"
+            android:paddingTop="@dimen/dimen_16"
+            android:paddingRight="@dimen/dimen_24"
+            android:paddingBottom="@dimen/dimen_16"
+            android:text="@string/sign_up_email"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</LinearLayout>

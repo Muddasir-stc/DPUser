@@ -154,4 +154,9 @@ class ScannerFragment : BaseFragment(){
        })
    }
 
+    override fun onPause() {
+        super.onPause()
+        if (codeScanner != null)
+            codeScanner.releaseResources()
+    }
 }

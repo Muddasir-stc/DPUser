@@ -26,6 +26,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.chancecoin.chance.views.commons.dialog.ResponseDialog
 import com.dpoint.dpointsuser.R
+import com.dpoint.dpointsuser.view.module.login.LoginOptionActivity
 import com.dpoints.dpointsmerchant.datasource.remote.ApiClient
 import com.dpoints.dpointsmerchant.preferences.UserPreferences
 import com.dpoints.dpointsmerchant.utilities.LoginType
@@ -142,7 +143,7 @@ abstract class BaseActivity : AppCompatActivity(){
     }
 
     open fun startLoginActivity() {
-        val intent = Intent(Intent(this, Login::class.java))
+        val intent = Intent(Intent(this, LoginOptionActivity::class.java))
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
         startActivity(intent)

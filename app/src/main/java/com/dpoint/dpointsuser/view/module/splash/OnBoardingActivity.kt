@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import com.dpoint.dpointsuser.R
+import com.dpoint.dpointsuser.view.module.login.LoginOptionActivity
 import com.dpoints.dpointsmerchant.preferences.UserPreferences
 import com.dpoints.view.module.dashboard.Dashboard
 import com.dpoints.view.module.login.Login
@@ -23,7 +24,7 @@ class OnBoardingActivity : AppCompatActivity() {
             if (UserPreferences().isLoggedIn(this@OnBoardingActivity)) {
                 startActivity(Intent(this@OnBoardingActivity, Dashboard::class.java))
             } else {
-                startActivity(Intent(this@OnBoardingActivity, Login::class.java))
+                startActivity(Intent(this@OnBoardingActivity, LoginOptionActivity::class.java))
             }
             finish()
         }

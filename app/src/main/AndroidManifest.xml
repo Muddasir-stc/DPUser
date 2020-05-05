@@ -46,6 +46,8 @@
         <activity android:name="com.dpoints.dpointsmerchant.view.module.login.ForgotPasswordActivity" />
         <activity android:name="com.dpoints.dpointsmerchant.view.module.login.VerifyActivity" />
         <activity android:name="com.dpoints.view.module.profile.Profile" />
+        <activity android:name=".view.module.login.LoginOptionActivity"
+            android:screenOrientation="portrait"></activity>
         <activity android:name="com.dpoints.dpointsmerchant.view.module.login.ResetPasswordActivity" />
         <activity android:name="com.dpoints.view.module.profile.ChangePasswordActivity" />
         <activity android:name="com.dpoints.view.module.gifts.Gifts" />
@@ -112,6 +114,16 @@
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
             </intent-filter>
         </service>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.dpoint.android.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>
