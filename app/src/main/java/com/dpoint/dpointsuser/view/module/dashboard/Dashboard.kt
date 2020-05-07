@@ -58,6 +58,11 @@ class Dashboard : BaseActivity(), OnItemClickListener,
         bottomNav.setOnNavigationItemSelectedListener(this)
         showProgress(this)
 
+
+        viewProfile.setOnClickListener {
+            applyChanges(profile, "Profile")
+        }
+
         if (intent.getStringExtra("NOTIFICATION") != null) {
             if (intent.getStringExtra("NOTIFICATION").equals("YES")) {
                 bottomNav.selectedItemId = R.id.navigation_shop_near_me
