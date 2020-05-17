@@ -75,7 +75,7 @@
                     android:layout_height="wrap_content"
                     android:text="shopping_text"
                     android:textColor="@color/color_text_1"
-                    android:id="@+id/tvDate"
+                    android:id="@+id/textView_coins"
                     android:maxLines="2"
                     android:paddingRight="5dp"
                     android:visibility="visible"
