@@ -218,7 +218,7 @@ class ShopsNearMeActivity : BaseFragment(), OnMapReadyCallback, GoogleApiClient.
             val latLong: LatLng
             latLong = LatLng(location.latitude, location.longitude)
             val cameraPosition = CameraPosition.Builder()
-                .target(latLong).zoom(10.5f).build()
+                .target(latLong).zoom(12f).build()
             googleMap!!.setMyLocationEnabled(true)
             googleMap!!.getUiSettings().isMyLocationButtonEnabled = true
             googleMap!!.animateCamera(

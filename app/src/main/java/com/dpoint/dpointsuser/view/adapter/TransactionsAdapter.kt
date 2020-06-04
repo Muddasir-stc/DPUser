@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.dpoint.dpointsuser.R
 import com.dpoint.dpointsuser.datasource.remote.transaction.UsedOffer
 import com.dpoints.dpointsmerchant.utilities.DateTime
+import java.text.SimpleDateFormat
 import java.util.*
 
 class TransactionsAdapter(
@@ -25,7 +26,7 @@ class TransactionsAdapter(
         val textView_restrauntName: TextView = view.findViewById(R.id.textView_restrauntName)
         val textView_offer: TextView = view.findViewById(R.id.textView_offer)
         val textView_coins: TextView = view.findViewById(R.id.textView_coins)
-      //  val tvDate: TextView = view.findViewById(R.id.tvDate)
+        val tvDate: TextView = view.findViewById(R.id.textView_date)
         val mEarn: TextView = view.findViewById(R.id.textView_assign)
 
 
@@ -50,6 +51,9 @@ class TransactionsAdapter(
         holder.textView_restrauntName.text = "Shop - " + model.shop_name
         holder.textView_offer.text = model.shop_description
         holder.textView_coins.text = model.offer + " DPoints on Shopping of " + model.amount
-        //holder.tvDate.text = model.created_at.split(" ")[0];
+        var format = SimpleDateFormat("yyyy-MM-dd HH:MM:SS")
+        var date = format.parse(model.created_at)
+        val format2 = SimpleDateFormat("dd/MM/yyyy").format(date)
+        holder.tvDate.text = format2
     }
 }
