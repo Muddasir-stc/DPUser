@@ -12,8 +12,8 @@ import com.dpoint.dpointsuser.datasource.remote.history.Exchange
 import com.dpoint.dpointsuser.datasource.remote.history.HistoryGift
 import com.dpoint.dpointsuser.datasource.remote.history.HistoryGiftData
 import com.dpoint.dpointsuser.datasource.remote.history.Redeem
-import com.dpoints.dpointsmerchant.datasource.remote.transaction.Tran
-import com.dpoints.dpointsmerchant.utilities.OnItemClickListener
+import com.dpoint.dpointsuser.datasource.remote.transaction.Tran
+import com.dpoint.dpointsuser.utilities.OnItemClickListener
 
 class RedeemAdapter(
     private val listitem: List<HistoryGiftData>,

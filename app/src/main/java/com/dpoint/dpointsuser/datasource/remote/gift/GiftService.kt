@@ -1,11 +1,9 @@
-package com.dpoints.dpointsmerchant.datasource.remote.gift
+package com.dpoint.dpointsuser.datasource.remote.gift
 
-import com.dpoint.dpointsuser.datasource.remote.gift.GiftModel
-import com.dpoints.dpointsmerchant.datasource.remote.ApiCallback
-import com.dpoints.dpointsmerchant.datasource.remote.ApiCallbackImpl
-import com.dpoints.dpointsmerchant.datasource.remote.ApiClient
-import com.dpoints.dpointsmerchant.datasource.remote.ApiResult
-import com.dpoints.dpointsmerchant.successsource.remote.CallbackImpl
+import com.dpoint.dpointsuser.datasource.remote.ApiCallbackImpl
+import com.dpoint.dpointsuser.datasource.remote.ApiClient
+import com.dpoint.dpointsuser.datasource.remote.ApiResult
+import com.dpoint.dpointsuser.datasource.remote.CallbackImpl
 import retrofit2.Call
 import retrofit2.http.*
 

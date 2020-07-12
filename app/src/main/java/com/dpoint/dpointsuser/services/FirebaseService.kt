@@ -1,4 +1,4 @@
-package com.dpoints.dpointsmerchant.services
+package com.dpoint.dpointsuser.services
 
 import android.app.ActivityManager
 import android.app.Notification
@@ -11,15 +11,15 @@ import androidx.core.app.NotificationCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import com.dpoints.dpointsmerchant.preferences.UserPreferences
-import com.dpoints.dpointsmerchant.utilities.Action
+import com.dpoint.dpointsuser.preferences.UserPreferences
+import com.dpoint.dpointsuser.utilities.Action
 import android.graphics.BitmapFactory
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Icon
 import android.util.Log
 import com.dpoint.dpointsuser.R
-import com.dpoints.dpointsmerchant.utilities.toJson
+import com.dpoint.dpointsuser.utilities.toJson
 import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.URL

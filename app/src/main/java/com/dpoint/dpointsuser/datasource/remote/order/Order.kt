@@ -1,4 +1,4 @@
-package com.dpoints.dpointsmerchant.datasource.remote.order
+package com.dpoint.dpointsuser.datasource.remote.order
 
 data class Order(
     val coins: String,

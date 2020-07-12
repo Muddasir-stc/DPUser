@@ -1,16 +1,16 @@
-package com.dpoints.dpointsmerchant.view.module.order
+package com.dpoint.dpointsuser.view.module.order
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.dpoints.dpointsmerchant.datasource.remote.ApiCallbackImpl
-import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
-import com.dpoints.dpointsmerchant.datasource.remote.dashboard.NotificationModel
-import com.dpoints.dpointsmerchant.datasource.remote.order.OrderModel
-import com.dpoints.dpointsmerchant.datasource.remote.order.OrderService
-import com.dpoints.dpointsmerchant.utilities.Event
-import com.dpoints.dpointsmerchant.utilities.toJson
+import com.dpoint.dpointsuser.datasource.remote.ApiCallbackImpl
+import com.dpoint.dpointsuser.datasource.remote.NetworkState
+import com.dpoint.dpointsuser.datasource.remote.dashboard.NotificationModel
+import com.dpoint.dpointsuser.datasource.remote.order.OrderModel
+import com.dpoint.dpointsuser.datasource.remote.order.OrderService
+import com.dpoint.dpointsuser.utilities.Event
+import com.dpoint.dpointsuser.utilities.toJson
 
 class OrderViewModel : ViewModel() {
 

@@ -1,4 +1,4 @@
-package com.dpoints.dpointsmerchant.view.module.dashboard
+package com.dpoint.dpointsuser.view.module.dashboard
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -6,14 +6,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.dpoint.dpointsuser.datasource.remote.offer.AssignModel
 import com.dpoint.dpointsuser.datasource.remote.shop.ShopModel
-import com.dpoints.dpointsmerchant.datasource.remote.ApiCallbackImpl
-import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
-import com.dpoints.dpointsmerchant.datasource.remote.dashboard.NotificationModel
-import com.dpoints.dpointsmerchant.datasource.remote.offer.OfferModel
-import com.dpoints.dpointsmerchant.datasource.remote.offer.OfferService
-import com.dpoints.dpointsmerchant.datasource.remote.shop.ShopService
-import com.dpoints.dpointsmerchant.utilities.Event
-import com.dpoints.dpointsmerchant.utilities.toJson
+import com.dpoint.dpointsuser.datasource.remote.ApiCallbackImpl
+import com.dpoint.dpointsuser.datasource.remote.NetworkState
+import com.dpoint.dpointsuser.datasource.remote.dashboard.NotificationModel
+import com.dpoint.dpointsuser.datasource.remote.offer.OfferModel
+import com.dpoint.dpointsuser.datasource.remote.offer.OfferService
+import com.dpoint.dpointsuser.datasource.remote.shop.ShopService
+import com.dpoint.dpointsuser.utilities.Event
+import com.dpoint.dpointsuser.utilities.toJson
 
 
 class DashboardViewModel : ViewModel() {

@@ -1,8 +1,8 @@
-package com.dpoints.dpointsmerchant.datasource.remote
+package com.dpoint.dpointsuser.datasource.remote
 
 import com.dpoint.dpointsuser.BuildConfig
-import com.dpoints.dpointsmerchant.datasource.remote.auth.TokenAuthenticator
-import com.dpoints.dpointsmerchant.datasource.remote.auth.asString
+import com.dpoint.dpointsuser.datasource.remote.auth.TokenAuthenticator
+import com.dpoint.dpointsuser.datasource.remote.auth.asString
 import okhttp3.Dispatcher
 import okhttp3.OkHttpClient
 import okhttp3.Response

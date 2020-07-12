@@ -10,11 +10,11 @@ import android.util.Patterns
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.dpoint.dpointsuser.R
-import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
-import com.dpoints.dpointsmerchant.utilities.getVM
-import com.dpoints.dpointsmerchant.view.commons.base.BaseActivity
-import com.dpoints.dpointsmerchant.view.module.login.LoginViewModel
-import com.dpoints.dpointsmerchant.view.module.login.VerifyActivity
+import com.dpoint.dpointsuser.datasource.remote.NetworkState
+import com.dpoint.dpointsuser.utilities.getVM
+import com.dpoint.dpointsuser.view.commons.base.BaseActivity
+import com.dpoint.dpointsuser.view.module.login.LoginViewModel
+import com.dpoint.dpointsuser.view.module.login.VerifyActivity
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import java.text.SimpleDateFormat
 import java.util.*

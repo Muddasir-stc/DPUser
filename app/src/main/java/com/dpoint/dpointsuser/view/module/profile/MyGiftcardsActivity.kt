@@ -11,11 +11,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dpoint.dpointsuser.R
 import com.dpoint.dpointsuser.datasource.remote.userdata.MyGiftModel
 import com.dpoint.dpointsuser.view.module.gifts.RedeemGiftActivity
-import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
-import com.dpoints.dpointsmerchant.preferences.UserPreferences
-import com.dpoints.dpointsmerchant.utilities.OnItemClickListener
-import com.dpoints.dpointsmerchant.utilities.getVM
-import com.dpoints.dpointsmerchant.view.commons.base.BaseActivity
+import com.dpoint.dpointsuser.datasource.remote.NetworkState
+import com.dpoint.dpointsuser.preferences.UserPreferences
+import com.dpoint.dpointsuser.utilities.OnItemClickListener
+import com.dpoint.dpointsuser.utilities.getVM
+import com.dpoint.dpointsuser.view.commons.base.BaseActivity
 import com.dpoints.view.adapter.MyGiftAdapter
 import kotlinx.android.synthetic.main.activity_my_giftcards.*
 import kotlinx.android.synthetic.main.activity_my_giftcards.myGifts

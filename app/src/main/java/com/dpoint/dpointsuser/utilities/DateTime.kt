@@ -1,4 +1,4 @@
-package com.dpoints.dpointsmerchant.utilities
+package com.dpoint.dpointsuser.utilities
 
 import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormat

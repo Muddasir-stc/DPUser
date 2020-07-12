@@ -1,4 +1,4 @@
-package com.dpoints.dpointsmerchant.utilities
+package com.dpoint.dpointsuser.utilities
 
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModel

@@ -23,12 +23,12 @@ import com.dpoint.dpointsuser.datasource.model.ScanedOffer
 import com.dpoint.dpointsuser.datasource.remote.history.HistoryGiftData
 import com.dpoint.dpointsuser.datasource.remote.history.Redeem
 import com.dpoint.dpointsuser.view.module.history.HistoryViewModel
-import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
-import com.dpoints.dpointsmerchant.preferences.UserPreferences
-import com.dpoints.dpointsmerchant.utilities.fromJson
-import com.dpoints.dpointsmerchant.utilities.getVM
-import com.dpoints.dpointsmerchant.utilities.toJson
-import com.dpoints.dpointsmerchant.view.commons.base.BaseFragment
+import com.dpoint.dpointsuser.datasource.remote.NetworkState
+import com.dpoint.dpointsuser.preferences.UserPreferences
+import com.dpoint.dpointsuser.utilities.fromJson
+import com.dpoint.dpointsuser.utilities.getVM
+import com.dpoint.dpointsuser.utilities.toJson
+import com.dpoint.dpointsuser.view.commons.base.BaseFragment
 import com.dpoints.view.adapter.RedeemAdapter
 import kotlinx.android.synthetic.main.content_dashboard.*
 

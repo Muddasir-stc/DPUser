@@ -8,8 +8,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.dpoint.dpointsuser.R
 import com.dpoints.datasource.model.OrdersModel
-import com.dpoints.dpointsmerchant.datasource.remote.order.Order
-import com.dpoints.dpointsmerchant.utilities.OnItemClickListener
+import com.dpoint.dpointsuser.datasource.remote.order.Order
+import com.dpoint.dpointsuser.utilities.OnItemClickListener
 
 class OrdersAdapter(
     private val listitem :List<Order>,

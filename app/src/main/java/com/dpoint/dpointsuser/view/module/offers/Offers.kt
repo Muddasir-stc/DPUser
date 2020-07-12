@@ -5,13 +5,13 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dpoint.dpointsuser.R
-import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
-import com.dpoints.dpointsmerchant.datasource.remote.offer.Data
-import com.dpoints.dpointsmerchant.preferences.UserPreferences
-import com.dpoints.dpointsmerchant.utilities.OnItemClickListener
-import com.dpoints.dpointsmerchant.utilities.getVM
-import com.dpoints.dpointsmerchant.view.commons.base.BaseActivity
-import com.dpoints.dpointsmerchant.view.module.shops.ShopViewModel
+import com.dpoint.dpointsuser.datasource.remote.NetworkState
+import com.dpoint.dpointsuser.datasource.remote.offer.Data
+import com.dpoint.dpointsuser.preferences.UserPreferences
+import com.dpoint.dpointsuser.utilities.OnItemClickListener
+import com.dpoint.dpointsuser.utilities.getVM
+import com.dpoint.dpointsuser.view.commons.base.BaseActivity
+import com.dpoint.dpointsuser.view.module.shops.ShopViewModel
 import com.dpoints.view.adapter.OfferAdapter
 import kotlinx.android.synthetic.main.activity_offers.*
 

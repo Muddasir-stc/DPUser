@@ -17,11 +17,11 @@ import com.dpoint.dpointsuser.view.module.history.HistoryActivity
 import com.dpoint.dpointsuser.view.module.profile.MyGiftcardsActivity
 import com.dpoint.dpointsuser.view.module.profile.UpdateProfileActivity
 import com.dpoint.dpointsuser.view.module.profile.UserViewModel
-import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
-import com.dpoints.dpointsmerchant.preferences.UserPreferences
-import com.dpoints.dpointsmerchant.utilities.getVM
-import com.dpoints.dpointsmerchant.utilities.toJson
-import com.dpoints.dpointsmerchant.view.commons.base.BaseFragment
+import com.dpoint.dpointsuser.datasource.remote.NetworkState
+import com.dpoint.dpointsuser.preferences.UserPreferences
+import com.dpoint.dpointsuser.utilities.getVM
+import com.dpoint.dpointsuser.utilities.toJson
+import com.dpoint.dpointsuser.view.commons.base.BaseFragment
 import com.dpoints.view.module.profile.ChangePasswordActivity
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.fragment_profile.*

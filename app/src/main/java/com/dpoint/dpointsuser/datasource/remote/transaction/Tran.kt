@@ -1,4 +1,4 @@
-package com.dpoints.dpointsmerchant.datasource.remote.transaction
+package com.dpoint.dpointsuser.datasource.remote.transaction
 
 data class Tran(
     val coins: String,

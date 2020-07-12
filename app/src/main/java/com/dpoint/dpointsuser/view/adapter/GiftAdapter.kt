@@ -11,7 +11,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.dpoint.dpointsuser.R
 import com.dpoint.dpointsuser.datasource.remote.gift.Data
-import com.dpoints.dpointsmerchant.utilities.OnItemClickListener
+import com.dpoint.dpointsuser.utilities.OnItemClickListener
 import java.text.SimpleDateFormat
 import java.util.*
 

@@ -20,7 +20,7 @@ import androidx.core.app.NotificationCompat;
 
 import com.bumptech.glide.Glide;
 import com.dpoint.dpointsuser.R;
-import com.dpoints.dpointsmerchant.preferences.UserPreferences;
+import com.dpoint.dpointsuser.preferences.UserPreferences;
 import com.dpoints.view.module.dashboard.Dashboard;
 import com.dpoints.view.module.splash.OnBoardingActivity;
 import com.google.firebase.messaging.FirebaseMessagingService;

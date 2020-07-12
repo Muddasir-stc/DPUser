@@ -1,14 +1,14 @@
-package com.dpoints.dpointsmerchant.view.module.transaction
+package com.dpoint.dpointsuser.view.module.transaction
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.dpoint.dpointsuser.datasource.remote.transaction.UsedOfferModel
-import com.dpoints.dpointsmerchant.datasource.remote.ApiCallbackImpl
-import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
-import com.dpoints.dpointsmerchant.datasource.remote.transaction.TransactionService
-import com.dpoints.dpointsmerchant.utilities.Event
+import com.dpoint.dpointsuser.datasource.remote.ApiCallbackImpl
+import com.dpoint.dpointsuser.datasource.remote.NetworkState
+import com.dpoint.dpointsuser.datasource.remote.transaction.TransactionService
+import com.dpoint.dpointsuser.utilities.Event
 
 class TransactionViewModel : ViewModel() {
 

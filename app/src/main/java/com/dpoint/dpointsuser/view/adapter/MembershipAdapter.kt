@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dpoint.dpointsuser.R
 import com.dpoint.dpointsuser.datasource.remote.shop.Menu
-import com.dpoints.dpointsmerchant.utilities.OnItemClickListener
+import com.dpoint.dpointsuser.utilities.OnItemClickListener
 
 class MembershipAdapter (
     private var context: Context,

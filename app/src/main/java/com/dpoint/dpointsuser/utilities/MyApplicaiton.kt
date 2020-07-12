@@ -1,4 +1,4 @@
-package com.dpoints.dpointsmerchant.utilities
+package com.dpoint.dpointsuser.utilities
 
 import android.app.Application
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T

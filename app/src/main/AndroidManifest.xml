@@ -43,12 +43,12 @@
         <activity android:name=".view.module.membership.AddMembershipCardActivity" />
 
         <activity android:name="com.dpoints.view.module.shops.Shops" />
-        <activity android:name="com.dpoints.dpointsmerchant.view.module.login.ForgotPasswordActivity" />
-        <activity android:name="com.dpoints.dpointsmerchant.view.module.login.VerifyActivity" />
+        <activity android:name="com.dpoint.dpointsuser.view.module.login.ForgotPasswordActivity" />
+        <activity android:name="com.dpoint.dpointsuser.view.module.login.VerifyActivity" />
         <activity android:name="com.dpoints.view.module.profile.Profile" />
         <activity android:name=".view.module.login.LoginOptionActivity"
             android:screenOrientation="portrait"></activity>
-        <activity android:name="com.dpoints.dpointsmerchant.view.module.login.ResetPasswordActivity" />
+        <activity android:name="com.dpoint.dpointsuser.view.module.login.ResetPasswordActivity" />
         <activity android:name="com.dpoints.view.module.profile.ChangePasswordActivity" />
         <activity android:name="com.dpoints.view.module.gifts.Gifts" />
         <activity android:name="com.dpoints.view.module.transaction.Transaction" />
@@ -98,7 +98,7 @@
             android:screenOrientation="portrait"
             tools:replace="screenOrientation" />
         <!--
-  <service android:name="com.dpoints.dpointsmerchant.services.FirebaseService">
+  <service android:name="com.dpoint.dpointsuser.services.FirebaseService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

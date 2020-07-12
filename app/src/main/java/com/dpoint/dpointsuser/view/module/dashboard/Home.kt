@@ -11,13 +11,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import com.dpoint.dpointsuser.R
-import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
-import com.dpoints.dpointsmerchant.datasource.remote.offer.Data
-import com.dpoints.dpointsmerchant.preferences.UserPreferences
-import com.dpoints.dpointsmerchant.utilities.OnItemClickListener
-import com.dpoints.dpointsmerchant.utilities.getVM
-import com.dpoints.dpointsmerchant.view.commons.base.BaseFragment
-import com.dpoints.dpointsmerchant.view.module.dashboard.DashboardViewModel
+import com.dpoint.dpointsuser.datasource.remote.NetworkState
+import com.dpoint.dpointsuser.datasource.remote.offer.Data
+import com.dpoint.dpointsuser.preferences.UserPreferences
+import com.dpoint.dpointsuser.utilities.OnItemClickListener
+import com.dpoint.dpointsuser.utilities.getVM
+import com.dpoint.dpointsuser.view.commons.base.BaseFragment
+import com.dpoint.dpointsuser.view.module.dashboard.DashboardViewModel
 import com.dpoints.view.adapter.OfferAdapter
 import com.dpoints.view.adapter.ShopAdapter
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -26,7 +26,7 @@ import com.dpoint.dpointsuser.datasource.remote.gift.GiftModel
 import com.dpoint.dpointsuser.datasource.remote.shop.Shop
 import com.dpoint.dpointsuser.view.module.dashboard.SearchActivity
 import com.dpoint.dpointsuser.view.module.gifts.GiftCardsViewModel
-import com.dpoints.dpointsmerchant.utilities.toJson
+import com.dpoint.dpointsuser.utilities.toJson
 import com.dpoints.view.module.shops.ShopDetailActivity
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.smarteist.autoimageslider.IndicatorAnimations
@@ -35,7 +35,7 @@ import com.smarteist.autoimageslider.SliderView
 
 
 class Home : BaseFragment() {
-    //    private var selectedGift: com.dpoints.dpointsmerchant.datasource.remote.gift?=null
+    //    private var selectedGift: com.dpoint.dpointsuser.datasource.remote.gift?=null
 //    private var selectedOffer: Menu?=null
     private lateinit var dialog: BottomSheetDialog
     private lateinit var codeScanner: CodeScanner

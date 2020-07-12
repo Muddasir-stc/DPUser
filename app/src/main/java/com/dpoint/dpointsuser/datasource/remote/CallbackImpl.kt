@@ -1,9 +1,7 @@
-package com.dpoints.dpointsmerchant.successsource.remote
+package com.dpoint.dpointsuser.datasource.remote
 
 import android.util.Log
-import com.dpoints.dpointsmerchant.datasource.remote.ApiCallback
-import com.dpoints.dpointsmerchant.datasource.remote.ApiResult
-import com.dpoints.dpointsmerchant.utilities.CONNECTION_ERROR
+import com.dpoint.dpointsuser.utilities.CONNECTION_ERROR
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -52,7 +50,7 @@ abstract class Callback<T, R>(
 
 open class CallbackImpl<T>(
     private val callback: ApiCallback<T>
-) : com.dpoints.dpointsmerchant.successsource.remote.Callback<T, T>(callback) {
+) : com.dpoint.dpointsuser.datasource.remote.Callback<T, T>(callback) {
     override fun onSuccess(data: T) {
         when {
             else -> callback.onSuccess(data)

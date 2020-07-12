@@ -12,8 +12,8 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.dpoint.dpointsuser.R
-import com.dpoints.dpointsmerchant.datasource.model.Item
-import com.dpoints.dpointsmerchant.utilities.OnItemClickListener
+import com.dpoint.dpointsuser.datasource.model.Item
+import com.dpoint.dpointsuser.utilities.OnItemClickListener
 
 class NavigationAdapter(
     private val items:List<Item>,

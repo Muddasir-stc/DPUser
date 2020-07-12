@@ -1,6 +1,6 @@
-package com.dpoints.dpointsmerchant.datasource.remote.auth
+package com.dpoint.dpointsuser.datasource.remote.auth
 
-import com.dpoints.dpointsmerchant.utilities.LoginType
+import com.dpoint.dpointsuser.utilities.LoginType
 import com.squareup.moshi.Json
 
 data class UserModel (

@@ -1,4 +1,4 @@
-package com.dpoints.dpointsmerchant.view.commons.base
+package com.dpoint.dpointsuser.view.commons.base
 
 import android.Manifest
 import android.app.Activity
@@ -24,14 +24,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.chancecoin.chance.views.commons.dialog.ResponseDialog
 import com.dpoint.dpointsuser.R
 import com.dpoint.dpointsuser.view.module.login.LoginOptionActivity
-import com.dpoints.dpointsmerchant.datasource.remote.ApiClient
-import com.dpoints.dpointsmerchant.preferences.UserPreferences
-import com.dpoints.dpointsmerchant.utilities.LoginType
+import com.dpoint.dpointsuser.datasource.remote.ApiClient
+import com.dpoint.dpointsuser.preferences.UserPreferences
 import com.dpoints.view.module.dashboard.Dashboard
-import com.dpoints.view.module.login.Login
 import com.facebook.login.LoginManager
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability

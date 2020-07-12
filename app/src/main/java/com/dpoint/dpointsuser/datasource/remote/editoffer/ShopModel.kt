@@ -1,4 +1,4 @@
-package com.dpoints.dpointsmerchant.datasource.remote.editoffer
+package com.dpoint.dpointsuser.datasource.remote.editoffer
 
 data class ShopModel(
     val `data`: List<Data>,

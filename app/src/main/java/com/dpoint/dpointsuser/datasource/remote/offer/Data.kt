@@ -1,4 +1,4 @@
-package com.dpoints.dpointsmerchant.datasource.remote.offer
+package com.dpoint.dpointsuser.datasource.remote.offer
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

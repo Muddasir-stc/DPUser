@@ -7,9 +7,9 @@ import androidx.lifecycle.ViewModel
 import com.dpoint.dpointsuser.datasource.remote.shop.Menu
 import com.dpoint.dpointsuser.datasource.remote.shop.MenuModel
 import com.dpoint.dpointsuser.datasource.remote.userdata.MembershipCardService
-import com.dpoints.dpointsmerchant.datasource.remote.ApiCallbackImpl
-import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
-import com.dpoints.dpointsmerchant.utilities.Event
+import com.dpoint.dpointsuser.datasource.remote.ApiCallbackImpl
+import com.dpoint.dpointsuser.datasource.remote.NetworkState
+import com.dpoint.dpointsuser.utilities.Event
 
 class MemberShipCardViewModel : ViewModel() {
     private val _addMemberShipCardState = MutableLiveData<Event<NetworkState<MenuModel>>>()

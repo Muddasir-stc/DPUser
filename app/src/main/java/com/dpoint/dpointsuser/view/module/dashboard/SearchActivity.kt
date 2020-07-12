@@ -12,13 +12,13 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dpoint.dpointsuser.datasource.remote.shop.Shop
-import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
-import com.dpoints.dpointsmerchant.preferences.UserPreferences
-import com.dpoints.dpointsmerchant.utilities.OnItemClickListener
-import com.dpoints.dpointsmerchant.utilities.getVM
-import com.dpoints.dpointsmerchant.utilities.toJson
-import com.dpoints.dpointsmerchant.view.commons.base.BaseActivity
-import com.dpoints.dpointsmerchant.view.module.shops.ShopViewModel
+import com.dpoint.dpointsuser.datasource.remote.NetworkState
+import com.dpoint.dpointsuser.preferences.UserPreferences
+import com.dpoint.dpointsuser.utilities.OnItemClickListener
+import com.dpoint.dpointsuser.utilities.getVM
+import com.dpoint.dpointsuser.utilities.toJson
+import com.dpoint.dpointsuser.view.commons.base.BaseActivity
+import com.dpoint.dpointsuser.view.module.shops.ShopViewModel
 import com.dpoints.view.adapter.ShopAdapter
 import com.dpoints.view.module.shops.ShopDetailActivity
 

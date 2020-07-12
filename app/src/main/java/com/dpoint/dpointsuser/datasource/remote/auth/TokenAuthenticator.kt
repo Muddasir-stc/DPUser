@@ -1,9 +1,9 @@
-package com.dpoints.dpointsmerchant.datasource.remote.auth
+package com.dpoint.dpointsuser.datasource.remote.auth
 
-import com.dpoints.dpointsmerchant.datasource.remote.ApiClient
-import com.dpoints.dpointsmerchant.datasource.remote.ApiResult
-import com.dpoints.dpointsmerchant.datasource.remote.ErrorCodes.Companion.TOKEN_EXPIRED
-import com.dpoints.dpointsmerchant.utilities.fromJson
+import com.dpoint.dpointsuser.datasource.remote.ApiClient
+import com.dpoint.dpointsuser.datasource.remote.ApiResult
+import com.dpoint.dpointsuser.datasource.remote.ErrorCodes.Companion.TOKEN_EXPIRED
+import com.dpoint.dpointsuser.utilities.fromJson
 import okhttp3.*
 import retrofit2.Call
 import retrofit2.http.GET

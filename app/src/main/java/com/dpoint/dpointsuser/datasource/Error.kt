@@ -1,4 +1,4 @@
-package com.dpoints.dpointsmerchant.datasource
+package com.dpoint.dpointsuser.datasource
 
 data class Error(
     val code:String?=null,

@@ -1,4 +1,4 @@
-package com.dpoints.dpointsmerchant.datasource.remote
+package com.dpoint.dpointsuser.datasource.remote
 
 class ErrorCodes {
 
