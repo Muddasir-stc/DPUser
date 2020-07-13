@@ -11,7 +11,7 @@ import com.dpoint.dpointsuser.datasource.remote.shop.Shop
 import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
 import com.dpoints.dpointsmerchant.datasource.remote.offer.OfferModel
 import com.dpoints.dpointsmerchant.preferences.UserPreferences
-import com.dpoints.dpointsmerchant.utilities.OnItemClickListener
+import com.dpoint.dpointsuser.utilities.OnItemClickListener
 import com.dpoints.dpointsmerchant.utilities.getVM
 import com.dpoints.dpointsmerchant.view.commons.base.BaseFragment
 import com.dpoints.dpointsmerchant.view.module.shops.ShopViewModel

@@ -1,8 +1,5 @@
 package com.dpoint.dpointsuser.view.module.dashboard
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import com.dpoint.dpointsuser.R
 import kotlinx.android.synthetic.main.activity_search.*
 import android.text.Editable
@@ -14,13 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dpoint.dpointsuser.datasource.remote.shop.Shop
 import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
 import com.dpoints.dpointsmerchant.preferences.UserPreferences
-import com.dpoints.dpointsmerchant.utilities.OnItemClickListener
 import com.dpoints.dpointsmerchant.utilities.getVM
-import com.dpoints.dpointsmerchant.utilities.toJson
 import com.dpoints.dpointsmerchant.view.commons.base.BaseActivity
 import com.dpoints.dpointsmerchant.view.module.shops.ShopViewModel
 import com.dpoints.view.adapter.ShopAdapter
-import com.dpoints.view.module.shops.ShopDetailActivity
 
 
 class SearchActivity : BaseActivity() {

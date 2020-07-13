@@ -7,11 +7,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dpoint.dpointsuser.R
 import com.dpoint.dpointsuser.datasource.remote.transaction.UsedOffer
-import com.dpoint.dpointsuser.datasource.remote.transaction.UsedOfferModel
 import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
-import com.dpoints.dpointsmerchant.datasource.remote.transaction.Tran
 import com.dpoints.dpointsmerchant.preferences.UserPreferences
-import com.dpoints.dpointsmerchant.utilities.OnItemClickListener
 import com.dpoints.dpointsmerchant.utilities.getVM
 import com.dpoints.dpointsmerchant.view.commons.base.BaseFragment
 import com.dpoints.dpointsmerchant.view.module.transaction.TransactionViewModel

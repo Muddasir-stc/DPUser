@@ -28,7 +28,9 @@
         android:roundIcon="@drawable/dpoint_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.module.membership.MemberShipCardActivity"></activity>
+        <activity android:name=".view.module.history.GiftHistoryActivity"></activity>
+        <activity android:name=".view.module.gifts.GiftCardListActivity" />
+        <activity android:name=".view.module.membership.MemberShipCardActivity" />
         <activity android:name=".view.module.shops_near_me.ShopsNearMeActivity" />
         <activity android:name=".view.module.gifts.RedeemGiftActivity" />
         <activity android:name=".view.module.shops.ExchangeActivity" />
@@ -41,13 +43,13 @@
         <activity android:name="com.dpoints.view.module.offers.Offers" />
         <activity android:name="com.dpoints.view.module.order.Order" />
         <activity android:name=".view.module.membership.AddMembershipCardActivity" />
-
         <activity android:name="com.dpoints.view.module.shops.Shops" />
         <activity android:name="com.dpoints.dpointsmerchant.view.module.login.ForgotPasswordActivity" />
         <activity android:name="com.dpoints.dpointsmerchant.view.module.login.VerifyActivity" />
         <activity android:name="com.dpoints.view.module.profile.Profile" />
-        <activity android:name=".view.module.login.LoginOptionActivity"
-            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".view.module.login.LoginOptionActivity"
+            android:screenOrientation="portrait" />
         <activity android:name="com.dpoints.dpointsmerchant.view.module.login.ResetPasswordActivity" />
         <activity android:name="com.dpoints.view.module.profile.ChangePasswordActivity" />
         <activity android:name="com.dpoints.view.module.gifts.Gifts" />

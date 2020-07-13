@@ -11,7 +11,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.dpoint.dpointsuser.R
 import com.dpoint.dpointsuser.datasource.remote.gift.Data
-import com.dpoints.dpointsmerchant.utilities.OnItemClickListener
+import com.dpoint.dpointsuser.utilities.OnItemClickListener
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -64,7 +64,7 @@ class GiftAdapter(
         val img_strip: ImageView = view.findViewById(R.id.img_strip)
         val btnReddem: Button = view.findViewById(R.id.btnRedeem)
         fun bindto(itemtype: Data, context: Context) {
-            var expired_at = itemtype.expired_at.trim()
+            var expired_at = itemtype.expired_at!!.trim()
             try {
                 val date1 = SimpleDateFormat("dd/MM/yyyy").parse(expired_at)
                 val sdf = SimpleDateFormat("dd/MM/yyyy")

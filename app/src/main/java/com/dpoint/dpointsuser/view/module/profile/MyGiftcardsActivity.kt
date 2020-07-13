@@ -1,8 +1,6 @@
 package com.dpoint.dpointsuser.view.module.profile
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
 import android.widget.Toast
@@ -13,13 +11,11 @@ import com.dpoint.dpointsuser.datasource.remote.userdata.MyGiftModel
 import com.dpoint.dpointsuser.view.module.gifts.RedeemGiftActivity
 import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
 import com.dpoints.dpointsmerchant.preferences.UserPreferences
-import com.dpoints.dpointsmerchant.utilities.OnItemClickListener
+import com.dpoint.dpointsuser.utilities.OnItemClickListener
 import com.dpoints.dpointsmerchant.utilities.getVM
 import com.dpoints.dpointsmerchant.view.commons.base.BaseActivity
 import com.dpoints.view.adapter.MyGiftAdapter
-import kotlinx.android.synthetic.main.activity_my_giftcards.*
 import kotlinx.android.synthetic.main.activity_my_giftcards.myGifts
-import kotlinx.android.synthetic.main.fragment_profile.*
 
 class MyGiftcardsActivity : BaseActivity(), OnItemClickListener {
      var myGiftList: MyGiftModel?=null

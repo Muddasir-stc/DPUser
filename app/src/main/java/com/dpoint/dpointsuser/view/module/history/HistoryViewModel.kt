@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.dpoint.dpointsuser.datasource.remote.gift.GiftModel
 import com.dpoint.dpointsuser.datasource.remote.history.ExchangeModel
 import com.dpoint.dpointsuser.datasource.remote.history.HistoryGift
 import com.dpoint.dpointsuser.datasource.remote.history.RedeemModel
@@ -11,6 +12,7 @@ import com.dpoints.dpointsmerchant.datasource.remote.ApiCallbackImpl
 import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
 import com.dpoints.dpointsmerchant.datasource.remote.gift.HistoryService
 import com.dpoints.dpointsmerchant.utilities.Event
+import com.dpoints.view.module.gifts.Gifts
 
 class HistoryViewModel : ViewModel() {
     private val TAG = HistoryViewModel::class.qualifiedName
@@ -33,14 +35,14 @@ class HistoryViewModel : ViewModel() {
             })
     }
 
-    private val _historyGiftState = MutableLiveData<Event<NetworkState<HistoryGift>>>()
-    val historyGiftState: LiveData<Event<NetworkState<HistoryGift>>> get() = _historyGiftState
+    private val _historyGiftState = MutableLiveData<Event<NetworkState<GiftModel>>>()
+    val historyGiftState: LiveData<Event<NetworkState<GiftModel>>> get() = _historyGiftState
 
     fun getAllUserUsedGiftCards(token: String) {
         _historyGiftState.value = Event(NetworkState.Loading())
         HistoryService.instance.getAllUserUsedGiftCards(token,
-            object : ApiCallbackImpl<HistoryGift>(_historyGiftState) {
-                override fun onSuccess(success: HistoryGift?) {
+            object : ApiCallbackImpl<GiftModel>(_historyGiftState) {
+                override fun onSuccess(success: GiftModel?) {
                     Log.e(TAG, success.toString())
                     _historyGiftState.value = Event(NetworkState.Success(success))
                 }

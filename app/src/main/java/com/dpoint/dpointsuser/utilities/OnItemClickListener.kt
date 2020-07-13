@@ -1,4 +1,4 @@
-package com.dpoints.dpointsmerchant.utilities
+package com.dpoint.dpointsuser.utilities
 
 
 
@@ -11,5 +11,5 @@ interface OnUpdateClickListener {
 }
 
 interface OnRemoveClickListener {
-    fun onRemoveClick(position: Int, itemId: String)
+    fun onRemoveClick(position: Int, itemId: String,shopName:String?="")
 }

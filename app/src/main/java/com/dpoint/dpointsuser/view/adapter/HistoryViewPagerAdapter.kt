@@ -3,7 +3,9 @@ package com.dpoint.dpointsuser.view.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.dpoint.dpointsuser.datasource.model.GiftCardCategory
 import com.dpoint.dpointsuser.datasource.remote.shop.Shop
+import com.dpoint.dpointsuser.view.module.gifts.GiftsCategoriesFragment
 import com.dpoint.dpointsuser.view.module.history.Points
 import com.dpoints.view.module.dashboard.*
 
@@ -14,7 +16,7 @@ class HistoryViewPagerAdapter(
        if(position==0){
            return Points()
        }else if(position==1) {
-           return GiftcardFragment()
+           return GiftsCategoriesFragment.newInstance("history")
        }else{
            return OfferFragment()
        }

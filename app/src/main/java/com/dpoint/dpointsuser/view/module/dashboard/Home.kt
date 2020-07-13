@@ -14,7 +14,6 @@ import com.dpoint.dpointsuser.R
 import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
 import com.dpoints.dpointsmerchant.datasource.remote.offer.Data
 import com.dpoints.dpointsmerchant.preferences.UserPreferences
-import com.dpoints.dpointsmerchant.utilities.OnItemClickListener
 import com.dpoints.dpointsmerchant.utilities.getVM
 import com.dpoints.dpointsmerchant.view.commons.base.BaseFragment
 import com.dpoints.dpointsmerchant.view.module.dashboard.DashboardViewModel
@@ -26,8 +25,6 @@ import com.dpoint.dpointsuser.datasource.remote.gift.GiftModel
 import com.dpoint.dpointsuser.datasource.remote.shop.Shop
 import com.dpoint.dpointsuser.view.module.dashboard.SearchActivity
 import com.dpoint.dpointsuser.view.module.gifts.GiftCardsViewModel
-import com.dpoints.dpointsmerchant.utilities.toJson
-import com.dpoints.view.module.shops.ShopDetailActivity
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.smarteist.autoimageslider.IndicatorAnimations
 import com.smarteist.autoimageslider.SliderAnimations

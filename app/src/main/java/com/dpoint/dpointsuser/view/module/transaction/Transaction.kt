@@ -1,19 +1,15 @@
 package com.dpoints.view.module.transaction
 
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dpoint.dpointsuser.R
 import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
-import com.dpoints.dpointsmerchant.datasource.remote.transaction.Tran
-import com.dpoints.dpointsmerchant.preferences.UserPreferences
-import com.dpoints.dpointsmerchant.utilities.OnItemClickListener
+import com.dpoint.dpointsuser.utilities.OnItemClickListener
 import com.dpoints.dpointsmerchant.utilities.getVM
 import com.dpoints.dpointsmerchant.view.commons.base.BaseActivity
 import com.dpoints.dpointsmerchant.view.module.transaction.TransactionViewModel
-import com.dpoints.view.adapter.TransactionsAdapter
 import kotlinx.android.synthetic.main.activity_transaction.*
 
 class Transaction : BaseActivity(), OnItemClickListener {

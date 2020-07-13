@@ -1,5 +1,6 @@
 package com.dpoints.dpointsmerchant.datasource.remote.gift
 
+import com.dpoint.dpointsuser.datasource.remote.gift.GiftModel
 import com.dpoint.dpointsuser.datasource.remote.history.ExchangeModel
 import com.dpoint.dpointsuser.datasource.remote.history.HistoryGift
 import com.dpoint.dpointsuser.datasource.remote.history.RedeemModel
@@ -44,7 +45,7 @@ class HistoryService private constructor() {
     }
    fun getAllUserUsedGiftCards(
         token: String,
-        callback: ApiCallbackImpl<HistoryGift>
+        callback: ApiCallbackImpl<GiftModel>
     ) {
         val service = ApiClient.retrofit.create(Service::class.java)
         val call = service.getAllUserUsedGiftCards("Bearer $token")
@@ -70,6 +71,6 @@ class HistoryService private constructor() {
         @GET("getAllUserUsedGiftCards")
         fun getAllUserUsedGiftCards(
             @Header("Authorization") token: String
-        ): Call<ApiResult<HistoryGift>>
+        ): Call<ApiResult<GiftModel>>
     }
 }
