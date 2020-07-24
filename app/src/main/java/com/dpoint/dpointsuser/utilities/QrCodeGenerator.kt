@@ -1,4 +1,4 @@
-//package com.dpoints.dpointsmerchant.utilities
+//package com.dpoint.dpointsuser.utilities
 //
 //import android.graphics.Bitmap
 //import com.google.zxing.BarcodeFormat

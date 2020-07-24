@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dpoint.dpointsuser.R
 import com.dpoint.dpointsuser.datasource.remote.shop.Shop
-import com.dpoints.dpointsmerchant.utilities.toJson
+import com.dpoint.dpointsuser.utilities.toJson
 import com.dpoints.view.module.shops.ShopDetailActivity
 
 

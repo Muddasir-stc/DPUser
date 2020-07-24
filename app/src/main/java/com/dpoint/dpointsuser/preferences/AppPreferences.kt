@@ -1,4 +1,4 @@
-package com.dpoints.dpointsmerchant.preferences
+package com.dpoint.dpointsuser.preferences
 
 import android.content.Context
 import androidx.core.content.edit

@@ -3,16 +3,17 @@ package com.dpoint.dpointsuser.view.module.membership
 import android.content.Intent
 import androidx.lifecycle.Observer
 import com.dpoint.dpointsuser.R
-import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
-import com.dpoints.dpointsmerchant.preferences.UserPreferences
-import com.dpoints.dpointsmerchant.utilities.getVM
+import com.dpoint.dpointsuser.datasource.remote.NetworkState
+import com.dpoint.dpointsuser.preferences.UserPreferences
+import com.dpoint.dpointsuser.utilities.getVM
+import com.dpoint.dpointsuser.view.commons.base.BaseActivity
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dpoint.dpointsuser.datasource.remote.shop.MenuModel
 import com.dpoint.dpointsuser.view.adapter.MembershipAdapter
 import com.dpoint.dpointsuser.utilities.OnItemClickListener
-import com.dpoints.dpointsmerchant.view.commons.base.BaseFragment
+import com.dpoint.dpointsuser.view.commons.base.BaseFragment
 import kotlinx.android.synthetic.main.activity_member_ship__cards.*
 
 class MemberShipCardActivity : BaseFragment(), OnItemClickListener {

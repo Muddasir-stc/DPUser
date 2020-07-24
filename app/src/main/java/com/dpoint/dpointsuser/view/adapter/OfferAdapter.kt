@@ -11,7 +11,7 @@ import android.widget.ImageView
 import androidx.cardview.widget.CardView
 import com.bumptech.glide.Glide
 import com.dpoint.dpointsuser.R
-import com.dpoints.dpointsmerchant.datasource.remote.offer.Data
+import com.dpoint.dpointsuser.datasource.remote.offer.Data
 
 
 class OfferAdapter (

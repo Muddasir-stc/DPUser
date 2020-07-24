@@ -7,7 +7,7 @@ import android.os.Handler
 import android.util.Log
 import com.dpoint.dpointsuser.R
 import com.dpoint.dpointsuser.view.module.login.LoginOptionActivity
-import com.dpoints.dpointsmerchant.preferences.UserPreferences
+import com.dpoint.dpointsuser.preferences.UserPreferences
 import com.dpoints.view.module.dashboard.Dashboard
 import com.dpoints.view.module.login.Login
 

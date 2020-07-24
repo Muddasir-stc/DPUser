@@ -1,4 +1,4 @@
-package com.dpoints.dpointsmerchant.datasource.remote.auth
+package com.dpoint.dpointsuser.datasource.remote.auth
 
 data class LoginModel(
     val message: String,

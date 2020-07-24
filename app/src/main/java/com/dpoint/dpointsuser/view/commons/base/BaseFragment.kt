@@ -1,4 +1,4 @@
-package com.dpoints.dpointsmerchant.view.commons.base
+package com.dpoint.dpointsuser.view.commons.base
 
 import android.app.ProgressDialog
 import android.content.Context

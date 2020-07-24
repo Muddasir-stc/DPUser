@@ -5,13 +5,13 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import com.dpoint.dpointsuser.R
-import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
-import com.dpoints.dpointsmerchant.datasource.remote.auth.LoginModel
-import com.dpoints.dpointsmerchant.datasource.remote.auth.User
-import com.dpoints.dpointsmerchant.preferences.UserPreferences
-import com.dpoints.dpointsmerchant.utilities.getVM
-import com.dpoints.dpointsmerchant.view.commons.base.BaseActivity
-import com.dpoints.dpointsmerchant.view.module.login.LoginViewModel
+import com.dpoint.dpointsuser.datasource.remote.NetworkState
+import com.dpoint.dpointsuser.datasource.remote.auth.LoginModel
+import com.dpoint.dpointsuser.datasource.remote.auth.User
+import com.dpoint.dpointsuser.preferences.UserPreferences
+import com.dpoint.dpointsuser.utilities.getVM
+import com.dpoint.dpointsuser.view.commons.base.BaseActivity
+import com.dpoint.dpointsuser.view.module.login.LoginViewModel
 import kotlinx.android.synthetic.main.activity_profile.*
 
 class Profile : BaseActivity() {

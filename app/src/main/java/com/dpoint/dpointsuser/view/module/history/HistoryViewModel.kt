@@ -8,11 +8,11 @@ import com.dpoint.dpointsuser.datasource.remote.gift.GiftModel
 import com.dpoint.dpointsuser.datasource.remote.history.ExchangeModel
 import com.dpoint.dpointsuser.datasource.remote.history.HistoryGift
 import com.dpoint.dpointsuser.datasource.remote.history.RedeemModel
-import com.dpoints.dpointsmerchant.datasource.remote.ApiCallbackImpl
-import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
-import com.dpoints.dpointsmerchant.datasource.remote.gift.HistoryService
-import com.dpoints.dpointsmerchant.utilities.Event
 import com.dpoints.view.module.gifts.Gifts
+import com.dpoint.dpointsuser.datasource.remote.ApiCallbackImpl
+import com.dpoint.dpointsuser.datasource.remote.NetworkState
+import com.dpoint.dpointsuser.datasource.remote.gift.HistoryService
+import com.dpoint.dpointsuser.utilities.Event
 
 class HistoryViewModel : ViewModel() {
     private val TAG = HistoryViewModel::class.qualifiedName

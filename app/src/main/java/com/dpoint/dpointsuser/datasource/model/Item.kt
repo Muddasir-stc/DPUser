@@ -1,4 +1,4 @@
-package com.dpoints.dpointsmerchant.datasource.model
+package com.dpoint.dpointsuser.datasource.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

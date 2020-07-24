@@ -47,7 +47,7 @@
             android:layout_height="wrap_content">
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="0dp"
-                android:src="@drawable/profile"
+                android:src="@drawable/com_facebook_profile_picture_blank_square"
                 android:layout_weight="4"
                 android:padding="5dp"
                 android:layout_height="150dp"/>

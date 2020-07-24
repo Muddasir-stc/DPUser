@@ -11,8 +11,8 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.dpoint.dpointsuser.R
 import com.dpoint.dpointsuser.datasource.model.GiftCardCategory
+import com.dpoint.dpointsuser.utilities.GlideApp
 import com.dpoint.dpointsuser.utilities.OnRemoveClickListener
-import com.dpoints.dpointsmerchant.utilities.GlideApp
 
 
 class GiftCardCategoriesAdapter(

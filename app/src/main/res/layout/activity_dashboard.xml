@@ -53,7 +53,7 @@
             android:layout_gravity="start"
             android:layout_marginStart="@dimen/dimen_16"
             android:gravity="center"
-            android:src="@drawable/profile" />
+            android:src="@drawable/com_facebook_profile_picture_blank_square" />
 
         <TextView
             android:id="@+id/user_name"

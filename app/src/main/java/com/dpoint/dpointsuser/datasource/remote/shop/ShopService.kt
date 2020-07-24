@@ -1,15 +1,13 @@
-package com.dpoints.dpointsmerchant.datasource.remote.shop
+package com.dpoint.dpointsuser.datasource.remote.shop
 
 import com.dpoint.dpointsuser.datasource.remote.gift.GiftModel
 import com.dpoint.dpointsuser.datasource.remote.offer.AssignModel
-import com.dpoint.dpointsuser.datasource.remote.shop.MenuModel
-import com.dpoint.dpointsuser.datasource.remote.shop.ShopModel
-import com.dpoints.dpointsmerchant.datasource.remote.ApiCallbackImpl
-import com.dpoints.dpointsmerchant.datasource.remote.ApiClient
-import com.dpoints.dpointsmerchant.datasource.remote.ApiResult
-import com.dpoints.dpointsmerchant.datasource.remote.dashboard.NotificationModel
-import com.dpoints.dpointsmerchant.datasource.remote.offer.OfferModel
-import com.dpoints.dpointsmerchant.successsource.remote.CallbackImpl
+import com.dpoint.dpointsuser.datasource.remote.ApiCallbackImpl
+import com.dpoint.dpointsuser.datasource.remote.ApiClient
+import com.dpoint.dpointsuser.datasource.remote.ApiResult
+import com.dpoint.dpointsuser.datasource.remote.dashboard.NotificationModel
+import com.dpoint.dpointsuser.datasource.remote.offer.OfferModel
+import com.dpoint.dpointsuser.datasource.remote.CallbackImpl
 import retrofit2.Call
 import retrofit2.http.*
 

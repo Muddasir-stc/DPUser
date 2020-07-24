@@ -5,11 +5,14 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dpoint.dpointsuser.R
-import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
+import com.dpoint.dpointsuser.datasource.remote.NetworkState
+import com.dpoint.dpointsuser.datasource.remote.transaction.Tran
+import com.dpoint.dpointsuser.preferences.UserPreferences
 import com.dpoint.dpointsuser.utilities.OnItemClickListener
-import com.dpoints.dpointsmerchant.utilities.getVM
-import com.dpoints.dpointsmerchant.view.commons.base.BaseActivity
-import com.dpoints.dpointsmerchant.view.module.transaction.TransactionViewModel
+import com.dpoint.dpointsuser.utilities.getVM
+import com.dpoint.dpointsuser.view.commons.base.BaseActivity
+import com.dpoint.dpointsuser.view.module.transaction.TransactionViewModel
+import com.dpoints.view.adapter.TransactionsAdapter
 import kotlinx.android.synthetic.main.activity_transaction.*
 
 class Transaction : BaseActivity(), OnItemClickListener {

@@ -29,14 +29,14 @@ import com.dpoint.dpointsuser.datasource.remote.shop.Shop
 import com.dpoint.dpointsuser.view.adapter.ShopViewPagerAdapter
 import com.dpoint.dpointsuser.view.module.gifts.QrViewModel
 import com.dpoint.dpointsuser.view.module.shops.ExchangeActivity
-import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
-import com.dpoints.dpointsmerchant.datasource.remote.offer.Data
-import com.dpoints.dpointsmerchant.preferences.UserPreferences
-import com.dpoints.dpointsmerchant.utilities.getVM
-import com.dpoints.dpointsmerchant.utilities.toJson
-import com.dpoints.dpointsmerchant.view.commons.base.BaseActivity
-import com.dpoints.dpointsmerchant.view.module.dashboard.DashboardViewModel
-import com.dpoints.dpointsmerchant.view.module.shops.ShopViewModel
+import com.dpoint.dpointsuser.datasource.remote.NetworkState
+import com.dpoint.dpointsuser.datasource.remote.offer.Data
+import com.dpoint.dpointsuser.preferences.UserPreferences
+import com.dpoint.dpointsuser.utilities.getVM
+import com.dpoint.dpointsuser.utilities.toJson
+import com.dpoint.dpointsuser.view.commons.base.BaseActivity
+import com.dpoint.dpointsuser.view.module.dashboard.DashboardViewModel
+import com.dpoint.dpointsuser.view.module.shops.ShopViewModel
 import com.dpoints.view.adapter.MenuAdapter
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.activity_shop_detail.*
@@ -60,7 +60,7 @@ class ShopDetailActivity : BaseActivity(), LocationListener {
     private val CAMERA_PERMISSIONS_REQUEST = 2
     private val viewModelDash by lazy { getVM<DashboardViewModel>(this) }
     var selectedData: String? = null
-    //    private var giftData: List<com.dpoints.dpointsmerchant.datasource.remote.gift.Menu>? = null
+    //    private var giftData: List<com.dpoint.dpointsuser.datasource.remote.gift.Menu>? = null
     private var data: List<Data>? = null
     override val layout: Int = R.layout.activity_shop_detail
     private val viewModel by lazy { getVM<ShopViewModel>(this) }

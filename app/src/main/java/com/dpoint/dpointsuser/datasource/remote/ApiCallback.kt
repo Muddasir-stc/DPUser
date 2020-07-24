@@ -1,8 +1,8 @@
-package com.dpoints.dpointsmerchant.datasource.remote
+package com.dpoint.dpointsuser.datasource.remote
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.dpoints.dpointsmerchant.utilities.Event
+import com.dpoint.dpointsuser.utilities.Event
 
 interface ApiCallback<T> {
     fun onFailure(t: Throwable, code: Int = -1)

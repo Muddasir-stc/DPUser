@@ -1,4 +1,4 @@
-package com.dpoints.dpointsmerchant.datasource.remote
+package com.dpoint.dpointsuser.datasource.remote
 
 sealed class NetworkState<out T> {
     class Loading<out T> : NetworkState<T>()

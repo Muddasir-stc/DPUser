@@ -1,4 +1,4 @@
-package com.dpoints.dpointsmerchant.utilities
+package com.dpoint.dpointsuser.utilities
 
 import android.os.Build
 import com.dpoint.dpointsuser.BuildConfig
@@ -21,7 +21,7 @@ class LoginType {
 
 class Action {
     companion object {
-        const val ACTION_NOTIFICATION_RECEIVED = "com.dpoints.dpointsmerchant.action.notification.received"
+        const val ACTION_NOTIFICATION_RECEIVED = "com.dpoint.dpointsuser.action.notification.received"
         const val ACTION_COIN_TRANSFER = "COIN_TRANSFER"
     }
 }

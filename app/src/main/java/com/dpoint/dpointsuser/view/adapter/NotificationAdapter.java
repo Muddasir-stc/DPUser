@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dpoint.dpointsuser.R;
-import com.dpoints.dpointsmerchant.datasource.remote.dashboard.Data;
+import com.dpoint.dpointsuser.datasource.remote.dashboard.Data;
 
 import java.util.ArrayList;
 

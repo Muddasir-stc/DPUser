@@ -1,4 +1,4 @@
-package com.dpoints.dpointsmerchant.datasource.remote.dashboard
+package com.dpoint.dpointsuser.datasource.remote.dashboard
 
 data class Data(
     val body: String,

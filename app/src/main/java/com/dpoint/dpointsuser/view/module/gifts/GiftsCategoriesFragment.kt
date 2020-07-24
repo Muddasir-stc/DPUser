@@ -9,17 +9,17 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dpoint.dpointsuser.R
 import com.dpoint.dpointsuser.datasource.model.GiftCardCategory
+import com.dpoint.dpointsuser.datasource.remote.NetworkState
 import com.dpoint.dpointsuser.datasource.remote.gift.Data
 import com.dpoint.dpointsuser.datasource.remote.gift.GiftModel
+import com.dpoint.dpointsuser.preferences.UserPreferences
 import com.dpoint.dpointsuser.utilities.OnRemoveClickListener
+import com.dpoint.dpointsuser.utilities.getVM
+import com.dpoint.dpointsuser.utilities.toJson
 import com.dpoint.dpointsuser.view.adapter.GiftCardCategoriesAdapter
+import com.dpoint.dpointsuser.view.commons.base.BaseFragment
 import com.dpoint.dpointsuser.view.module.history.GiftHistoryActivity
 import com.dpoint.dpointsuser.view.module.history.HistoryViewModel
-import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
-import com.dpoints.dpointsmerchant.preferences.UserPreferences
-import com.dpoints.dpointsmerchant.utilities.getVM
-import com.dpoints.dpointsmerchant.utilities.toJson
-import com.dpoints.dpointsmerchant.view.commons.base.BaseFragment
 import kotlinx.android.synthetic.main.activity_offers.*
 
 // TODO: Rename parameter arguments, choose names that match

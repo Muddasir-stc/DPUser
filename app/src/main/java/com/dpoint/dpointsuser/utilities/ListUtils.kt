@@ -1,4 +1,4 @@
-package com.dpoints.dpointsmerchant.utilities
+package com.dpoint.dpointsuser.utilities
 
 fun <T> isEmptyList(list: List<T>?) : Boolean {
     return list == null || list.isEmpty()

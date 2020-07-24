@@ -8,8 +8,8 @@ import com.dpoint.dpointsuser.datasource.remote.shop.Shop
 import com.dpoint.dpointsuser.view.adapter.HistoryViewPagerAdapter
 import com.dpoint.dpointsuser.view.adapter.WalletViewPagerAdapter
 import com.dpoint.dpointsuser.view.module.shops_near_me.ShopsNearMeActivity
-import com.dpoints.dpointsmerchant.datasource.remote.offer.Data
-import com.dpoints.dpointsmerchant.view.commons.base.BaseFragment
+import com.dpoint.dpointsuser.datasource.remote.offer.Data
+import com.dpoint.dpointsuser.view.commons.base.BaseFragment
 import com.dpoints.view.adapter.ShopAdapter
 import com.google.android.material.tabs.TabLayout
 

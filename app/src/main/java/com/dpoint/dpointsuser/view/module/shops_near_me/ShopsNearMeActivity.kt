@@ -15,7 +15,7 @@ import androidx.core.app.ActivityCompat
 import com.dpoint.dpointsuser.R
 import com.dpoint.dpointsuser.datasource.remote.shop.Shop
 import com.dpoint.dpointsuser.datasource.remote.shop.ShopModel
-import com.dpoints.dpointsmerchant.view.commons.base.BaseFragment
+import com.dpoint.dpointsuser.view.commons.base.BaseFragment
 import com.dpoints.view.module.shops.ShopDetailActivity
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GooglePlayServicesUtil

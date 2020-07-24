@@ -1,9 +1,9 @@
-package com.dpoints.dpointsmerchant.datasource.remote.auth
+package com.dpoint.dpointsuser.datasource.remote.auth
 
 import android.util.Log
-import com.dpoints.dpointsmerchant.datasource.remote.*
-import com.dpoints.dpointsmerchant.successsource.remote.CallbackImpl
-import com.facebook.login.Login
+import com.dpoint.dpointsuser.datasource.remote.ApiClient
+import com.dpoint.dpointsuser.datasource.remote.*
+import com.dpoint.dpointsuser.datasource.remote.CallbackImpl
 import retrofit2.Call
 import retrofit2.http.*
 

@@ -4,7 +4,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dpoint.dpointsuser.R
 import com.dpoint.dpointsuser.datasource.remote.gift.Data
-import com.dpoints.dpointsmerchant.view.commons.base.BaseActivity
+import com.dpoint.dpointsuser.view.commons.base.BaseActivity
 import com.dpoints.view.adapter.RedeemAdapter
 import kotlinx.android.synthetic.main.activity_gift_history.*
 

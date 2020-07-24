@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dpoint.dpointsuser.R
 import com.dpoint.dpointsuser.datasource.remote.transaction.UsedOffer
-import com.dpoints.dpointsmerchant.utilities.DateTime
+import com.dpoint.dpointsuser.utilities.DateTime
 import java.text.SimpleDateFormat
 import java.util.*
 

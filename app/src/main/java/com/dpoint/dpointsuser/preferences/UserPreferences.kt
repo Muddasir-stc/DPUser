@@ -1,10 +1,10 @@
-package com.dpoints.dpointsmerchant.preferences
+package com.dpoint.dpointsuser.preferences
 
 import android.content.Context
 import androidx.core.content.edit
-import com.dpoints.dpointsmerchant.datasource.remote.auth.User
-import com.dpoints.dpointsmerchant.utilities.fromJson
-import com.dpoints.dpointsmerchant.utilities.toJson
+import com.dpoint.dpointsuser.datasource.remote.auth.User
+import com.dpoint.dpointsuser.utilities.fromJson
+import com.dpoint.dpointsuser.utilities.toJson
 
 
 class UserPreferences {

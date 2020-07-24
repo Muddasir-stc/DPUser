@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dpoint.dpointsuser.R
 import com.dpoint.dpointsuser.datasource.remote.shop.Menu
+import com.dpoint.dpointsuser.datasource.remote.shop.Shop
+import com.dpoint.dpointsuser.utilities.OnItemClickListener
 
 
 class MenuAdapter(

@@ -1,6 +1,7 @@
-package com.dpoints.dpointsmerchant.datasource.remote
+package com.dpoint.dpointsuser.datasource.remote
 
-import com.dpoints.dpointsmerchant.utilities.BASE_URL
+import com.dpoint.dpointsuser.utilities.BASE_URL
+import com.dpoint.dpointsuser.datasource.remote.getOkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory

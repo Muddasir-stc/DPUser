@@ -1,5 +1,5 @@
-package com.dpoints.dpointsmerchant.datasource.remote
-import com.dpoints.dpointsmerchant.datasource.Error
+package com.dpoint.dpointsuser.datasource.remote
+import com.dpoint.dpointsuser.datasource.Error
 
 
 data class ApiResult<T>(

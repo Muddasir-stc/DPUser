@@ -1,5 +1,6 @@
 package com.dpoint.dpointsuser.view.module.dashboard
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.util.Log
 import android.view.View
@@ -9,11 +10,11 @@ import com.dpoint.dpointsuser.R
 import com.dpoint.dpointsuser.datasource.remote.userdata.MyGiftModel
 import com.dpoint.dpointsuser.view.module.gifts.RedeemGiftActivity
 import com.dpoint.dpointsuser.view.module.profile.UserViewModel
-import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
-import com.dpoints.dpointsmerchant.preferences.UserPreferences
+import com.dpoint.dpointsuser.datasource.remote.NetworkState
+import com.dpoint.dpointsuser.preferences.UserPreferences
 import com.dpoint.dpointsuser.utilities.OnItemClickListener
-import com.dpoints.dpointsmerchant.utilities.getVM
-import com.dpoints.dpointsmerchant.view.commons.base.BaseFragment
+import com.dpoint.dpointsuser.utilities.getVM
+import com.dpoint.dpointsuser.view.commons.base.BaseFragment
 import com.dpoints.view.adapter.MyGiftAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_member_ship__cards.*
@@ -29,6 +30,7 @@ class MyGiftCardFragment : BaseFragment(), OnItemClickListener {
     override val layout: Int = R.layout.activity_member_ship__cards
     private val viewModel by lazy { getVM<UserViewModel>(activity!!) }
     private var addCard: FloatingActionButton? = null
+    @SuppressLint("RestrictedApi")
     override fun init(view: View) {
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(activity!!)

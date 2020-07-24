@@ -1,16 +1,16 @@
-package com.dpoints.dpointsmerchant.view.module.login
+package com.dpoint.dpointsuser.view.module.login
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.dpoints.dpointsmerchant.datasource.remote.ApiCallbackImpl
-import com.dpoints.dpointsmerchant.datasource.remote.NetworkState
-import com.dpoints.dpointsmerchant.datasource.remote.auth.AuthService
-import com.dpoints.dpointsmerchant.datasource.remote.auth.CityModel
-import com.dpoints.dpointsmerchant.datasource.remote.auth.LoginModel
-import com.dpoints.dpointsmerchant.datasource.remote.dashboard.NotificationModel
-import com.dpoints.dpointsmerchant.utilities.Event
+import com.dpoint.dpointsuser.datasource.remote.ApiCallbackImpl
+import com.dpoint.dpointsuser.datasource.remote.NetworkState
+import com.dpoint.dpointsuser.datasource.remote.auth.AuthService
+import com.dpoint.dpointsuser.datasource.remote.auth.CityModel
+import com.dpoint.dpointsuser.datasource.remote.auth.LoginModel
+import com.dpoint.dpointsuser.datasource.remote.dashboard.NotificationModel
+import com.dpoint.dpointsuser.utilities.Event
 
 class LoginViewModel : ViewModel() {
 
