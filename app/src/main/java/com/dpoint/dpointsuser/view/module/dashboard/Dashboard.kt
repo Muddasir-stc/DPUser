@@ -1,35 +1,47 @@
 package com.dpoints.view.module.dashboard
 
+import android.Manifest
+import android.content.DialogInterface
 import android.content.Intent
+import android.net.Uri
+import android.provider.Settings
 import android.util.Log
 import android.view.MenuItem
 import android.widget.LinearLayout
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dpoint.dpointsuser.R
-import com.dpoint.dpointsuser.view.adapter.NavigationAdapter
-import com.dpoint.dpointsuser.view.module.dashboard.HistoryFragment
-import com.dpoint.dpointsuser.view.module.history.HistoryActivity
-import com.dpoint.dpointsuser.view.module.membership.MemberShipCardActivity
-import com.dpoint.dpointsuser.view.module.shops_near_me.ShopsNearMeActivity
 import com.dpoint.dpointsuser.datasource.model.Item
 import com.dpoint.dpointsuser.datasource.remote.NetworkState
 import com.dpoint.dpointsuser.datasource.remote.auth.User
 import com.dpoint.dpointsuser.preferences.UserPreferences
 import com.dpoint.dpointsuser.utilities.OnItemClickListener
 import com.dpoint.dpointsuser.utilities.getVM
+import com.dpoint.dpointsuser.view.adapter.NavigationAdapter
 import com.dpoint.dpointsuser.view.commons.base.BaseActivity
+import com.dpoint.dpointsuser.view.module.dashboard.HistoryFragment
+import com.dpoint.dpointsuser.view.module.history.HistoryActivity
+import com.dpoint.dpointsuser.view.module.membership.MemberShipCardActivity
 import com.dpoint.dpointsuser.view.module.shops.ShopViewModel
+import com.dpoint.dpointsuser.view.module.shops_near_me.ShopsNearMeActivity
 import com.dpoints.view.module.gifts.Gifts
 import com.dpoints.view.module.notifications.Notification
 import com.dpoints.view.module.offers.Offers
 import com.dpoints.view.module.shops.Shops
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.MultiplePermissionsReport
+import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionRequest
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.content_dashboard.*
+
 
 class Dashboard : BaseActivity(), OnItemClickListener,
     BottomNavigationView.OnNavigationItemSelectedListener {
@@ -140,8 +152,7 @@ class Dashboard : BaseActivity(), OnItemClickListener,
                 return true
             }
             R.id.navigation_shop_near_me -> {
-                viewModel.getShops(UserPreferences.instance.getTokken(this)!!)
-                addObserver()
+                requestLocationPermission()
                 //Toast.makeText(this,"Notification",Toast.LENGTH_SHORT).show()
                 return true
             }
@@ -163,6 +174,67 @@ class Dashboard : BaseActivity(), OnItemClickListener,
         }
     }
 
+    private fun requestLocationPermission() {
+        Dexter.withContext(this)
+            .withPermissions(
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            )
+            .withListener(object : MultiplePermissionsListener {
+                override fun onPermissionsChecked(report: MultiplePermissionsReport) {
+                    // check if all permissions are granted
+                    if (report.areAllPermissionsGranted()) {
+                        viewModel.getShops(UserPreferences.instance.getTokken(this@Dashboard)!!)
+                        addObserver()
+                    }
+
+                    // check for permanent denial of any permission
+                    if (report.isAnyPermissionPermanentlyDenied) {
+                        // show alert dialog navigating to Settings
+                        Toast.makeText(
+                            this@Dashboard,
+                            "To use this feature you have to allow the location permission",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+
+                override fun onPermissionRationaleShouldBeShown(
+                    permissions: List<PermissionRequest?>?,
+                    token: PermissionToken
+                ) {
+                    token.continuePermissionRequest()
+                }
+            }).withErrorListener {
+                Toast.makeText(applicationContext, "Error occurred! ", Toast.LENGTH_SHORT)
+                    .show()
+            }
+            .onSameThread()
+            .check()
+    }
+
+    private fun showSettingsDialog() {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this@Dashboard)
+        builder.setTitle("Need Permissions")
+        builder.setMessage("This app needs permission to use this feature. You can grant them in app settings.")
+        builder.setPositiveButton("GOTO SETTINGS",
+            DialogInterface.OnClickListener { dialog, which ->
+                dialog.cancel()
+                openSettings()
+            })
+        builder.setNegativeButton("Cancel",
+            DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
+        builder.show()
+    }
+
+    // navigating user to app settings
+    private fun openSettings() {
+        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+        val uri: Uri = Uri.fromParts("package", packageName, null)
+        intent.data = uri
+        startActivityForResult(intent, 101)
+    }
+
     private fun applyChanges(fr: Fragment, tag: String) {
         this.tag = tag
         titleBarName.text = tag
@@ -173,7 +245,7 @@ class Dashboard : BaseActivity(), OnItemClickListener,
         Item("Shops", R.drawable.ic_users),
         //Item("Orders", R.drawable.ic_box),
         Item("Gift Cards", R.drawable.ic_giftcard),
-     //   Item("MemberShip Card", R.drawable.ic_giftcard),
+        //   Item("MemberShip Card", R.drawable.ic_giftcard),
         Item("History", R.drawable.ic_transaction),
         Item("Shops With Offer", R.drawable.ic_users),
         Item("Offers", R.drawable.ic_users),
