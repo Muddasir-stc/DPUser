@@ -14,15 +14,13 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
-import com.bumptech.glide.Glide;
 import com.dpoint.dpointsuser.R;
 import com.dpoint.dpointsuser.preferences.UserPreferences;
 import com.dpoints.view.module.dashboard.Dashboard;
-import com.dpoints.view.module.splash.OnBoardingActivity;
+import com.dpoint.dpointsuser.view.module.splash.OnBoardingActivity;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.squareup.picasso.Picasso;

@@ -53,7 +53,7 @@
         <activity
             android:name="com.dpoints.view.module.dashboard.Dashboard"
             android:label="@string/title_activity_dashboard" />
-        <activity android:name="com.dpoints.view.module.splash.OnBoardingActivity">
+        <activity android:name=".view.module.splash.OnBoardingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

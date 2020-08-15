@@ -138,7 +138,7 @@ class AddMembershipCardActivity : BaseActivity() {
     private fun createImageFile(): File {
         // Create an image file name
         val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
-        val storageDir: File = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        val storageDir: File? = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         return File.createTempFile(
             "JPEG_${timeStamp}_", /* prefix */
             ".jpg", /* suffix */
@@ -243,14 +243,14 @@ class AddMembershipCardActivity : BaseActivity() {
             val extension: String?
             val contentResolver = applicationContext.contentResolver
             val mimeTypeMap = MimeTypeMap.getSingleton()
-            extension = mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(data.data))
+            extension = mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(data.data!!))
             val filePath = getRealPathFromURI(data.data, contentResolver)
             Log.e("PATH", filePath)
             //      bitmap = SiliCompressor.with(applicationContext).getCompressBitmap(filePath, true);
             val bytes = ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, 80, bytes)
             imgStr = AppPreferences.instance.getStringImage(bitmap)
-            ext = extension
+            ext = extension!!
             Log.e("EXTEN", imgStr)
         }else  if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null) {
             var file = File(currentPhotoPath);
@@ -269,7 +269,7 @@ class AddMembershipCardActivity : BaseActivity() {
     fun getRealPathFromURI(uri: Uri?, contentResolver: ContentResolver): String {
         var result: String? = null
         var proj = arrayOf(MediaStore.Images.Media.DATA)
-        val cursor: Cursor = contentResolver.query(uri, proj, null, null, null)!!
+        val cursor: Cursor = contentResolver.query(uri!!, proj, null, null, null)!!
         if (cursor != null) {
             if (cursor.moveToFirst()) {
                 var index = cursor.getColumnIndexOrThrow(proj[0])

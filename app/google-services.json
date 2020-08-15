@@ -1,79 +1,34 @@
 {
   "project_info": {
-    "project_number": "504530006856",
-    "firebase_url": "https://dpoints.firebaseio.com",
-    "project_id": "dpoints",
-    "storage_bucket": "dpoints.appspot.com"
+    "project_number": "677659834300",
+    "firebase_url": "https://dpoint-user.firebaseio.com",
+    "project_id": "dpoint-user",
+    "storage_bucket": "dpoint-user.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:504530006856:android:3ec883c6cd50aeff2cf97d",
+        "mobilesdk_app_id": "1:677659834300:android:3a6f2e26b3d9c63cff9db9",
         "android_client_info": {
           "package_name": "com.dpoint.dpointsuser"
         }
       },
       "oauth_client": [
         {
-          "client_id": "504530006856-ictq4ionj285ud4tn2l321u42vb8gmcs.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.dpoint.dpointsuser",
-            "certificate_hash": "57674616852f7f51ebdea3dee76b7ac69136c2ba"
-          }
-        },
-        {
-          "client_id": "504530006856-hh2qdgdjtntpduoje61moeau2u5jms38.apps.googleusercontent.com",
+          "client_id": "677659834300-v0pcd7cn20f66i15oq2m7mncliakbd44.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDXxN5olAc9Fo06SyMQJkw4iCgHZwTSl3o"
+          "current_key": "AIzaSyBQCn4Z6uS45A2fYREvrkVXrzvPtrQy-fc"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "504530006856-hh2qdgdjtntpduoje61moeau2u5jms38.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:504530006856:android:f9a6284780ce824f2cf97d",
-        "android_client_info": {
-          "package_name": "com.dpoints.dpointsmerchant"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "504530006856-ci9chisujdq662rgnok82g82glu5estq.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.dpoints.dpointsmerchant",
-            "certificate_hash": "fdce57b23c622e1ef1614ef72ab9c23fa1a0bc0e"
-          }
-        },
-        {
-          "client_id": "504530006856-hh2qdgdjtntpduoje61moeau2u5jms38.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDXxN5olAc9Fo06SyMQJkw4iCgHZwTSl3o"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "504530006856-hh2qdgdjtntpduoje61moeau2u5jms38.apps.googleusercontent.com",
+              "client_id": "677659834300-v0pcd7cn20f66i15oq2m7mncliakbd44.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
