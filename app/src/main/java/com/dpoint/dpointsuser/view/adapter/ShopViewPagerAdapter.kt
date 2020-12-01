@@ -14,9 +14,10 @@ class ShopViewPagerAdapter(
     var shop=shop
     override fun getItem(position: Int): Fragment {
        if(position==0){
-           return BusinessFragment(shop)
-       }else {
            return OffersFragment(shop)
+       }else {
+           return BusinessFragment(shop)
+
        }
     }
 
@@ -27,8 +28,8 @@ class ShopViewPagerAdapter(
 
     override fun getPageTitle(position: Int): CharSequence? {
         return when (position) {
-            0 -> "Business"
-            else-> "Offers"
+            0 -> "Offers"
+            else-> "Business"
         }
     }
 }

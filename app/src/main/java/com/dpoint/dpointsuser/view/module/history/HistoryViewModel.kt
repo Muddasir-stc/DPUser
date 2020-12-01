@@ -6,12 +6,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.dpoint.dpointsuser.datasource.remote.gift.GiftModel
 import com.dpoint.dpointsuser.datasource.remote.history.ExchangeModel
-import com.dpoint.dpointsuser.datasource.remote.history.HistoryGift
 import com.dpoint.dpointsuser.datasource.remote.history.RedeemModel
-import com.dpoints.view.module.gifts.Gifts
 import com.dpoint.dpointsuser.datasource.remote.ApiCallbackImpl
 import com.dpoint.dpointsuser.datasource.remote.NetworkState
-import com.dpoint.dpointsuser.datasource.remote.gift.HistoryService
+import com.dpoint.dpointsuser.datasource.remote.history.HistoryService
 import com.dpoint.dpointsuser.utilities.Event
 
 class HistoryViewModel : ViewModel() {

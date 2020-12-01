@@ -4,14 +4,10 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.dpoint.dpointsuser.datasource.remote.gift.GiftModel
-import com.dpoint.dpointsuser.datasource.remote.history.ExchangeModel
 import com.dpoint.dpointsuser.datasource.remote.userdata.MyGiftModel
 import com.dpoint.dpointsuser.datasource.remote.ApiCallbackImpl
 import com.dpoint.dpointsuser.datasource.remote.NetworkState
 import com.dpoint.dpointsuser.datasource.remote.auth.LoginModel
-import com.dpoint.dpointsuser.datasource.remote.gift.GiftService
-import com.dpoint.dpointsuser.datasource.remote.gift.HistoryService
 import com.dpoint.dpointsuser.datasource.remote.transaction.UserService
 import com.dpoint.dpointsuser.utilities.Event
 
